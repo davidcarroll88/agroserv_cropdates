@@ -163,18 +163,124 @@ outmah18 <- extract_tables(mah18)
 fsoyp9 <- do.call(rbind, outsoyp9)
 fsoyp10_1 <- do.call(rbind, outsoyp10_1)
 fsoyp10_2 <- do.call(rbind, outsoyp10_2)
-fsoyp11_1 <- do.call(rbind, outsoyp11_1)
+fsoyp11_1_1 <- do.call(rbind, outsoyp11_1[1])
+fsoyp11_1_2 <- do.call(rbind, outsoyp11_1[2])
 fsoyp11_2 <- do.call(rbind, outsoyp11_2)
-fsoyp12_1 <- do.call(rbind, outsoyp12_1)
-fsoyp12_2 <- do.call(rbind, outsoyp12_2)
-fsoyp13 <- do.call(rbind, outsoyp13)
-fsoyp14_1 <- do.call(rbind, outsoyp14_1)
-fsoyp14_2 <- do.call(rbind, outsoyp14_2)
+fsoyp12_1_1 <- do.call(rbind, outsoyp12_1[1])
+fsoyp12_2_2 <- do.call(rbind, outsoyp12_2[2])
+fsoyp13_1 <- do.call(rbind, outsoyp13[1])
+fsoyp13_2 <- do.call(rbind, outsoyp13[2])
+fsoyp14_1_1 <- do.call(rbind, outsoyp14_1[1])
+fsoyp14_1_2 <- do.call(rbind, outsoyp14_1[2])
+fsoyp14_2_1 <- do.call(rbind, outsoyp14_2[1])
+fsoyp14_2_2 <- do.call(rbind, outsoyp14_2[2])
 fsoyp15 <- do.call(rbind, outsoyp15)
 fsoyp16 <- do.call(rbind, outsoyp16)
 fsoyp17 <- do.call(rbind, outsoyp17)
 fsoyp18 <- do.call(rbind, outsoyp18)
 fsoyp19 <- do.call(rbind, outsoyp19)
+
+#Data frames for soy planting data
+
+#2009 soy planting
+fsoyp9 <- as.data.frame(fsoyp9[3:nrow(fsoyp9), ], stringsAsFactors = FALSE)
+hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', '2008-12-11')
+names(fsoyp9) <- hefsoyp9
+
+#2010 soy planting - setting as data frame - 1st file
+fsoyp10_1 <- as.data.frame(fsoyp10_1[2:nrow(fsoyp10_1), ], stringsAsFactors = FALSE)
+hefsoyp10_1 <- c('Regions', 'Area_ha', '2009-09-24', '2009-10-01', '2009-10-08',
+                 '2009-10-15', '2009-10-22', '2009-10-29', '2009-11-05', '2009-11-12', '2009-11-19',
+                 '2009-11-26')
+names(fsoyp10_1) <- hefsoyp10_1
+
+#2010 soy planting - erasing unnecessary rows, renmaing rows with errors, and removing
+#columns that will be duplicated after merge with 2nd file - 1st file
+fsoyp10_1_muni <- fsoyp10_1[-c(44, 45, 46, 47, 48, 49, 50, 51, 52, 53), ]
+fsoyp10_1_muni[3, "Regions"] <- "Others_Noroeste"
+fsoyp10_1_muni[5, "Regions"] <- "Itauba"
+fsoyp10_1_muni[6, "Regions"] <- "Others_Norte"
+fsoyp10_1_muni[9, "Regions"] <- "Querencia"
+fsoyp10_1_muni[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp10_1_muni[12, "Regions"] <- "Others_Nordeste"
+fsoyp10_1_muni[13, "Regions"] <- "Medio_Norte"
+fsoyp10_1_muni[21, "Regions"] <- "Nova_Ubirata"
+fsoyp10_1_muni[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyp10_1_muni[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp10_1_muni[28, "Regions"] <- "Campos_de_Julio"
+fsoyp10_1_muni[29, "Regions"] <- "Others_Oeste"
+fsoyp10_1_muni[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp10_1_muni[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp10_1_muni[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp10_1_muni[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp10_1_muni[42, "Regions"] <- "Others_Sudeste"
+fsoyp10_1_muni$Area_ha <- NULL
+
+#2010 soy planting - setting as data frame - 2nd file
+fsoyp10_2 <- as.data.frame(fsoyp10_2[2:nrow(fsoyp10_2), ], stringsAsFactors = FALSE)
+hefsoyp10_2 <- c('Regions', 'Area_ha', '2009-10-08', '2009-10-15', '2009-10-22', '2009-10-29',
+                 '2009-11-05', '2009-11-12', '2009-11-19', '2009-11-26', '2009-12-03')
+names(fsoyp10_2) <- hefsoyp10_2
+
+#2010 soy planting - erasing unnecessary rows and renaming rows with errors, and removing 
+#columns that will be duplicated after merge with 1st file - 2nd file
+fsoyp10_2_muni <- fsoyp10_2[-c(44, 45, 46, 47, 48, 49, 50, 51, 52, 53), ]
+fsoyp10_2_muni[3, "Regions"] <- "Others_Noroeste"
+fsoyp10_2_muni[5, "Regions"] <- "Itauba"
+fsoyp10_2_muni[6, "Regions"] <- "Others_Norte"
+fsoyp10_2_muni[9, "Regions"] <- "Querencia"
+fsoyp10_2_muni[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp10_2_muni[12, "Regions"] <- "Others_Nordeste"
+fsoyp10_2_muni[13, "Regions"] <- "Medio_Norte"
+fsoyp10_2_muni[21, "Regions"] <- "Nova_Ubirata"
+fsoyp10_2_muni[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyp10_2_muni[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp10_2_muni[28, "Regions"] <- "Campos_de_Julio"
+fsoyp10_2_muni[29, "Regions"] <- "Others_Oeste"
+fsoyp10_2_muni[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp10_2_muni[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp10_2_muni[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp10_2_muni[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp10_2_muni[42, "Regions"] <- "Others_Sudeste"
+fsoyp10_2_muni$'2009-10-08' <- NULL
+fsoyp10_2_muni$'2009-10-15' <- NULL
+fsoyp10_2_muni$'2009-10-22' <- NULL
+fsoyp10_2_muni$'2009-10-29' <- NULL
+fsoyp10_2_muni$'2009-11-05' <- NULL
+fsoyp10_2_muni$'2009-11-12' <- NULL
+fsoyp10_2_muni$'2009-11-19' <- NULL
+fsoyp10_2_muni$'2009-11-26' <- NULL
+
+#2010 soy planting - merging 1st and second files
+fsoyp10_muni <- merge(fsoyp10_1_muni, fsoyp10_2_muni, by="Regions", sort = FALSE)
+#2010 soy planting - moving Area_ha column to the second position in line
+fsoyp10_muni_1 <- fsoyp10_muni[c(1,12,2:11,13)]
+
+#2010 soy planting - isolating regional summary table by removing unnecessary columns from 2nd file
+fsoyp10_2_re <- fsoyp10_2[-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
+                             ,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,51,53), ]
+hefsoyp10_2_re <- c('IMEA_Regions', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                    'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp10_2_re) <- hefsoyp10_2_re
+
+#2010 soy planting regional summary table - shifting data over and re-entering erroneous values
+fsoyp10_2_re$Medio_Norte <- NULL
+fsoyp10_2_re[,2:3] = fsoyp10_2_re[,1:2]
+fsoyp10_2_re[1, "IMEA_Regions"] <- "Area_ha"
+fsoyp10_2_re[2, "IMEA_Regions"] <- "2009-12-03"
+fsoyp10_2_re[3, "IMEA_Regions"] <- "2008-12-04"
+fsoyp10_2_re[4, "IMEA_Regions"] <- "change_in_plant_per"
+fsoyp10_2_re[1, "Noroeste"] <- "241.200"
+fsoyp10_2_re[2, "Noroeste"] <- "100,0%"
+fsoyp10_2_re[3, "Noroeste"] <- "100,0%"
+fsoyp10_2_re[4, "Noroeste"] <- "0,0%"
+fsoyp10_2_re[10] <- NULL
+fsoyp10_2_re[9] <- NULL
+
+fsoyp10_2_re %>%
+  mutate(1, "Noroeste" = as.numeric(sub(",", ".", sub(".", "", Noroeste, fixed=TRUE), fixed=TRUE)))
+
+
 
 # Create individual data matrices for soy harvesting data
 fsoyh9_1 <- do.call(rbind, outsoyh9_1)
@@ -191,14 +297,21 @@ fsoyh9_11 <- do.call(rbind, outsoyh9_11)
 fsoyh9_12 <- do.call(rbind, outsoyh9_12)
 fsoyh9_13 <- do.call(rbind, outsoyh9_13)
 fsoyh9_14 <- do.call(rbind, outsoyh9_14)
-fsoyh10 <- do.call(rbind, outsoyh10)
-fsoyh11_1 <- do.call(rbind, outsoyh11_1)
-fsoyh11_2 <- do.call(rbind, outsoyh11_2)
-fsoyh12_1 <- do.call(rbind, outsoyh12_1)
-fsoyh12_2 <- do.call(rbind, outsoyh12_2)
+fsoyh10_1 <- do.call(rbind, outsoyh10[1])
+fsoyh10_2 <- do.call(rbind, outsoyh10[2])
+fsoyh11_1_1 <- do.call(rbind, outsoyh11_1[1])
+fsoyh11_1_2 <- do.call(rbind, outsoyh11_1[2])
+fsoyh11_2_1 <- do.call(rbind, outsoyh11_2[1])
+fsoyh11_2_2 <- do.call(rbind, outsoyh11_2[2])
+fsoyh12_1_1 <- do.call(rbind, outsoyh12_1[1])
+fsoyh12_1_2 <- do.call(rbind, outsoyh12_1[2])
+fsoyh12_2_1 <- do.call(rbind, outsoyh12_2[1])
+fsoyh12_2_2 <- do.call(rbind, outsoyh12_2[2])
 fsoyh13 <- do.call(rbind, outsoyh13)
-fsoyh14 <- do.call(rbind, outsoyh14)
-fsoyh15 <- do.call(rbind, outsoyh15)
+fsoyh14_1 <- do.call(rbind, outsoyh14[1])
+fsoyh14_2 <- do.call(rbind, outsoyh14[2])
+fsoyh15_1 <- do.call(rbind, outsoyh15[1])
+fsoyh15_2 <- do.call(rbind, outsoyh15[2])
 fsoyh16 <- do.call(rbind, outsoyh16)
 fsoyh17 <- do.call(rbind, outsoyh17)
 fsoyh18 <- do.call(rbind, outsoyh18)
@@ -212,9 +325,12 @@ fmap9_5 <- do.call(rbind, outmap9_5)
 fmap9_6 <- do.call(rbind, outmap9_6)
 fmap9_7 <- do.call(rbind, outmap9_7)
 fmap9_8 <- do.call(rbind, outmap9_8)
-fmap10_1 <- do.call(rbind, outmap10_1)
-fmap10_2 <- do.call(rbind, outmap10_2)
-fmap11 <- do.call(rbind, outmap11)
+fmap10_1_1 <- do.call(rbind, outmap10_1[1])
+fmap10_1_2 <- do.call(rbind, outmap10_1[2])
+fmap10_2_1 <- do.call(rbind, outmap10_2[1])
+fmap10_2_2 <- do.call(rbind, outmap10_2[2])
+fmap11_1 <- do.call(rbind, outmap11[1])
+fmap11_2 <- do.call(rbind, outmap11[2])
 fmap12 <- do.call(rbind, outmap12)
 fmap13 <- do.call(rbind, outmap13)
 fmap14 <- do.call(rbind, outmap14)
@@ -227,15 +343,21 @@ fmap18 <- do.call(rbind, outmap18)
 fmah9_1 <- do.call(rbind, outmah9)
 fmah10_1 <- do.call(rbind, outmah10_1)
 fmah10_2 <- do.call(rbind, outmah10_2)
-fmah11 <- do.call(rbind, outmah11)
-fmah12 <- do.call(rbind, outmah12)
-fmah13 <- do.call(rbind, outmah13)
-fmah14 <- do.call(rbind, outmah14)
-fmah15 <- do.call(rbind, outmah15_1)
-fmah15 <- do.call(rbind, outmah15_2)
+fmah11_1 <- do.call(rbind, outmah11[1])
+fmah11_2 <- do.call(rbind, outmah11[2])
+fmah12_1 <- do.call(rbind, outmah12[1])
+fmah12_2 <- do.call(rbind, outmah12[2])
+fmah13_1 <- do.call(rbind, outmah13[1])
+fmah13_2 <- do.call(rbind, outmah13[2])
+fmah14_1 <- do.call(rbind, outmah14[1])
+fmah14_2 <- do.call(rbind, outmah14[2])
+fmah15_1 <- do.call(rbind, outmah15_1)
+fmah15_2 <- do.call(rbind, outmah15_2)
 fmah16 <- do.call(rbind, outmah16)
 fmah17 <- do.call(rbind, outmah17)
 fmah18 <- do.call(rbind, outmah18)
+
+s <- rbind.fill(outmah11)
 
 
 
