@@ -2,6 +2,10 @@ install.packages("tabulizer")
 library("tabulizer")
 install.packages("dplyr")
 library("dplyr")
+install.packages("tibble")
+library("tibble")
+install.packages("data.table")
+library(data.table)
 
 # Location of soy planting files of interest
 soyp9 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/081211_IPS.pdf'
@@ -256,31 +260,60 @@ fsoyp10_muni <- merge(fsoyp10_1_muni, fsoyp10_2_muni, by="Regions", sort = FALSE
 #2010 soy planting - moving Area_ha column to the second position in line
 fsoyp10_muni_1 <- fsoyp10_muni[c(1,12,2:11,13)]
 
+
 #2010 soy planting - isolating regional summary table by removing unnecessary columns from 2nd file
 fsoyp10_2_re <- fsoyp10_2[-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
                              ,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,51,53), ]
-hefsoyp10_2_re <- c('IMEA_Regions', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+fsoyp10_2_re[11] <- NULL
+fsoyp10_2_re[10] <- NULL
+fsoyp10_2_re[5] <- NULL
+hefsoyp10_2_re <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
                     'Centro_Sul', 'Sudeste', 'Mato_Grosso')
 names(fsoyp10_2_re) <- hefsoyp10_2_re
-
 #2010 soy planting regional summary table - shifting data over and re-entering erroneous values
-fsoyp10_2_re$Medio_Norte <- NULL
-fsoyp10_2_re[,2:3] = fsoyp10_2_re[,1:2]
-fsoyp10_2_re[1, "IMEA_Regions"] <- "Area_ha"
-fsoyp10_2_re[2, "IMEA_Regions"] <- "2009-12-03"
-fsoyp10_2_re[3, "IMEA_Regions"] <- "2008-12-04"
-fsoyp10_2_re[4, "IMEA_Regions"] <- "change_in_plant_per"
 fsoyp10_2_re[1, "Noroeste"] <- "241.200"
 fsoyp10_2_re[2, "Noroeste"] <- "100,0%"
 fsoyp10_2_re[3, "Noroeste"] <- "100,0%"
 fsoyp10_2_re[4, "Noroeste"] <- "0,0%"
-fsoyp10_2_re[10] <- NULL
-fsoyp10_2_re[9] <- NULL
-
-fsoyp10_2_re %>%
-  mutate(1, "Noroeste" = as.numeric(sub(",", ".", sub(".", "", Noroeste, fixed=TRUE), fixed=TRUE)))
-
-
+#Transpose 2010 soy planting regions table (rows to columns, columns to rows)
+fsoyp10_2_re_1 <- t(fsoyp10_2_re)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp10_2_re_1 <- as.data.frame(fsoyp10_2_re_1[1:nrow(fsoyp10_2_re_1), ], sort= FALSE)
+#Create new header names and insert them
+hefsoyp10_2_re_1 <- c('Area_ha', 'first', 'second', 'change_in_plant_per')
+names(fsoyp10_2_re_1) <- hefsoyp10_2_re_1
+#Change row names to a separate column and name it "IMEA_Regions" 
+setDT(fsoyp10_2_re_1, keep.rownames=TRUE)
+colnames(fsoyp10_2_re_1)[1] <- "IMEA_Regions"
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#remove commas from decimal position in other three columns
+fsoyp10_2_re_1$first <- gsub(",", "\\.", fsoyp10_2_re_1$first)
+fsoyp10_2_re_1$second <- gsub(",", "\\.", fsoyp10_2_re_1$second)
+fsoyp10_2_re_1$change_in_plant_per <- gsub(",", "\\.", fsoyp10_2_re_1$change_in_plant_per)
+#remove percent signs from cecimal position in other three columns
+fsoyp10_2_re_1$first <- gsub("%", "", fsoyp10_2_re_1$first)
+fsoyp10_2_re_1$second <- gsub("%", "", fsoyp10_2_re_1$second)
+fsoyp10_2_re_1$change_in_plant_per <- gsub("%", "", fsoyp10_2_re_1$change_in_plant_per)
+#change other columns to numeric
+fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
+  mutate(change_in_plant_per = as.numeric(change_in_plant_per)) 
+fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
+  mutate(second = as.numeric(second)) 
+fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
+  mutate(first = as.numeric(first))
+#check the type of data in each column
+sapply(fsoyp10_2_re_1, mode)
+#rename the date columns
+colnames(fsoyp10_2_re_1)[3] <- "2009-12-03"
+colnames(fsoyp10_2_re_1)[4] <- "2008-12-04"
+#divide percentage columns by 100 to obtain decimal form
+fsoyp10_2_re_1$'2009-12-03' <- fsoyp10_2_re_1$'2009-12-03'/100
+fsoyp10_2_re_1$'2008-12-04' <- fsoyp10_2_re_1$'2008-12-04'/100
+fsoyp10_2_re_1$'change_in_plant_per' <- fsoyp10_2_re_1$'change_in_plant_per'/100
+#Write final table to disk
+write.csv(fsoyp10_2_re_1, file='soy_plant_2010_region.csv', row.names=FALSE)
 
 # Create individual data matrices for soy harvesting data
 fsoyh9_1 <- do.call(rbind, outsoyh9_1)
@@ -357,55 +390,9 @@ fmah16 <- do.call(rbind, outmah16)
 fmah17 <- do.call(rbind, outmah17)
 fmah18 <- do.call(rbind, outmah18)
 
-s <- rbind.fill(outmah11)
 
 
 
 
 
-final <- as.data.frame(final)
-View <-(out)
-final <- do.call(rbind, out)
 
-
-# table headers get extracted as rows with bad formatting. Dump them.
-final <- as.data.frame(final[2:nrow(final), ])
-
-# Column names
-headers <- c('Notice.Date', 'Effective.Date', 'Received.Date', 'Company', 'City', 
-             'County', 'No.of.Employees', 'Layoff/Closure')
-
-# Apply custom column names
-names(final) <- headers
-
-class(final$Notice.Date)
-class(final$No.of.Employees)
-
-# These dplyr steps are not strictly necessary for dumping to csv, but useful if further data 
-# manipulation in R is required. 
-final <- final %>%
-  # Convert date columns to date objects
-  mutate_at(vars(Notice.Date, Effective.Date, Received.Date), funs(as.Date(., "%m/%d/%y"))) %>%
-mutate_at(vars(starts_with("No.of.Employees")),funs(as.numeric))
-  
-  # Write final table to disk
-  write.csv(final, file='CA_WARN1.csv', row.names=FALSE)
-
-library(tabulizer)
-library(dplyr)
-jun2011 <- 'C:\\Users\\alexc\\Dropbox\\AlexCarroll\\Tufts\\CohnRA\\MaizeHarvest\\05_08_2011_ECMilho.pdf'
-files <- list.files(jun2011)
-for(file in files) 
-lst <- extract_tables(jun2011, encoding="UTF-8",pages = 1,area = list(c(Regiões do IMEA)))
-lst <- extract_tables(jun2011, encoding="UTF-8") 
-output <- extract_tables(jun2011)
-finjun11 <- do.call(rbind.fill(x[c("a", "b","c","d")], y[c("a", "b","c")],z[c("a","b")]))
-finjun11 <- do.call(rbind, output)
-finjun11 <- as.data.frame(finjun11[2:nrow(final),])
-headers <- c('Regiões / Municípios', '09/jun', '16/jun', '23/jun', '30/jun', '07/jul', '14/jul',
-             '14/jul', '28/jul', '04/ago')
-names(final) <- headers
-final <- final %>%
-mutate_at(vars(Notice.Date, Effective.Date, Received.Date), funs(as.Date(., "%m/%d/%y"))) %>%
-mutate_at(vars(starts_with("No.of.Employees")),funs(as.numeric))
-write.csv(final, file='CA_WARN1.csv', row.names=FALSE)
