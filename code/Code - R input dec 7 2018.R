@@ -188,8 +188,48 @@ fsoyp19 <- do.call(rbind, outsoyp19)
 
 #2009 soy planting
 fsoyp9 <- as.data.frame(fsoyp9[3:nrow(fsoyp9), ], stringsAsFactors = FALSE)
-hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', '2008-12-11')
+hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', 'three')
 names(fsoyp9) <- hefsoyp9
+
+#2009 soy planting correcting spelling errors in Regions column
+fsoyp9[3, "Regions"] <- "Others_Noroeste"
+fsoyp9[5, "Regions"] <- "Itauba"
+fsoyp9[6, "Regions"] <- "Others_Norte"
+fsoyp9[9, "Regions"] <- "Querencia"
+fsoyp9[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp9[12, "Regions"] <- "Others_Nordeste"
+fsoyp9[13, "Regions"] <- "Medio_Norte"
+fsoyp9[21, "Regions"] <- "Nova_Ubirata"
+fsoyp9[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyp9[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp9[28, "Regions"] <- "Campos_de_Julio"
+fsoyp9[29, "Regions"] <- "Others_Oeste"
+fsoyp9[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp9[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp9[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp9[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp9[42, "Regions"] <- "Others_Sudeste"
+
+#Remove periods from thousands positions and convert Area_ha to numeric
+fsoyp9$Area_ha <- gsub("\\.", "", fsoyp9$Area_ha)
+fsoyp9 <- fsoyp9 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+#Change commas to periods in percentage columns
+fsoyp9$`2008-12-04` <- gsub(",", "\\.", fsoyp9$`2008-12-04`)
+fsoyp9$three <- gsub(",", "\\.", fsoyp9$three)
+#remove percent signs
+fsoyp9$`2008-12-04` <- gsub("%", "", fsoyp9$`2008-12-04`)
+fsoyp9$three <- gsub("%", "", fsoyp9$three)
+#convert date columns to numeric
+fsoyp9$`2008-12-04` <- as.numeric(fsoyp9$`2008-12-04`)
+fsoyp9$three <- as.numeric(fsoyp9$three)
+#divide percentages by 100
+fsoyp9$`2008-12-04` <- fsoyp9$`2008-12-04`/100
+fsoyp9$three <- fsoyp9$three/100
+#change column 3 name back to what it's supposed to be
+colnames(fsoyp9)[3] <- "2008-12-11"
+#Write final table to disk
+write.csv(fsoyp9, file='soy_plant_2009_muni.csv', row.names=FALSE)
 
 #2010 soy planting - setting as data frame - 1st file
 fsoyp10_1 <- as.data.frame(fsoyp10_1[2:nrow(fsoyp10_1), ], stringsAsFactors = FALSE)
