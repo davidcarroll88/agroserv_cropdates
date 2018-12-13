@@ -259,7 +259,66 @@ fsoyp10_2_muni$'2009-11-26' <- NULL
 fsoyp10_muni <- merge(fsoyp10_1_muni, fsoyp10_2_muni, by="Regions", sort = FALSE)
 #2010 soy planting - moving Area_ha column to the second position in line
 fsoyp10_muni_1 <- fsoyp10_muni[c(1,12,2:11,13)]
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fsoyp10_muni_1$Area_ha <- gsub("\\.", "", fsoyp10_muni_1$Area_ha)
+fsoyp10_muni_1$Area_ha <- gsub(" ", "", fsoyp10_muni_1$Area_ha)
+fsoyp10_muni_1 <- fsoyp10_muni_1 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+#Change commas to periods in percentage columns
+fsoyp10_muni_1$`2009-09-24` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-09-24`)
+fsoyp10_muni_1$`2009-10-01` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-01`)
+fsoyp10_muni_1$`2009-10-08` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-08`)
+fsoyp10_muni_1$`2009-10-15` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-15`)
+fsoyp10_muni_1$`2009-10-22` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-22`)
+fsoyp10_muni_1$`2009-10-29` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-29`)
+fsoyp10_muni_1$`2009-11-05` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-05`)
+fsoyp10_muni_1$`2009-11-12` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-12`)
+fsoyp10_muni_1$`2009-11-19` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-19`)
+fsoyp10_muni_1$`2009-11-26` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-26`)
+fsoyp10_muni_1$`2009-12-03` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-12-03`)
 
+#Removing percentage symbols
+fsoyp10_muni_1$`2009-09-24` <- gsub("%", "", fsoyp10_muni_1$`2009-09-24`)
+fsoyp10_muni_1$`2009-10-01` <- gsub("%", "", fsoyp10_muni_1$`2009-10-01`)
+fsoyp10_muni_1$`2009-10-08` <- gsub("%", "", fsoyp10_muni_1$`2009-10-08`)
+fsoyp10_muni_1$`2009-10-15` <- gsub("%", "", fsoyp10_muni_1$`2009-10-15`)
+fsoyp10_muni_1$`2009-10-22` <- gsub("%", "", fsoyp10_muni_1$`2009-10-22`)
+fsoyp10_muni_1$`2009-10-29` <- gsub("%", "", fsoyp10_muni_1$`2009-10-29`)
+fsoyp10_muni_1$`2009-11-05` <- gsub("%", "", fsoyp10_muni_1$`2009-11-05`)
+fsoyp10_muni_1$`2009-11-12` <- gsub("%", "", fsoyp10_muni_1$`2009-11-12`)
+fsoyp10_muni_1$`2009-11-19` <- gsub("%", "", fsoyp10_muni_1$`2009-11-19`)
+fsoyp10_muni_1$`2009-11-26` <- gsub("%", "", fsoyp10_muni_1$`2009-11-26`)
+fsoyp10_muni_1$`2009-12-03` <- gsub("%", "", fsoyp10_muni_1$`2009-12-03`)
+
+#changing to numeric
+sapply(fsoyp10_muni_1, mode)
+fsoyp10_muni_1$`2009-09-24` <- as.numeric(fsoyp10_muni_1$`2009-09-24`)
+fsoyp10_muni_1$`2009-10-01` <- as.numeric(fsoyp10_muni_1$`2009-10-01`)
+fsoyp10_muni_1$`2009-10-08` <- as.numeric(fsoyp10_muni_1$`2009-10-08`)
+fsoyp10_muni_1$`2009-10-15` <- as.numeric(fsoyp10_muni_1$`2009-10-15`)
+fsoyp10_muni_1$`2009-10-22` <- as.numeric(fsoyp10_muni_1$`2009-10-22`)
+fsoyp10_muni_1$`2009-10-29` <- as.numeric(fsoyp10_muni_1$`2009-10-29`)
+fsoyp10_muni_1$`2009-11-05` <- as.numeric(fsoyp10_muni_1$`2009-11-05`)
+fsoyp10_muni_1$`2009-11-12` <- as.numeric(fsoyp10_muni_1$`2009-11-12`)
+fsoyp10_muni_1$`2009-11-19` <- as.numeric(fsoyp10_muni_1$`2009-11-19`)
+fsoyp10_muni_1$`2009-11-26` <- as.numeric(fsoyp10_muni_1$`2009-11-26`)
+fsoyp10_muni_1$`2009-12-03` <- as.numeric(fsoyp10_muni_1$`2009-12-03`)
+
+#dividing percentage values by 100 to convert them to decimal form
+fsoyp10_muni_1$`2009-09-24` <- fsoyp10_muni_1$`2009-09-24`/100
+fsoyp10_muni_1$`2009-10-01` <- fsoyp10_muni_1$`2009-10-01`/100
+fsoyp10_muni_1$`2009-10-08` <- fsoyp10_muni_1$`2009-10-08`/100
+fsoyp10_muni_1$`2009-10-15` <- fsoyp10_muni_1$`2009-10-15`/100
+fsoyp10_muni_1$`2009-10-22` <- fsoyp10_muni_1$`2009-10-22`/100
+fsoyp10_muni_1$`2009-10-29` <- fsoyp10_muni_1$`2009-10-29`/100
+fsoyp10_muni_1$`2009-11-05` <- fsoyp10_muni_1$`2009-11-05`/100
+fsoyp10_muni_1$`2009-11-12` <- fsoyp10_muni_1$`2009-11-12`/100
+fsoyp10_muni_1$`2009-11-19` <- fsoyp10_muni_1$`2009-11-19`/100
+fsoyp10_muni_1$`2009-11-26` <- fsoyp10_muni_1$`2009-11-26`/100
+fsoyp10_muni_1$`2009-12-03` <- fsoyp10_muni_1$`2009-12-03`/100
+
+#Write final table to disk
+write.csv(fsoyp10_muni_1, file='soy_plant_2010_muni.csv', row.names=FALSE)
 
 #2010 soy planting - isolating regional summary table by removing unnecessary columns from 2nd file
 fsoyp10_2_re <- fsoyp10_2[-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26
@@ -292,7 +351,7 @@ fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
 fsoyp10_2_re_1$first <- gsub(",", "\\.", fsoyp10_2_re_1$first)
 fsoyp10_2_re_1$second <- gsub(",", "\\.", fsoyp10_2_re_1$second)
 fsoyp10_2_re_1$change_in_plant_per <- gsub(",", "\\.", fsoyp10_2_re_1$change_in_plant_per)
-#remove percent signs from cecimal position in other three columns
+#remove percent signs from other three columns
 fsoyp10_2_re_1$first <- gsub("%", "", fsoyp10_2_re_1$first)
 fsoyp10_2_re_1$second <- gsub("%", "", fsoyp10_2_re_1$second)
 fsoyp10_2_re_1$change_in_plant_per <- gsub("%", "", fsoyp10_2_re_1$change_in_plant_per)
