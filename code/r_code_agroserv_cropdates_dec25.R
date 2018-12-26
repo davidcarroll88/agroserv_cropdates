@@ -882,78 +882,20 @@ colnames(fsoyp13_2)[1] <- "IMEA_Regions"
 fsoyp13_2 <- fsoyp13_2 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
 #remove commas from decimal position in other three columns
-fsoyp13_2$`2012-09-20` <- gsub(",", "\\.", fsoyp13_2$`2012-09-20`)
-fsoyp13_2$`2012-09-27` <- gsub(",", "\\.", fsoyp13_2$`2012-09-27`)
-fsoyp13_2$`2012-10-04` <- gsub(",", "\\.", fsoyp13_2$`2012-10-04`)
-fsoyp13_2$`2012-10-11` <- gsub(",", "\\.", fsoyp13_2$`2012-10-11`)
-fsoyp13_2$`2012-10-18` <- gsub(",", "\\.", fsoyp13_2$`2012-10-18`)
-fsoyp13_2$`2012-10-25` <- gsub(",", "\\.", fsoyp13_2$`2012-10-25`)
-fsoyp13_2$`2012-11-01` <- gsub(",", "\\.", fsoyp13_2$`2012-11-01`)
-fsoyp13_2$`2012-11-08` <- gsub(",", "\\.", fsoyp13_2$`2012-11-08`)
-fsoyp13_2$`2012-11-15` <- gsub(",", "\\.", fsoyp13_2$`2012-11-15`)
-fsoyp13_2$`2012-11-22` <- gsub(",", "\\.", fsoyp13_2$`2012-11-22`)
-fsoyp13_2$`2012-11-23` <- gsub(",", "\\.", fsoyp13_2$`2012-11-23`)
-fsoyp13_2$`2011-12-01` <- gsub(",", "\\.", fsoyp13_2$`2011-12-01`)
-fsoyp13_2$`change_in_plant_per` <- gsub(",", "\\.", fsoyp13_2$`change_in_plant_per`)
-#remove percent signs from other three columns
-fsoyp13_2$`2012-09-20` <- gsub("%", "", fsoyp13_2$`2012-09-20`)
-fsoyp13_2$`2012-09-27` <- gsub("%", "", fsoyp13_2$`2012-09-27`)
-fsoyp13_2$`2012-10-04` <- gsub("%", "", fsoyp13_2$`2012-10-04`)
-fsoyp13_2$`2012-10-11` <- gsub("%", "", fsoyp13_2$`2012-10-11`)
-fsoyp13_2$`2012-10-18` <- gsub("%", "", fsoyp13_2$`2012-10-18`)
-fsoyp13_2$`2012-10-25` <- gsub("%", "", fsoyp13_2$`2012-10-25`)
-fsoyp13_2$`2012-11-01` <- gsub("%", "", fsoyp13_2$`2012-11-01`)
-fsoyp13_2$`2012-11-08` <- gsub("%", "", fsoyp13_2$`2012-11-08`)
-fsoyp13_2$`2012-11-15` <- gsub("%", "", fsoyp13_2$`2012-11-15`)
-fsoyp13_2$`2012-11-22` <- gsub("%", "", fsoyp13_2$`2012-11-22`)
-fsoyp13_2$`2012-11-23` <- gsub("%", "", fsoyp13_2$`2012-11-23`)
-fsoyp13_2$`2011-12-01` <- gsub("%", "", fsoyp13_2$`2011-12-01`)
-fsoyp13_2$`change_in_plant_per` <- gsub("%", "", fsoyp13_2$`change_in_plant_per`)
-fsoyp13_2$`change_in_plant_per` <- gsub("p.p.", "", fsoyp13_2$`change_in_plant_per`)
 
-#change other columns to numeric
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`change_in_plant_per`= as.numeric(`change_in_plant_per`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-09-20` = as.numeric(`2012-09-20`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-09-27` = as.numeric(`2012-09-27`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-10-04` = as.numeric(`2012-10-04`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-10-11` = as.numeric(`2012-10-11`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-10-18` = as.numeric(`2012-10-18`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-10-25` = as.numeric(`2012-10-25`)) 
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-11-01` = as.numeric(`2012-11-01`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-11-08` = as.numeric(`2012-11-08`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-11-15` = as.numeric(`2012-11-15`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-11-22` = as.numeric(`2012-11-22`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2012-11-23` = as.numeric(`2012-11-23`))
-fsoyp13_2 <- fsoyp13_2 %>%
-  mutate(`2011-12-01` = as.numeric(`2011-12-01`))
-#check the type of data in each column
+#xxx <- 3
+#colnames(fsoyp13_2)[1]
+
+for (xxx in 3:dim(fsoyp13_2)[2]){
+      fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]] <- gsub(",", "\\.", fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]])
+      fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]] <- gsub("%", "", fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]])
+      fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]] <- gsub("p.p.", "", fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]])
+      fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]] <- as.numeric(fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]])
+      fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]] <- fsoyp13_2[[paste(colnames(fsoyp13_2)[xxx])]]/100
+}
+dim(fsoyp13_2)
 sapply(fsoyp13_2, mode)
-#divide percentage columns by 100 to obtain decimal form
-fsoyp13_2$`2012-09-20` <- fsoyp13_2$`2012-09-20`/100
-fsoyp13_2$`2012-09-27` <- fsoyp13_2$`2012-09-27`/100
-fsoyp13_2$`2012-10-04` <- fsoyp13_2$`2012-10-04`/100
-fsoyp13_2$`2012-10-11` <- fsoyp13_2$`2012-10-11`/100
-fsoyp13_2$`2012-10-18` <- fsoyp13_2$`2012-10-18`/100
-fsoyp13_2$`2012-10-25` <- fsoyp13_2$`2012-10-25`/100
-fsoyp13_2$`2012-11-01` <- fsoyp13_2$`2012-11-01`/100
-fsoyp13_2$`2012-11-08` <- fsoyp13_2$`2012-11-08`/100
-fsoyp13_2$`2012-11-15` <- fsoyp13_2$`2012-11-15`/100
-fsoyp13_2$`2012-11-22` <- fsoyp13_2$`2012-11-22`/100
-fsoyp13_2$`2012-11-23` <- fsoyp13_2$`2012-11-23`/100
-fsoyp13_2$`2011-12-01` <- fsoyp13_2$`2011-12-01`/100
-fsoyp13_2$`change_in_plant_per` <- fsoyp13_2$`change_in_plant_per`/100
+
 #Write final table to disk
 write.csv(fsoyp13_2, file='soy_plant_2013_region.csv', row.names=FALSE)
 
