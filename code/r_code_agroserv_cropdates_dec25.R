@@ -899,6 +899,85 @@ sapply(fsoyp13_2, mode)
 #Write final table to disk
 write.csv(fsoyp13_2, file='soy_plant_2013_region.csv', row.names=FALSE)
 
+#2014 soy planting - setting as data frame - 1st/2nd files municipal data
+fsoyp14_1_1 <- as.data.frame(fsoyp14_1_1[2:nrow(fsoyp14_1_1), ], stringsAsFactors = FALSE)
+hefsoyp14_1_1 <- c('Regions', 'Area_ha', '2013-09-19', '2013-09-26', '2013-10-03', '2013-10-10', '2013-10-17',
+                   '2013-10-24', '2013-10-31', '2013-11-07', '2013-11-14', '2013-11-21', ' 2013-11-28')
+names(fsoyp14_1_1) <- hefsoyp14_1_1
+fsoyp14_1_1[3, "Regions"] <- "Others_Noroeste"
+fsoyp14_1_1[5, "Regions"] <- "Itauba"
+fsoyp14_1_1[6, "Regions"] <- "Others_Norte"
+fsoyp14_1_1[9, "Regions"] <- "Querencia"
+fsoyp14_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp14_1_1[12, "Regions"] <- "Others_Nordeste"
+fsoyp14_1_1[13, "Regions"] <- "Medio_Norte"
+fsoyp14_1_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp14_1_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp14_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp14_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp14_1_1[29, "Regions"] <- "Others_Oeste"
+fsoyp14_1_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp14_1_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp14_1_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp14_1_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp14_1_1[42, "Regions"] <- "Others_Sudeste"
+#2nd file data frame and removing duplicate columns - naming remaining columns
+fsoyp14_2_1 <- as.data.frame(fsoyp14_2_1[2:nrow(fsoyp14_2_1), ], stringsAsFactors = FALSE)
+fsoyp14_2_1$'V2' <- NULL
+fsoyp14_2_1$'V3' <- NULL
+fsoyp14_2_1$'V4' <- NULL
+fsoyp14_2_1$'V5' <- NULL
+fsoyp14_2_1$'V6' <- NULL
+fsoyp14_2_1$'V7' <- NULL
+fsoyp14_2_1$'V8' <- NULL
+fsoyp14_2_1$'V9' <- NULL
+fsoyp14_2_1$'V10' <- NULL
+fsoyp14_2_1$'V11' <- NULL
+fsoyp14_2_1$'V12' <- NULL
+hefsoyp14_2_1 <- c('Regions','2013-12-05')
+names(fsoyp14_2_1) <- hefsoyp14_2_1
+fsoyp14_2_1[3, "Regions"] <- "Others_Noroeste"
+fsoyp14_2_1[5, "Regions"] <- "Itauba"
+fsoyp14_2_1[6, "Regions"] <- "Others_Norte"
+fsoyp14_2_1[9, "Regions"] <- "Querencia"
+fsoyp14_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp14_2_1[12, "Regions"] <- "Others_Nordeste"
+fsoyp14_2_1[13, "Regions"] <- "Medio_Norte"
+fsoyp14_2_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp14_2_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyp14_2_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp14_2_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp14_2_1[29, "Regions"] <- "Others_Oeste"
+fsoyp14_2_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp14_2_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp14_2_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp14_2_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp14_2_1[42, "Regions"] <- "Others_Sudeste"
+#Merging first and second files for municipal level data
+fsoyp14_muni <- merge(fsoyp14_1_1, fsoyp14_2_1, by="Regions", sort = FALSE)
+View(fsoyp14_muni)
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fsoyp14_muni$Area_ha <- gsub("\\.", "", fsoyp14_muni$Area_ha)
+fsoyp14_muni$Area_ha <- gsub(" ", "", fsoyp14_muni$Area_ha)
+fsoyp14_muni <- fsoyp14_muni %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+View(fsoyp14_muni)
+
+#xxx <- 3
+#colnames(fsoyp14_muni)[1]
+
+for (xxx in 3:dim(fsoyp14_muni)[2]){
+  fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]] <- gsub(",", "\\.", fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]])
+  fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]] <- gsub("%", "", fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]])
+  fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]] <- gsub("p.p.", "", fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]])
+  fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]] <- as.numeric(fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]])
+  fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]] <- fsoyp14_muni[[paste(colnames(fsoyp14_muni)[xxx])]]/100
+}
+dim(fsoyp14_muni)
+sapply(fsoyp14_muni, mode)
+
+write.csv(fsoyp14_muni, file='soy_plant_2014_muni.csv', row.names=FALSE)
+
 # Create individual data matrices for soy harvesting data
 # fsoyh9_1 <- do.call(rbind, outsoyh9_1)
 # fsoyh9_2 <- do.call(rbind, outsoyh9_2)
