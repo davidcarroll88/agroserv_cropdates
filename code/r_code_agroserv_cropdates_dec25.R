@@ -976,7 +976,86 @@ for (xxx in 3:dim(fsoyp14_muni)[2]){
 dim(fsoyp14_muni)
 sapply(fsoyp14_muni, mode)
 
+#Writing 2013-2014 Municipal data to CSV
 write.csv(fsoyp14_muni, file='soy_plant_2014_muni.csv', row.names=FALSE)
+
+#2013-2014 soy planting - isolating regional summary table by removing unnecessary rows from both files
+View(fsoyp14_1_2)
+View(fsoyp14_2_2)
+fsoyp14_1_2 <- as.data.frame(fsoyp14_1_2[5:nrow(fsoyp14_1_2), ], stringsAsFactors = FALSE)
+fsoyp14_2_2 <- as.data.frame(fsoyp14_2_2[5:nrow(fsoyp14_2_2), ], stringsAsFactors = FALSE)
+fsoyp14_1_2[14] <- NULL
+fsoyp14_1_2[13] <- NULL
+fsoyp14_1_2[12] <- NULL
+fsoyp14_1_2[11] <- NULL
+fsoyp14_1_2[7] <- NULL
+fsoyp14_2_2[14] <- NULL
+fsoyp14_2_2[13] <- NULL
+fsoyp14_2_2[12] <- NULL
+fsoyp14_2_2[11] <- NULL
+fsoyp14_2_2[10] <- NULL
+fsoyp14_2_2[7] <- NULL
+
+hefsoyp14_1_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                   'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp14_1_2) <- hefsoyp14_1_2
+hefsoyp14_2_2 <- c('Headers', 'Noroeste', 'Nordeste', 'Medio_Norte', 'Oeste',
+                   'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp14_2_2) <- hefsoyp14_2_2
+fsoyp14_1_2[1, "Noroeste"] <- "535.051"
+fsoyp14_1_2[2, "Noroeste"] <- "0,4%"
+fsoyp14_1_2[3, "Noroeste"] <- "0,5%"
+fsoyp14_1_2[4, "Noroeste"] <- "0,8%"
+fsoyp14_1_2[5, "Noroeste"] <- "7,0%"
+fsoyp14_1_2[6, "Noroeste"] <- "19,6%"
+fsoyp14_1_2[7, "Noroeste"] <- "42,0%"
+fsoyp14_1_2[8, "Noroeste"] <- "64,8%"
+fsoyp14_1_2[9, "Noroeste"] <- "85,4%"
+fsoyp14_1_2[10, "Noroeste"] <- "96,6%"
+fsoyp14_1_2[11, "Noroeste"] <- "99,4%"
+fsoyp14_1_2[12, "Noroeste"] <- "100,0%"
+fsoyp14_1_2[13, "Noroeste"] <- "100,0%"
+fsoyp14_2_2[1, "Noroeste"] <- "535.051"
+fsoyp14_2_2[2, "Noroeste"] <- "0,4%"
+fsoyp14_2_2[3, "Noroeste"] <- "0,5%"
+fsoyp14_2_2[4, "Noroeste"] <- "0,8%"
+fsoyp14_2_2[5, "Noroeste"] <- "7,0%"
+fsoyp14_2_2[6, "Noroeste"] <- "19,6%"
+fsoyp14_2_2[7, "Noroeste"] <- "42,0%"
+fsoyp14_2_2[8, "Noroeste"] <- "64,8%"
+fsoyp14_2_2[9, "Noroeste"] <- "85,4%"
+fsoyp14_2_2[10, "Noroeste"] <- "96,6%"
+fsoyp14_2_2[11, "Noroeste"] <- "99,4%"
+fsoyp14_2_2[12, "Noroeste"] <- "100,0%"
+fsoyp14_2_2[13, "Noroeste"] <- "100,0%"
+fsoyp14_2_2[14, "Noroeste"] <- "100,0%"
+fsoyp14_2_2$Norte <- c('0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0')
+fsoyp14_2_2 <- fsoyp14_2_2[c(1:2,9,3:8)]
+fsoyp14_1_2 <- fsoyp14_1_2[-c(14, 16), ]
+fsoyp14_2_2 <- fsoyp14_2_2[-c(15, 17), ]
+#Transpose 2012 soy planting regions table (rows to columns, columns to rows)
+fsoyp14_1_2 <- t(fsoyp14_1_2)
+fsoyp14_2_2 <- t(fsoyp14_2_2)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp14_1_2 <- as.data.frame(fsoyp14_1_2[1:nrow(fsoyp14_1_2), ], sort= FALSE)
+fsoyp14_2_2 <- as.data.frame(fsoyp14_2_2[1:nrow(fsoyp14_2_2), ], sort= FALSE)
+fsoyp14_1_2 <- fsoyp14_1_2[-c(1), ]
+fsoyp14_2_2 <- fsoyp14_2_2[-c(1), ]
+#Create new header names and insert them
+hefsoyp14_1_2 <- c('Area_ha', '2011-11-24', '2010-11-25', 'change_in_plant_per')
+names(fsoyp14_1_2) <- hefsoyp14_1_2
+hefsoyp14_2_2 <- c('Area_ha', '2011-12-01', '2010-12-02', 'change_in_plant_per')
+names(fsoyp14_2_2) <- hefsoyp14_2_2
+fsoyp14_2_2[1] <- NULL
+# Merging two versions
+fsoyp12reg <- merge(fsoyp14_1_2, fsoyp14_2_2, by="row.names")
+#Rename column 1 as "IMEA_Regions" 
+colnames(fsoyp12reg)[1] <- "IMEA_Regions"
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp12reg <- fsoyp12reg %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+
 
 # Create individual data matrices for soy harvesting data
 # fsoyh9_1 <- do.call(rbind, outsoyh9_1)
@@ -996,7 +1075,7 @@ write.csv(fsoyp14_muni, file='soy_plant_2014_muni.csv', row.names=FALSE)
 # fsoyh10_1 <- do.call(rbind, outsoyh10[1])
 # fsoyh10_2 <- do.call(rbind, outsoyh10[2])
 # fsoyh11_1_1 <- do.call(rbind, outsoyh11_1[1])
-# fsoyh11_1_2 <- do.call(rbind, outsoyh11_1[2])
+# fsoyh14_1_2 <- do.call(rbind, outsoyh11_1[2])
 # fsoyh11_2_1 <- do.call(rbind, outsoyh11_2[1])
 # fsoyh11_2_2 <- do.call(rbind, outsoyh11_2[2])
 # fsoyh12_1_1 <- do.call(rbind, outsoyh12_1[1])
