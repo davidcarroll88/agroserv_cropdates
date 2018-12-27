@@ -535,53 +535,29 @@ hefsoyp11_2_2 <- c('Area_ha', '2010-12-02', '2009-12-03', 'change_in_plant_per')
 names(fsoyp11_2_2) <- hefsoyp11_2_2
 fsoyp11_2_2[1] <- NULL
 # Merging two versions
-fsoyp11reg <- merge(fsoyp11_1_2, fsoyp11_2_2, by="row.names")
+fsoyp11reg <- merge(fsoyp11_1_2, fsoyp11_2_2, by="row.names", sort=FALSE)
+fsoyp11reg <- fsoyp11reg[, -c(4:5)]
 #Rename column 1 as "IMEA_Regions" 
 colnames(fsoyp11reg)[1] <- "IMEA_Regions"
+colnames(fsoyp11reg)[6] <- "change_in_plant_per"
 #change Area_ha column to numeric and remove periods from thousandths position
 fsoyp11reg <- fsoyp11reg %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
-#remove commas from decimal position in other three columns
-fsoyp11reg$`2010-11-11` <- gsub(",", "\\.", fsoyp11reg$`2010-11-11`)
-fsoyp11reg$`2009-11-12` <- gsub(",", "\\.", fsoyp11reg$`2009-11-12`)
-fsoyp11reg$`change_in_plant_per.x` <- gsub(",", "\\.", fsoyp11reg$`change_in_plant_per.x`)
-fsoyp11reg$`2010-12-02` <- gsub(",", "\\.", fsoyp11reg$`2010-12-02`)
-fsoyp11reg$`2009-12-03` <- gsub(",", "\\.", fsoyp11reg$`2009-12-03`)
-fsoyp11reg$`change_in_plant_per.y` <- gsub(",", "\\.", fsoyp11reg$`change_in_plant_per.y`)
-#remove percent signs from other three columns
-fsoyp11reg$`2010-11-11` <- gsub("%", "", fsoyp11reg$`2010-11-11`)
-fsoyp11reg$`2009-11-12` <- gsub("%", "", fsoyp11reg$`2009-11-12`)
-fsoyp11reg$`change_in_plant_per.x` <- gsub("%", "", fsoyp11reg$`change_in_plant_per.x`)
-fsoyp11reg$`2010-12-02` <- gsub("%", "", fsoyp11reg$`2010-12-02`)
-fsoyp11reg$`2009-12-03` <- gsub("%", "", fsoyp11reg$`2009-12-03`)
-fsoyp11reg$`change_in_plant_per.y` <- gsub("%", "", fsoyp11reg$`change_in_plant_per.y`)
-fsoyp11reg$`change_in_plant_per.x` <- gsub("p.p.", "", fsoyp11reg$`change_in_plant_per.x`)
-fsoyp11reg$`change_in_plant_per.y` <- gsub("p.p.", "", fsoyp11reg$`change_in_plant_per.y`)
-fsoyp11reg$`change_in_plant_per.x` <- gsub("â???", "-", fsoyp11reg$`change_in_plant_per.x`)
-fsoyp11reg$`change_in_plant_per.y` <- gsub("â???", "-", fsoyp11reg$`change_in_plant_per.y`)
+#xxx <- 3
+#colnames(fsoyp11reg)[1]
 
-#change other columns to numeric
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(change_in_plant_per.x = as.numeric(change_in_plant_per.x)) 
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(change_in_plant_per.y = as.numeric(change_in_plant_per.y)) 
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(`2010-11-11` = as.numeric(`2010-11-11`)) 
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(`2009-11-12` = as.numeric(`2009-11-12`)) 
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(`2010-12-02` = as.numeric(`2010-12-02`)) 
-fsoyp11reg <- fsoyp11reg %>%
-  mutate(`2009-12-03` = as.numeric(`2009-12-03`))
-#check the type of data in each column
+for (xxx in 3:dim(fsoyp11reg)[2]){
+  fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]] <- gsub(",", "\\.", fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]])
+  fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]] <- gsub("%", "", fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]])
+  fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]] <- gsub("p.p.", "", fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]])
+  fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]] <- as.numeric(fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]])
+  fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]] <- fsoyp11reg[[paste(colnames(fsoyp11reg)[xxx])]]/100
+}
+dim(fsoyp11reg)
 sapply(fsoyp11reg, mode)
-#divide percentage columns by 100 to obtain decimal form
-fsoyp11reg$'2010-11-11' <- fsoyp11reg$'2010-11-11' /100
-fsoyp11reg$'2009-11-12' <- fsoyp11reg$'2009-11-12' /100
-fsoyp11reg$'2010-12-02' <- fsoyp11reg$'2010-12-02' /100
-fsoyp11reg$'2009-12-03' <- fsoyp11reg$'2009-12-03' /100
-fsoyp11reg$'change_in_plant_per.x' <- fsoyp11reg$'change_in_plant_per.x' /100
-fsoyp11reg$'change_in_plant_per.y' <- fsoyp11reg$'change_in_plant_per.y' /100
+
+fsoyp11reg[7, "change_in_plant_per"] <- "-2.5"
+fsoyp11reg[8, "change_in_plant_per"] <- "0.2"
 
 #Write final table to disk
 write.csv(fsoyp11reg, file='soy_plant_2011_region.csv', row.names=FALSE)
@@ -722,53 +698,27 @@ hefsoyp12_2_2 <- c('Area_ha', '2011-12-01', '2010-12-02', 'change_in_plant_per')
 names(fsoyp12_2_2) <- hefsoyp12_2_2
 fsoyp12_2_2[1] <- NULL
 # Merging two versions
-fsoyp12reg <- merge(fsoyp12_1_2, fsoyp12_2_2, by="row.names")
+fsoyp12reg <- merge(fsoyp12_1_2, fsoyp12_2_2, by="row.names", sort=FALSE)
+fsoyp12reg <- fsoyp12reg[, -c(4:5)]
 #Rename column 1 as "IMEA_Regions" 
 colnames(fsoyp12reg)[1] <- "IMEA_Regions"
+colnames(fsoyp12reg)[6] <- "change_in_plant_per"
 #change Area_ha column to numeric and remove periods from thousandths position
 fsoyp12reg <- fsoyp12reg %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
-#remove commas from decimal position in other three columns
-fsoyp12reg$`2011-11-24` <- gsub(",", "\\.", fsoyp12reg$`2011-11-24`)
-fsoyp12reg$`2010-11-25` <- gsub(",", "\\.", fsoyp12reg$`2010-11-25`)
-fsoyp12reg$`change_in_plant_per.x` <- gsub(",", "\\.", fsoyp12reg$`change_in_plant_per.x`)
-fsoyp12reg$`2011-12-01` <- gsub(",", "\\.", fsoyp12reg$`2011-12-01`)
-fsoyp12reg$`2010-12-02` <- gsub(",", "\\.", fsoyp12reg$`2010-12-02`)
-fsoyp12reg$`change_in_plant_per.y` <- gsub(",", "\\.", fsoyp12reg$`change_in_plant_per.y`)
-#remove percent signs from other three columns
-fsoyp12reg$`2011-11-24` <- gsub("%", "", fsoyp12reg$`2011-11-24`)
-fsoyp12reg$`2010-11-25` <- gsub("%", "", fsoyp12reg$`2010-11-25`)
-fsoyp12reg$`change_in_plant_per.x` <- gsub("%", "", fsoyp12reg$`change_in_plant_per.x`)
-fsoyp12reg$`2011-12-01` <- gsub("%", "", fsoyp12reg$`2011-12-01`)
-fsoyp12reg$`2010-12-02` <- gsub("%", "", fsoyp12reg$`2010-12-02`)
-fsoyp12reg$`change_in_plant_per.y` <- gsub("%", "", fsoyp12reg$`change_in_plant_per.y`)
-fsoyp12reg$`change_in_plant_per.x` <- gsub("p.p.", "", fsoyp12reg$`change_in_plant_per.x`)
-fsoyp12reg$`change_in_plant_per.y` <- gsub("p.p.", "", fsoyp12reg$`change_in_plant_per.y`)
-fsoyp12reg$`change_in_plant_per.x` <- gsub("â???", "-", fsoyp12reg$`change_in_plant_per.x`)
-fsoyp12reg$`change_in_plant_per.y` <- gsub("â???", "-", fsoyp12reg$`change_in_plant_per.y`)
 
-#change other columns to numeric
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(change_in_plant_per.x = as.numeric(change_in_plant_per.x)) 
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(change_in_plant_per.y = as.numeric(change_in_plant_per.y)) 
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(`2011-11-24` = as.numeric(`2011-11-24`)) 
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(`2010-11-25` = as.numeric(`2010-11-25`)) 
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(`2011-12-01` = as.numeric(`2011-12-01`)) 
-fsoyp12reg <- fsoyp12reg %>%
-  mutate(`2010-12-02` = as.numeric(`2010-12-02`))
-#check the type of data in each column
+#xxx <- 3
+#colnames(fsoyp12reg)[1]
+
+for (xxx in 3:dim(fsoyp12reg)[2]){
+  fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]] <- gsub(",", "\\.", fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]])
+  fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]] <- gsub("%", "", fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]])
+  fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]] <- gsub("p.p.", "", fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]])
+  fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]] <- as.numeric(fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]])
+  fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]] <- fsoyp12reg[[paste(colnames(fsoyp12reg)[xxx])]]/100
+}
+dim(fsoyp12reg)
 sapply(fsoyp12reg, mode)
-#divide percentage columns by 100 to obtain decimal form
-fsoyp12reg$'2011-11-24' <- fsoyp12reg$'2011-11-24' /100
-fsoyp12reg$'2010-11-25' <- fsoyp12reg$'2010-11-25' /100
-fsoyp12reg$'2011-12-01' <- fsoyp12reg$'2011-12-01' /100
-fsoyp12reg$'2010-12-02' <- fsoyp12reg$'2010-12-02' /100
-fsoyp12reg$'change_in_plant_per.x' <- fsoyp12reg$'change_in_plant_per.x' /100
-fsoyp12reg$'change_in_plant_per.y' <- fsoyp12reg$'change_in_plant_per.y' /100
 
 #Write final table to disk
 write.csv(fsoyp12reg, file='soy_plant_2012_region.csv', row.names=FALSE)
@@ -1042,20 +992,40 @@ fsoyp14_2_2 <- as.data.frame(fsoyp14_2_2[1:nrow(fsoyp14_2_2), ], sort= FALSE)
 fsoyp14_1_2 <- fsoyp14_1_2[-c(1), ]
 fsoyp14_2_2 <- fsoyp14_2_2[-c(1), ]
 #Create new header names and insert them
-hefsoyp14_1_2 <- c('Area_ha', '2011-11-24', '2010-11-25', 'change_in_plant_per')
+setDT(fsoyp14_1_2, keep.rownames=TRUE)
+colnames(fsoyp14_1_2)[1] <- "IMEA_Regions"
+setDT(fsoyp14_2_2, keep.rownames=TRUE)
+colnames(fsoyp14_2_2)[1] <- "IMEA_Regions"
+fsoyp14_2_2 <- fsoyp14_2_2[, -c(2:13)]
+fsoyp14_1_2 <- fsoyp14_1_2[, -c(14:15)]
+hefsoyp14_1_2 <- c('IMEA_Regions', 'Area_ha', '2013-09-19', '2013-09-26', '2013-10-03', '2013-10-10',
+                   '2013-10-17', '2013-10-24', '2013-10-31', '2013-11-07', '2013-11-14', 
+                    '2013-11-21', '2013-11-28')
 names(fsoyp14_1_2) <- hefsoyp14_1_2
-hefsoyp14_2_2 <- c('Area_ha', '2011-12-01', '2010-12-02', 'change_in_plant_per')
+hefsoyp14_2_2 <- c('IMEA_Regions', '2013-12-05', '2012-12-06', 'change_in_plant_per')
 names(fsoyp14_2_2) <- hefsoyp14_2_2
-fsoyp14_2_2[1] <- NULL
 # Merging two versions
-fsoyp12reg <- merge(fsoyp14_1_2, fsoyp14_2_2, by="row.names")
-#Rename column 1 as "IMEA_Regions" 
-colnames(fsoyp12reg)[1] <- "IMEA_Regions"
+fsoyp14reg <- merge(fsoyp14_1_2, fsoyp14_2_2, by="IMEA_Regions", sort=FALSE)
 #change Area_ha column to numeric and remove periods from thousandths position
-fsoyp12reg <- fsoyp12reg %>%
+fsoyp14reg <- fsoyp14reg %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyp14reg)[1]
 
+for (xxx in 3:dim(fsoyp14reg)[2]){
+  fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]] <- gsub(",", "\\.", fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]])
+  fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]] <- gsub("%", "", fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]])
+  fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]] <- as.numeric(fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]])
+  fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]] <- fsoyp14reg[[paste(colnames(fsoyp14reg)[xxx])]]/100
+}
+dim(fsoyp14reg)
+sapply(fsoyp14reg, mode)
 
+fsoyp14reg[2, "2013-12-05"] <- "1"
+fsoyp14reg[2, "2012-12-06"] <- "1"
+
+#Writing 2013-2014 Regional data to CSV
+write.csv(fsoyp14reg, file='soy_plant_2014_region.csv', row.names=FALSE)
 
 # Create individual data matrices for soy harvesting data
 # fsoyh9_1 <- do.call(rbind, outsoyh9_1)
