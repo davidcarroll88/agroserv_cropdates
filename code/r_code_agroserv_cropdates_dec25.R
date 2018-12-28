@@ -1105,8 +1105,6 @@ hefsoyp15_2 <- c('IMEA_Regions', 'Area_ha', 'none', '2014-09-18', '2014-09-25', 
                  '2014-10-23', '2014-10-30', '2014-11-06', '2014-11-13', '2014-11-20', '2014-11-27',
                  '2014-12-04', '2014-12-11', '2013-12-05', 'change_in_plant_per', 'none2')
 names(fsoyp15_2) <- hefsoyp15_2
-hefsoyp14_2_2 <- c('IMEA_Regions', '2013-12-05', '2012-12-06', 'change_in_plant_per')
-names(fsoyp14_2_2) <- hefsoyp14_2_2
 fsoyp15_2 <- fsoyp15_2[,-3]
 fsoyp15_2 <- fsoyp15_2[,-18]
 
@@ -1128,6 +1126,186 @@ sapply(fsoyp15_2, mode)
 
 #Writing 2014-2015 Regional data to CSV
 write.csv(fsoyp15_2, file='soy_plant_2015_region.csv', row.names=FALSE)
+
+#2015-2016 soy planting - isolating regional summary table by removing unnecessary rows from both files
+View(fsoyp16)
+fsoyp16 <- as.data.frame(fsoyp16[2:nrow(fsoyp16), ], stringsAsFactors = FALSE)
+
+
+hefsoyp16 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                 'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp16) <- hefsoyp16
+
+#Transpose 2012 soy planting regions table (rows to columns, columns to rows)
+fsoyp16 <- t(fsoyp16)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp16 <- as.data.frame(fsoyp16[1:nrow(fsoyp16), ], sort= FALSE)
+fsoyp16 <- fsoyp16[-c(1), ]
+
+#Create new header names and insert them
+setDT(fsoyp16, keep.rownames=TRUE)
+colnames(fsoyp16)[1] <- "IMEA_Regions"
+fsoyp16 <- fsoyp16[,-22]
+fsoyp16 <- fsoyp16[,-20]
+hefsoyp16 <- c('IMEA_Regions', 'Area_ha', '2015-09-24', '2015-10-01', '2015-10-08', '2015-10-15',
+                 '2015-10-22', '2015-10-29', '2015-11-05', '2015-11-12', '2015-11-19', '2015-11-26',
+                 '2015-12-03', '2015-12-10', '2015-12-17', '2016-01-07', '2016-01-14', 'weekly_change',
+                 '2014-12-11', 'change_in_plant_per')
+names(fsoyp16) <- hefsoyp16
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp16 <- fsoyp16 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyp16)[1]
+
+for (xxx in 3:dim(fsoyp16)[2]){
+  fsoyp16[[paste(colnames(fsoyp16)[xxx])]] <- gsub(",", "\\.", fsoyp16[[paste(colnames(fsoyp16)[xxx])]])
+  fsoyp16[[paste(colnames(fsoyp16)[xxx])]] <- gsub("%", "", fsoyp16[[paste(colnames(fsoyp16)[xxx])]])
+  fsoyp16[[paste(colnames(fsoyp16)[xxx])]] <- gsub("p.p.", "", fsoyp16[[paste(colnames(fsoyp16)[xxx])]])
+  fsoyp16[[paste(colnames(fsoyp16)[xxx])]] <- as.numeric(fsoyp16[[paste(colnames(fsoyp16)[xxx])]])
+  fsoyp16[[paste(colnames(fsoyp16)[xxx])]] <- fsoyp16[[paste(colnames(fsoyp16)[xxx])]]/100
+}
+dim(fsoyp16)
+sapply(fsoyp16, mode)
+
+#Writing 2015-2016 Regional data to CSV
+write.csv(fsoyp16, file='soy_plant_2016_region.csv', row.names=FALSE)
+
+#2016-2017 soy planting - isolating regional summary table by removing unnecessary rows from both files
+View(fsoyp17)
+fsoyp17 <- as.data.frame(fsoyp17[2:nrow(fsoyp17), ], stringsAsFactors = FALSE)
+
+
+hefsoyp17 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+               'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp17) <- hefsoyp17
+
+#Transpose 2012 soy planting regions table (rows to columns, columns to rows)
+fsoyp17 <- t(fsoyp17)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp17 <- as.data.frame(fsoyp17[1:nrow(fsoyp17), ], sort= FALSE)
+fsoyp17 <- fsoyp17[-c(1), ]
+
+#Create new header names and insert them
+setDT(fsoyp17, keep.rownames=TRUE)
+colnames(fsoyp17)[1] <- "IMEA_Regions"
+fsoyp17 <- fsoyp17[,-20]
+fsoyp17 <- fsoyp17[,-18]
+hefsoyp17 <- c('IMEA_Regions', 'Area_ha', '2016-09-22','2016-09-29', '2016-10-06', '2016-10-13',
+               '2016-10-20', '2016-10-27', '2016-11-03', '2016-11-10', '2016-11-17', '2016-11-24',
+               '2016-12-01', '2016-12-08', '2016-12-15', 'weekly_change', '2015-12-18',
+               'change_in_plant_per')
+names(fsoyp17) <- hefsoyp17
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp17 <- fsoyp17 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyp17)[1]
+
+for (xxx in 3:dim(fsoyp17)[2]){
+  fsoyp17[[paste(colnames(fsoyp17)[xxx])]] <- gsub(",", "\\.", fsoyp17[[paste(colnames(fsoyp17)[xxx])]])
+  fsoyp17[[paste(colnames(fsoyp17)[xxx])]] <- gsub("%", "", fsoyp17[[paste(colnames(fsoyp17)[xxx])]])
+  fsoyp17[[paste(colnames(fsoyp17)[xxx])]] <- gsub("p.p.", "", fsoyp17[[paste(colnames(fsoyp17)[xxx])]])
+  fsoyp17[[paste(colnames(fsoyp17)[xxx])]] <- as.numeric(fsoyp17[[paste(colnames(fsoyp17)[xxx])]])
+  fsoyp17[[paste(colnames(fsoyp17)[xxx])]] <- fsoyp17[[paste(colnames(fsoyp17)[xxx])]]/100
+}
+dim(fsoyp17)
+sapply(fsoyp17, mode)
+
+#Writing 2016-2017 Regional data to CSV
+write.csv(fsoyp17, file='soy_plant_2017_region.csv', row.names=FALSE)
+
+#2017-2018 soy planting - isolating regional summary table by removing unnecessary rows 
+View(fsoyp18)
+fsoyp18 <- as.data.frame(fsoyp18[2:nrow(fsoyp18), ], stringsAsFactors = FALSE)
+
+
+hefsoyp18 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+               'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp18) <- hefsoyp18
+
+#Transpose 2012 soy planting regions table (rows to columns, columns to rows)
+fsoyp18 <- t(fsoyp18)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp18 <- as.data.frame(fsoyp18[1:nrow(fsoyp18), ], sort= FALSE)
+fsoyp18 <- fsoyp18[-c(1), ]
+
+#Create new header names and insert them
+setDT(fsoyp18, keep.rownames=TRUE)
+colnames(fsoyp18)[1] <- "IMEA_Regions"
+fsoyp18 <- fsoyp18[,-20]
+fsoyp18 <- fsoyp18[,-18]
+hefsoyp18 <- c('IMEA_Regions', 'Area_ha', '2017-09-22','2017-09-29', '2017-10-06', '2017-10-13',
+               '2017-10-20', '2017-10-27', '2017-11-03', '2017-11-10', '2017-11-17', '2017-11-24',
+               '2017-12-01', '2017-12-08', '2017-12-15', 'weekly_change', '2016-12-15',
+               'change_in_plant_per')
+names(fsoyp18) <- hefsoyp18
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp18 <- fsoyp18 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyp18)[1]
+
+for (xxx in 3:dim(fsoyp18)[2]){
+  fsoyp18[[paste(colnames(fsoyp18)[xxx])]] <- gsub(",", "\\.", fsoyp18[[paste(colnames(fsoyp18)[xxx])]])
+  fsoyp18[[paste(colnames(fsoyp18)[xxx])]] <- gsub("%", "", fsoyp18[[paste(colnames(fsoyp18)[xxx])]])
+  fsoyp18[[paste(colnames(fsoyp18)[xxx])]] <- gsub("p.p.", "", fsoyp18[[paste(colnames(fsoyp18)[xxx])]])
+  fsoyp18[[paste(colnames(fsoyp18)[xxx])]] <- as.numeric(fsoyp18[[paste(colnames(fsoyp18)[xxx])]])
+  fsoyp18[[paste(colnames(fsoyp18)[xxx])]] <- fsoyp18[[paste(colnames(fsoyp18)[xxx])]]/100
+}
+dim(fsoyp18)
+sapply(fsoyp18, mode)
+
+#Writing 2017-2018 Regional data to CSV
+write.csv(fsoyp18, file='soy_plant_2018_region.csv', row.names=FALSE)
+
+#2018-2019 soy planting - isolating regional summary table by removing unnecessary rows from both files
+View(fsoyp19)
+fsoyp19 <- as.data.frame(fsoyp19[2:nrow(fsoyp19), ], stringsAsFactors = FALSE)
+
+
+hefsoyp19 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+               'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyp19) <- hefsoyp19
+
+fsoyp19 <- fsoyp19[-c(1), ]
+fsoyp19 <- fsoyp19[-c(3,6,9,12,15,18,20,22), ]
+
+#Transpose 2012 soy planting regions table (rows to columns, columns to rows)
+fsoyp19 <- t(fsoyp19)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyp19 <- as.data.frame(fsoyp19[1:nrow(fsoyp19), ], sort= FALSE)
+fsoyp19 <- fsoyp19[-c(1), ]
+
+#Create new header names and insert them
+setDT(fsoyp19, keep.rownames=TRUE)
+colnames(fsoyp19)[1] <- "IMEA_Regions"
+hefsoyp19 <- c('IMEA_Regions', 'Area_ha', '2018-09-21', '2018-09-28', '2018-10-05', '2018-10-12',
+               '2018-10-19', '2018-10-26', '2018-11-02', '2018-11-09', '2018-11-16', '2018-11-23',
+               'weekly_change', '2017-11-24', 'change_in_plant_per')
+names(fsoyp19) <- hefsoyp19
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyp19 <- fsoyp19 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyp19)[1]
+
+for (xxx in 3:dim(fsoyp19)[2]){
+  fsoyp19[[paste(colnames(fsoyp19)[xxx])]] <- gsub(",", "\\.", fsoyp19[[paste(colnames(fsoyp19)[xxx])]])
+  fsoyp19[[paste(colnames(fsoyp19)[xxx])]] <- gsub("%", "", fsoyp19[[paste(colnames(fsoyp19)[xxx])]])
+  fsoyp19[[paste(colnames(fsoyp19)[xxx])]] <- gsub("p.p.", "", fsoyp19[[paste(colnames(fsoyp19)[xxx])]])
+  fsoyp19[[paste(colnames(fsoyp19)[xxx])]] <- as.numeric(fsoyp19[[paste(colnames(fsoyp19)[xxx])]])
+  fsoyp19[[paste(colnames(fsoyp19)[xxx])]] <- fsoyp19[[paste(colnames(fsoyp19)[xxx])]]/100
+}
+dim(fsoyp19)
+sapply(fsoyp19, mode)
+
+#Writing 2015-2016 Regional data to CSV
+write.csv(fsoyp19, file='soy_plant_2019_region.csv', row.names=FALSE)
 
 # Create individual data matrices for soy harvesting data
 # fsoyh9_1 <- do.call(rbind, outsoyh9_1)
