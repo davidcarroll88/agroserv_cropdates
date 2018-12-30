@@ -136,7 +136,7 @@ fsoyp9 <- as.data.frame(fsoyp9[3:nrow(fsoyp9), ], stringsAsFactors = FALSE)
 print('fsoyp9 after as.data.frame')
 print(head(fsoyp9))
 
-hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', 'three')
+hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', '2008-12-11')
 names(fsoyp9) <- hefsoyp9
 
 print('before cleaning')
@@ -175,37 +175,50 @@ fsoyp9[5, "Regions"] <- "Itauba"
 fsoyp9[6, "Regions"] <- "Others_Norte"
 fsoyp9[9, "Regions"] <- "Querencia"
 fsoyp9[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp9[11, "Regions"] <- "Nova_Xavantina"
 fsoyp9[12, "Regions"] <- "Others_Nordeste"
 fsoyp9[13, "Regions"] <- "Medio_Norte"
+fsoyp9[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp9[16, "Regions"] <- "Nova_Mutum"
+fsoyp9[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp9[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp9[21, "Regions"] <- "Nova_Ubirata"
 fsoyp9[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp9[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp9[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp9[28, "Regions"] <- "Campos_de_Julio"
 fsoyp9[29, "Regions"] <- "Others_Oeste"
+fsoyp9[30, "Regions"] <- "Centro_Sul"
 fsoyp9[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp9[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp9[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp9[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp9[37, "Regions"] <- "Campo_Verde"
+fsoyp9[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp9[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp9[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp9[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp9[42, "Regions"] <- "Others_Sudeste"
+fsoyp9[43, "Regions"] <- "Mato_Grosso"
 
 #Remove periods from thousands positions and convert Area_ha to numeric
 fsoyp9$Area_ha <- gsub("\\.", "", fsoyp9$Area_ha)
 fsoyp9 <- fsoyp9 %>%
   mutate(Area_ha = as.numeric(Area_ha))
-#Change commas to periods in percentage columns
-fsoyp9$`2008-12-04` <- gsub(",", "\\.", fsoyp9$`2008-12-04`)
-fsoyp9$three <- gsub(",", "\\.", fsoyp9$three)
-#remove percent signs
-fsoyp9$`2008-12-04` <- gsub("%", "", fsoyp9$`2008-12-04`)
-fsoyp9$three <- gsub("%", "", fsoyp9$three)
-#convert date columns to numeric
-fsoyp9$`2008-12-04` <- as.numeric(fsoyp9$`2008-12-04`)
-fsoyp9$three <- as.numeric(fsoyp9$three)
-#divide percentages by 100
-fsoyp9$`2008-12-04` <- fsoyp9$`2008-12-04`/100
-fsoyp9$three <- fsoyp9$three/100
-#change column 3 name back to what it's supposed to be
-colnames(fsoyp9)[3] <- "2008-12-11"
+
+#xxx <- 3
+#colnames(fsoyp9)[1]
+
+for (xxx in 3:dim(fsoyp9)[2]){
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub(",", "\\.", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("%", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("p.p.", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- as.numeric(fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- fsoyp9[[paste(colnames(fsoyp9)[xxx])]]/100
+}
+dim(fsoyp9)
+sapply(fsoyp9, mode)
+
 #Write final table to disk
 write.csv(fsoyp9, file='soy_plant_2009_muni.csv', row.names=FALSE)
 
@@ -224,18 +237,31 @@ fsoyp10_1_muni[5, "Regions"] <- "Itauba"
 fsoyp10_1_muni[6, "Regions"] <- "Others_Norte"
 fsoyp10_1_muni[9, "Regions"] <- "Querencia"
 fsoyp10_1_muni[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp10_1_muni[11, "Regions"] <- "Nova_Xavantina"
 fsoyp10_1_muni[12, "Regions"] <- "Others_Nordeste"
 fsoyp10_1_muni[13, "Regions"] <- "Medio_Norte"
+fsoyp10_1_muni[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp10_1_muni[16, "Regions"] <- "Nova_Mutum"
+fsoyp10_1_muni[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp10_1_muni[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp10_1_muni[21, "Regions"] <- "Nova_Ubirata"
 fsoyp10_1_muni[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp10_1_muni[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp10_1_muni[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp10_1_muni[28, "Regions"] <- "Campos_de_Julio"
 fsoyp10_1_muni[29, "Regions"] <- "Others_Oeste"
+fsoyp10_1_muni[30, "Regions"] <- "Centro_Sul"
 fsoyp10_1_muni[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp10_1_muni[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp10_1_muni[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp10_1_muni[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp10_1_muni[37, "Regions"] <- "Campo_Verde"
+fsoyp10_1_muni[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp10_1_muni[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp10_1_muni[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp10_1_muni[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp10_1_muni[42, "Regions"] <- "Others_Sudeste"
+fsoyp10_1_muni[43, "Regions"] <- "Mato_Grosso"
 fsoyp10_1_muni$Area_ha <- NULL
 
 #2010 soy planting - setting as data frame - 2nd file
@@ -252,18 +278,31 @@ fsoyp10_2_muni[5, "Regions"] <- "Itauba"
 fsoyp10_2_muni[6, "Regions"] <- "Others_Norte"
 fsoyp10_2_muni[9, "Regions"] <- "Querencia"
 fsoyp10_2_muni[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp10_2_muni[11, "Regions"] <- "Nova_Xavantina"
 fsoyp10_2_muni[12, "Regions"] <- "Others_Nordeste"
 fsoyp10_2_muni[13, "Regions"] <- "Medio_Norte"
+fsoyp10_2_muni[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp10_2_muni[16, "Regions"] <- "Nova_Mutum"
+fsoyp10_2_muni[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp10_2_muni[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp10_2_muni[21, "Regions"] <- "Nova_Ubirata"
 fsoyp10_2_muni[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp10_2_muni[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp10_2_muni[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp10_2_muni[28, "Regions"] <- "Campos_de_Julio"
 fsoyp10_2_muni[29, "Regions"] <- "Others_Oeste"
+fsoyp10_2_muni[30, "Regions"] <- "Centro_Sul"
 fsoyp10_2_muni[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp10_2_muni[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp10_2_muni[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp10_2_muni[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp10_2_muni[37, "Regions"] <- "Campo_Verde"
+fsoyp10_2_muni[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp10_2_muni[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp10_2_muni[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp10_2_muni[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp10_2_muni[42, "Regions"] <- "Others_Sudeste"
+fsoyp10_2_muni[43, "Regions"] <- "Mato_Grosso"
 fsoyp10_2_muni$'2009-10-08' <- NULL
 fsoyp10_2_muni$'2009-10-15' <- NULL
 fsoyp10_2_muni$'2009-10-22' <- NULL
@@ -282,58 +321,18 @@ fsoyp10_muni_1$Area_ha <- gsub("\\.", "", fsoyp10_muni_1$Area_ha)
 fsoyp10_muni_1$Area_ha <- gsub(" ", "", fsoyp10_muni_1$Area_ha)
 fsoyp10_muni_1 <- fsoyp10_muni_1 %>%
   mutate(Area_ha = as.numeric(Area_ha))
-#Change commas to periods in percentage columns
-fsoyp10_muni_1$`2009-09-24` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-09-24`)
-fsoyp10_muni_1$`2009-10-01` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-01`)
-fsoyp10_muni_1$`2009-10-08` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-08`)
-fsoyp10_muni_1$`2009-10-15` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-15`)
-fsoyp10_muni_1$`2009-10-22` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-22`)
-fsoyp10_muni_1$`2009-10-29` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-10-29`)
-fsoyp10_muni_1$`2009-11-05` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-05`)
-fsoyp10_muni_1$`2009-11-12` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-12`)
-fsoyp10_muni_1$`2009-11-19` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-19`)
-fsoyp10_muni_1$`2009-11-26` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-11-26`)
-fsoyp10_muni_1$`2009-12-03` <- gsub(",", "\\.", fsoyp10_muni_1$`2009-12-03`)
 
-#Removing percentage symbols
-fsoyp10_muni_1$`2009-09-24` <- gsub("%", "", fsoyp10_muni_1$`2009-09-24`)
-fsoyp10_muni_1$`2009-10-01` <- gsub("%", "", fsoyp10_muni_1$`2009-10-01`)
-fsoyp10_muni_1$`2009-10-08` <- gsub("%", "", fsoyp10_muni_1$`2009-10-08`)
-fsoyp10_muni_1$`2009-10-15` <- gsub("%", "", fsoyp10_muni_1$`2009-10-15`)
-fsoyp10_muni_1$`2009-10-22` <- gsub("%", "", fsoyp10_muni_1$`2009-10-22`)
-fsoyp10_muni_1$`2009-10-29` <- gsub("%", "", fsoyp10_muni_1$`2009-10-29`)
-fsoyp10_muni_1$`2009-11-05` <- gsub("%", "", fsoyp10_muni_1$`2009-11-05`)
-fsoyp10_muni_1$`2009-11-12` <- gsub("%", "", fsoyp10_muni_1$`2009-11-12`)
-fsoyp10_muni_1$`2009-11-19` <- gsub("%", "", fsoyp10_muni_1$`2009-11-19`)
-fsoyp10_muni_1$`2009-11-26` <- gsub("%", "", fsoyp10_muni_1$`2009-11-26`)
-fsoyp10_muni_1$`2009-12-03` <- gsub("%", "", fsoyp10_muni_1$`2009-12-03`)
+#xxx <- 3
+#colnames(fsoyp10_muni_1)[1]
 
-#changing to numeric
+for (xxx in 3:dim(fsoyp10_muni_1)[2]){
+  fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]] <- gsub(",", "\\.", fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]])
+  fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]] <- gsub("%", "", fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]])
+  fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]] <- as.numeric(fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]])
+  fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]] <- fsoyp10_muni_1[[paste(colnames(fsoyp10_muni_1)[xxx])]]/100
+}
+dim(fsoyp10_muni_1)
 sapply(fsoyp10_muni_1, mode)
-fsoyp10_muni_1$`2009-09-24` <- as.numeric(fsoyp10_muni_1$`2009-09-24`)
-fsoyp10_muni_1$`2009-10-01` <- as.numeric(fsoyp10_muni_1$`2009-10-01`)
-fsoyp10_muni_1$`2009-10-08` <- as.numeric(fsoyp10_muni_1$`2009-10-08`)
-fsoyp10_muni_1$`2009-10-15` <- as.numeric(fsoyp10_muni_1$`2009-10-15`)
-fsoyp10_muni_1$`2009-10-22` <- as.numeric(fsoyp10_muni_1$`2009-10-22`)
-fsoyp10_muni_1$`2009-10-29` <- as.numeric(fsoyp10_muni_1$`2009-10-29`)
-fsoyp10_muni_1$`2009-11-05` <- as.numeric(fsoyp10_muni_1$`2009-11-05`)
-fsoyp10_muni_1$`2009-11-12` <- as.numeric(fsoyp10_muni_1$`2009-11-12`)
-fsoyp10_muni_1$`2009-11-19` <- as.numeric(fsoyp10_muni_1$`2009-11-19`)
-fsoyp10_muni_1$`2009-11-26` <- as.numeric(fsoyp10_muni_1$`2009-11-26`)
-fsoyp10_muni_1$`2009-12-03` <- as.numeric(fsoyp10_muni_1$`2009-12-03`)
-
-#dividing percentage values by 100 to convert them to decimal form
-fsoyp10_muni_1$`2009-09-24` <- fsoyp10_muni_1$`2009-09-24`/100
-fsoyp10_muni_1$`2009-10-01` <- fsoyp10_muni_1$`2009-10-01`/100
-fsoyp10_muni_1$`2009-10-08` <- fsoyp10_muni_1$`2009-10-08`/100
-fsoyp10_muni_1$`2009-10-15` <- fsoyp10_muni_1$`2009-10-15`/100
-fsoyp10_muni_1$`2009-10-22` <- fsoyp10_muni_1$`2009-10-22`/100
-fsoyp10_muni_1$`2009-10-29` <- fsoyp10_muni_1$`2009-10-29`/100
-fsoyp10_muni_1$`2009-11-05` <- fsoyp10_muni_1$`2009-11-05`/100
-fsoyp10_muni_1$`2009-11-12` <- fsoyp10_muni_1$`2009-11-12`/100
-fsoyp10_muni_1$`2009-11-19` <- fsoyp10_muni_1$`2009-11-19`/100
-fsoyp10_muni_1$`2009-11-26` <- fsoyp10_muni_1$`2009-11-26`/100
-fsoyp10_muni_1$`2009-12-03` <- fsoyp10_muni_1$`2009-12-03`/100
 
 #Write final table to disk
 write.csv(fsoyp10_muni_1, file='soy_plant_2010_muni.csv', row.names=FALSE)
@@ -365,30 +364,24 @@ colnames(fsoyp10_2_re_1)[1] <- "IMEA_Regions"
 #change Area_ha column to numeric and remove periods from thousandths position
 fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
-#remove commas from decimal position in other three columns
-fsoyp10_2_re_1$first <- gsub(",", "\\.", fsoyp10_2_re_1$first)
-fsoyp10_2_re_1$second <- gsub(",", "\\.", fsoyp10_2_re_1$second)
-fsoyp10_2_re_1$change_in_plant_per <- gsub(",", "\\.", fsoyp10_2_re_1$change_in_plant_per)
-#remove percent signs from other three columns
-fsoyp10_2_re_1$first <- gsub("%", "", fsoyp10_2_re_1$first)
-fsoyp10_2_re_1$second <- gsub("%", "", fsoyp10_2_re_1$second)
-fsoyp10_2_re_1$change_in_plant_per <- gsub("%", "", fsoyp10_2_re_1$change_in_plant_per)
-#change other columns to numeric
-fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
-  mutate(change_in_plant_per = as.numeric(change_in_plant_per)) 
-fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
-  mutate(second = as.numeric(second)) 
-fsoyp10_2_re_1 <- fsoyp10_2_re_1 %>%
-  mutate(first = as.numeric(first))
+
+#xxx <- 3
+#colnames(fsoyp10_2_re_1)[1]
+
+for (xxx in 3:dim(fsoyp10_2_re_1)[2]){
+  fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]] <- gsub(",", "\\.", fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]])
+  fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]] <- gsub("%", "", fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]])
+  fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]] <- gsub("p.p.", "", fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]])
+  fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]] <- as.numeric(fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]])
+  fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]] <- fsoyp10_2_re_1[[paste(colnames(fsoyp10_2_re_1)[xxx])]]/100
+}
+dim(fsoyp10_2_re_1)
+
 #check the type of data in each column
 sapply(fsoyp10_2_re_1, mode)
 #rename the date columns
 colnames(fsoyp10_2_re_1)[3] <- "2009-12-03"
 colnames(fsoyp10_2_re_1)[4] <- "2008-12-04"
-#divide percentage columns by 100 to obtain decimal form
-fsoyp10_2_re_1$'2009-12-03' <- fsoyp10_2_re_1$'2009-12-03'/100
-fsoyp10_2_re_1$'2008-12-04' <- fsoyp10_2_re_1$'2008-12-04'/100
-fsoyp10_2_re_1$'change_in_plant_per' <- fsoyp10_2_re_1$'change_in_plant_per'/100
 #Write final table to disk
 write.csv(fsoyp10_2_re_1, file='soy_plant_2010_region.csv', row.names=FALSE)
 
@@ -402,18 +395,31 @@ fsoyp11_1_1[5, "Regions"] <- "Itauba"
 fsoyp11_1_1[6, "Regions"] <- "Others_Norte"
 fsoyp11_1_1[9, "Regions"] <- "Querencia"
 fsoyp11_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp11_1_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp11_1_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp11_1_1[13, "Regions"] <- "Medio_Norte"
+fsoyp11_1_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp11_1_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp11_1_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp11_1_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp11_1_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp11_1_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp11_1_1[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp11_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp11_1_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp11_1_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp11_1_1[29, "Regions"] <- "Others_Oeste"
+fsoyp11_1_1[30, "Regions"] <- "Centro_Sul"
 fsoyp11_1_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp11_1_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp11_1_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp11_1_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp11_1_1[37, "Regions"] <- "Campo_Verde"
+fsoyp11_1_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp11_1_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp11_1_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp11_1_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp11_1_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp11_1_1[43, "Regions"] <- "Mato_Grosso"
 #2nd file data frame and removing duplicate columns - naming remaining columns
 fsoyp11_2_1 <- as.data.frame(fsoyp11_2_1[2:nrow(fsoyp11_2_1), ], stringsAsFactors = FALSE)
 fsoyp11_2_1$'V3' <- NULL
@@ -428,18 +434,31 @@ fsoyp11_2_1[5, "Regions"] <- "Itauba"
 fsoyp11_2_1[6, "Regions"] <- "Others_Norte"
 fsoyp11_2_1[9, "Regions"] <- "Querencia"
 fsoyp11_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp11_2_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp11_2_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp11_2_1[13, "Regions"] <- "Medio_Norte"
+fsoyp11_2_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp11_2_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp11_2_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp11_2_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp11_2_1[21, "Regions"] <- "Nova_Ubirata"
 fsoyp11_2_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp11_2_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp11_2_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp11_2_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp11_2_1[29, "Regions"] <- "Others_Oeste"
+fsoyp11_2_1[30, "Regions"] <- "Centro_Sul"
 fsoyp11_2_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp11_2_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp11_2_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp11_2_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp11_2_1[37, "Regions"] <- "Campo_Verde"
+fsoyp11_2_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp11_2_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp11_2_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp11_2_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp11_2_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp11_2_1[43, "Regions"] <- "Mato_Grosso"
 #Merging first and second files for municipal level data
 fsoyp11_muni <- merge(fsoyp11_1_1, fsoyp11_2_1, by="Regions", sort = FALSE)
 View(fsoyp11_muni)
@@ -448,52 +467,18 @@ fsoyp11_muni$Area_ha <- gsub("\\.", "", fsoyp11_muni$Area_ha)
 fsoyp11_muni$Area_ha <- gsub(" ", "", fsoyp11_muni$Area_ha)
 fsoyp11_muni <- fsoyp11_muni %>%
 mutate(Area_ha = as.numeric(Area_ha))
-View(fsoyp11_muni)
-#Change commas to periods in percentage columns
-fsoyp11_muni$`2010-09-30` <- gsub(",", "\\.", fsoyp11_muni$`2010-09-30`)
-fsoyp11_muni$`2010-10-07` <- gsub(",", "\\.", fsoyp11_muni$`2010-10-07`)
-fsoyp11_muni$`2010-10-14` <- gsub(",", "\\.", fsoyp11_muni$`2010-10-14`)
-fsoyp11_muni$`2010-10-21` <- gsub(",", "\\.", fsoyp11_muni$`2010-10-21`)
-fsoyp11_muni$`2010-10-28` <- gsub(",", "\\.", fsoyp11_muni$`2010-10-28`)
-fsoyp11_muni$`2010-11-04` <- gsub(",", "\\.", fsoyp11_muni$`2010-11-04`)
-fsoyp11_muni$`2010-11-11` <- gsub(",", "\\.", fsoyp11_muni$`2010-11-11`)
-fsoyp11_muni$`2010-11-18` <- gsub(",", "\\.", fsoyp11_muni$`2010-11-18`)
-fsoyp11_muni$`2010-11-25` <- gsub(",", "\\.", fsoyp11_muni$`2010-11-25`)
-fsoyp11_muni$`2010-12-02` <- gsub(",", "\\.", fsoyp11_muni$`2010-12-02`)
-fsoyp11_muni$`2010-11-04` <- gsub(",", "\\.", fsoyp11_muni$`2010-11-04`)
-#Removing percentage symbols
-fsoyp11_muni$`2010-09-30` <- gsub("%", "", fsoyp11_muni$`2010-09-30`)
-fsoyp11_muni$`2010-10-07` <- gsub("%", "", fsoyp11_muni$`2010-10-07`)
-fsoyp11_muni$`2010-10-14` <- gsub("%", "", fsoyp11_muni$`2010-10-14`)
-fsoyp11_muni$`2010-10-21` <- gsub("%", "", fsoyp11_muni$`2010-10-21`)
-fsoyp11_muni$`2010-10-28` <- gsub("%", "", fsoyp11_muni$`2010-10-28`)
-fsoyp11_muni$`2010-11-04` <- gsub("%", "", fsoyp11_muni$`2010-11-04`)
-fsoyp11_muni$`2010-11-11` <- gsub("%", "", fsoyp11_muni$`2010-11-11`)
-fsoyp11_muni$`2010-11-18` <- gsub("%", "", fsoyp11_muni$`2010-11-18`)
-fsoyp11_muni$`2010-11-25` <- gsub("%", "", fsoyp11_muni$`2010-11-25`)
-fsoyp11_muni$`2010-12-02` <- gsub("%", "", fsoyp11_muni$`2010-12-02`)
-#Convert to numeric
-fsoyp11_muni$`2010-09-30` <- as.numeric(fsoyp11_muni$`2010-09-30`)
-fsoyp11_muni$`2010-10-07` <- as.numeric(fsoyp11_muni$`2010-10-07`)
-fsoyp11_muni$`2010-10-14` <- as.numeric(fsoyp11_muni$`2010-10-14`)
-fsoyp11_muni$`2010-10-21` <- as.numeric(fsoyp11_muni$`2010-10-21`)
-fsoyp11_muni$`2010-10-28` <- as.numeric(fsoyp11_muni$`2010-10-28`)
-fsoyp11_muni$`2010-11-04` <- as.numeric(fsoyp11_muni$`2010-11-04`)
-fsoyp11_muni$`2010-11-11` <- as.numeric(fsoyp11_muni$`2010-11-11`)
-fsoyp11_muni$`2010-11-18` <- as.numeric(fsoyp11_muni$`2010-11-18`)
-fsoyp11_muni$`2010-11-25` <- as.numeric(fsoyp11_muni$`2010-11-25`)
-fsoyp11_muni$`2010-12-02` <- as.numeric(fsoyp11_muni$`2010-12-02`)
-#dividing percentage values by 100 to convert them to decimal form
-fsoyp11_muni$`2010-09-30` <- fsoyp11_muni$`2010-09-30`/100
-fsoyp11_muni$`2010-10-07` <- fsoyp11_muni$`2010-10-07`/100
-fsoyp11_muni$`2010-10-14` <- fsoyp11_muni$`2010-10-14`/100
-fsoyp11_muni$`2010-10-21` <- fsoyp11_muni$`2010-10-21`/100
-fsoyp11_muni$`2010-10-28` <- fsoyp11_muni$`2010-10-28`/100
-fsoyp11_muni$`2010-11-04` <- fsoyp11_muni$`2010-11-04`/100
-fsoyp11_muni$`2010-11-11` <- fsoyp11_muni$`2010-11-11`/100
-fsoyp11_muni$`2010-11-18` <- fsoyp11_muni$`2010-11-18`/100
-fsoyp11_muni$`2010-11-25` <- fsoyp11_muni$`2010-11-25`/100
-fsoyp11_muni$`2010-12-02` <- fsoyp11_muni$`2010-12-02`/100
+
+#xxx <- 3
+#colnames(fsoyp11_muni)[1]
+
+for (xxx in 3:dim(fsoyp11_muni)[2]){
+  fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]] <- gsub(",", "\\.", fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]])
+  fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]] <- gsub("%", "", fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]])
+  fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]] <- as.numeric(fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]])
+  fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]] <- fsoyp11_muni[[paste(colnames(fsoyp11_muni)[xxx])]]/100
+}
+dim(fsoyp11_muni)
+
 #changing to numeric
 sapply(fsoyp11_muni, mode)
 View(fsoyp11_muni)
@@ -559,7 +544,7 @@ sapply(fsoyp11reg, mode)
 
 fsoyp11reg[7, "change_in_plant_per"] <- "-2.5"
 fsoyp11reg[8, "change_in_plant_per"] <- "0.2"
-
+fsoyp11reg$change_in_plant_per <- as.numeric(fsoyp11reg$change_in_plant_per)
 #Write final table to disk
 write.csv(fsoyp11reg, file='soy_plant_2011_region.csv', row.names=FALSE)
 
@@ -573,18 +558,31 @@ fsoyp12_1_1[5, "Regions"] <- "Itauba"
 fsoyp12_1_1[6, "Regions"] <- "Others_Norte"
 fsoyp12_1_1[9, "Regions"] <- "Querencia"
 fsoyp12_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp12_1_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp12_1_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp12_1_1[13, "Regions"] <- "Medio_Norte"
+fsoyp12_1_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp12_1_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp12_1_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp12_1_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp12_1_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp12_1_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp12_1_1[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp12_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp12_1_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp12_1_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp12_1_1[29, "Regions"] <- "Others_Oeste"
+fsoyp12_1_1[30, "Regions"] <- "Centro_Sul"
 fsoyp12_1_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp12_1_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp12_1_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp12_1_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp12_1_1[37, "Regions"] <- "Campo_Verde"
+fsoyp12_1_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp12_1_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp12_1_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp12_1_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp12_1_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp12_1_1[43, "Regions"] <- "Mato_Grosso"
 #2nd file data frame and removing duplicate columns - naming remaining columns
 fsoyp12_2_1 <- as.data.frame(fsoyp12_2_1[2:nrow(fsoyp12_2_1), ], stringsAsFactors = FALSE)
 fsoyp12_2_1$'V2' <- NULL
@@ -602,18 +600,31 @@ fsoyp12_2_1[5, "Regions"] <- "Itauba"
 fsoyp12_2_1[6, "Regions"] <- "Others_Norte"
 fsoyp12_2_1[9, "Regions"] <- "Querencia"
 fsoyp12_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp12_2_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp12_2_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp12_2_1[13, "Regions"] <- "Medio_Norte"
+fsoyp12_2_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp12_2_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp12_2_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp12_2_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp12_2_1[21, "Regions"] <- "Nova_Ubirata"
 fsoyp12_2_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp12_2_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp12_2_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp12_2_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp12_2_1[29, "Regions"] <- "Others_Oeste"
+fsoyp12_2_1[30, "Regions"] <- "Centro_Sul"
 fsoyp12_2_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp12_2_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp12_2_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp12_2_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp12_2_1[37, "Regions"] <- "Campo_Verde"
+fsoyp12_2_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp12_2_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp12_2_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp12_2_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp12_2_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp12_2_1[43, "Regions"] <- "Mato_Grosso"
 #Merging first and second files for municipal level data
 fsoyp12_muni <- merge(fsoyp12_1_1, fsoyp12_2_1, by="Regions", sort = FALSE)
 View(fsoyp12_muni)
@@ -622,51 +633,18 @@ fsoyp12_muni$Area_ha <- gsub("\\.", "", fsoyp12_muni$Area_ha)
 fsoyp12_muni$Area_ha <- gsub(" ", "", fsoyp12_muni$Area_ha)
 fsoyp12_muni <- fsoyp12_muni %>%
   mutate(Area_ha = as.numeric(Area_ha))
-View(fsoyp12_muni)
-#Change commas to periods in percentage columns
-fsoyp12_muni$`2011-09-29` <- gsub(",", "\\.", fsoyp12_muni$`2011-09-29`)
-fsoyp12_muni$`2011-10-06` <- gsub(",", "\\.", fsoyp12_muni$`2011-10-06`)
-fsoyp12_muni$`2011-10-13` <- gsub(",", "\\.", fsoyp12_muni$`2011-10-13`)
-fsoyp12_muni$`2011-10-20` <- gsub(",", "\\.", fsoyp12_muni$`2011-10-20`)
-fsoyp12_muni$`2011-10-27` <- gsub(",", "\\.", fsoyp12_muni$`2011-10-27`)
-fsoyp12_muni$`2011-11-03` <- gsub(",", "\\.", fsoyp12_muni$`2011-11-03`)
-fsoyp12_muni$`2011-11-10` <- gsub(",", "\\.", fsoyp12_muni$`2011-11-10`)
-fsoyp12_muni$`2011-11-17` <- gsub(",", "\\.", fsoyp12_muni$`2011-11-17`)
-fsoyp12_muni$`2011-11-24` <- gsub(",", "\\.", fsoyp12_muni$`2011-11-24`)
-fsoyp12_muni$`2011-12-01` <- gsub(",", "\\.", fsoyp12_muni$`2011-12-01`)
-#Removing percentage symbols
-fsoyp12_muni$`2011-09-29` <- gsub("%", "", fsoyp12_muni$`2011-09-29`)
-fsoyp12_muni$`2011-10-06` <- gsub("%", "", fsoyp12_muni$`2011-10-06`)
-fsoyp12_muni$`2011-10-13` <- gsub("%", "", fsoyp12_muni$`2011-10-13`)
-fsoyp12_muni$`2011-10-20` <- gsub("%", "", fsoyp12_muni$`2011-10-20`)
-fsoyp12_muni$`2011-10-27` <- gsub("%", "", fsoyp12_muni$`2011-10-27`)
-fsoyp12_muni$`2011-11-03` <- gsub("%", "", fsoyp12_muni$`2011-11-03`)
-fsoyp12_muni$`2011-11-10` <- gsub("%", "", fsoyp12_muni$`2011-11-10`)
-fsoyp12_muni$`2011-11-17` <- gsub("%", "", fsoyp12_muni$`2011-11-17`)
-fsoyp12_muni$`2011-11-24` <- gsub("%", "", fsoyp12_muni$`2011-11-24`)
-fsoyp12_muni$`2011-12-01` <- gsub("%", "", fsoyp12_muni$`2011-12-01`)
-#Convert to numeric
-fsoyp12_muni$`2011-09-29` <- as.numeric(fsoyp12_muni$`2011-09-29`)
-fsoyp12_muni$`2011-10-06` <- as.numeric(fsoyp12_muni$`2011-10-06`)
-fsoyp12_muni$`2011-10-13` <- as.numeric(fsoyp12_muni$`2011-10-13`)
-fsoyp12_muni$`2011-10-20` <- as.numeric(fsoyp12_muni$`2011-10-20`)
-fsoyp12_muni$`2011-10-27` <- as.numeric(fsoyp12_muni$`2011-10-27`)
-fsoyp12_muni$`2011-11-03` <- as.numeric(fsoyp12_muni$`2011-11-03`)
-fsoyp12_muni$`2011-11-10` <- as.numeric(fsoyp12_muni$`2011-11-10`)
-fsoyp12_muni$`2011-11-17` <- as.numeric(fsoyp12_muni$`2011-11-17`)
-fsoyp12_muni$`2011-11-24` <- as.numeric(fsoyp12_muni$`2011-11-24`)
-fsoyp12_muni$`2011-12-01` <- as.numeric(fsoyp12_muni$`2011-12-01`)
-#dividing percentage values by 100 to convert them to decimal form
-fsoyp12_muni$`2011-09-29` <- fsoyp12_muni$`2011-09-29`/100
-fsoyp12_muni$`2011-10-06` <- fsoyp12_muni$`2011-10-06`/100
-fsoyp12_muni$`2011-10-13` <- fsoyp12_muni$`2011-10-13`/100
-fsoyp12_muni$`2011-10-20` <- fsoyp12_muni$`2011-10-20`/100
-fsoyp12_muni$`2011-10-27` <- fsoyp12_muni$`2011-10-27`/100
-fsoyp12_muni$`2011-11-03` <- fsoyp12_muni$`2011-11-03`/100
-fsoyp12_muni$`2011-11-10` <- fsoyp12_muni$`2011-11-10`/100
-fsoyp12_muni$`2011-11-17` <- fsoyp12_muni$`2011-11-17`/100
-fsoyp12_muni$`2011-11-24` <- fsoyp12_muni$`2011-11-24`/100
-fsoyp12_muni$`2011-12-01` <- fsoyp12_muni$`2011-12-01`/100
+
+#xxx <- 3
+#colnames(fsoyp12_muni)[1]
+
+for (xxx in 3:dim(fsoyp12_muni)[2]){
+  fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]] <- gsub(",", "\\.", fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]])
+  fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]] <- gsub("%", "", fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]])
+  fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]] <- as.numeric(fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]])
+  fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]] <- fsoyp12_muni[[paste(colnames(fsoyp12_muni)[xxx])]]/100
+}
+dim(fsoyp12_muni)
+
 #changing to numeric
 sapply(fsoyp12_muni, mode)
 View(fsoyp12_muni)
@@ -735,72 +713,48 @@ fsoyp13_1[5, "Regions"] <- "Itauba"
 fsoyp13_1[6, "Regions"] <- "Others_Norte"
 fsoyp13_1[9, "Regions"] <- "Querencia"
 fsoyp13_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp13_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp13_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp13_1[13, "Regions"] <- "Medio_Norte"
+fsoyp13_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp13_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp13_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp13_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp13_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp13_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp13_1[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp13_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp13_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp13_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp13_1[29, "Regions"] <- "Others_Oeste"
+fsoyp13_1[30, "Regions"] <- "Centro_Sul"
 fsoyp13_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp13_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp13_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp13_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp13_1[37, "Regions"] <- "Campo_Verde"
+fsoyp13_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp13_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp13_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp13_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp13_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp13_1[43, "Regions"] <- "Mato_Grosso"
 #Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
 fsoyp13_1$Area_ha <- gsub("\\.", "", fsoyp13_1$Area_ha)
 fsoyp13_1$Area_ha <- gsub(" ", "", fsoyp13_1$Area_ha)
 fsoyp13_1 <- fsoyp13_1 %>%
   mutate(Area_ha = as.numeric(Area_ha))
 View(fsoyp13_1)
-#Change commas to periods in percentage columns
-fsoyp13_1$`2012-09-20` <- gsub(",", "\\.", fsoyp13_1$`2012-09-20`)
-fsoyp13_1$`2012-09-27` <- gsub(",", "\\.", fsoyp13_1$`2012-09-27`)
-fsoyp13_1$`2012-10-04` <- gsub(",", "\\.", fsoyp13_1$`2012-10-04`)
-fsoyp13_1$`2012-10-11` <- gsub(",", "\\.", fsoyp13_1$`2012-10-11`)
-fsoyp13_1$`2012-10-18` <- gsub(",", "\\.", fsoyp13_1$`2012-10-18`)
-fsoyp13_1$`2012-10-25` <- gsub(",", "\\.", fsoyp13_1$`2012-10-25`)
-fsoyp13_1$`2012-11-01` <- gsub(",", "\\.", fsoyp13_1$`2012-11-01`)
-fsoyp13_1$`2012-11-08` <- gsub(",", "\\.", fsoyp13_1$`2012-11-08`)
-fsoyp13_1$`2012-11-15` <- gsub(",", "\\.", fsoyp13_1$`2012-11-15`)
-fsoyp13_1$`2012-11-22` <- gsub(",", "\\.", fsoyp13_1$`2012-11-22`)
-fsoyp13_1$`2012-11-23` <- gsub(",", "\\.", fsoyp13_1$`2012-11-23`)
-#Removing percentage symbols
-fsoyp13_1$`2012-09-20` <- gsub("%", "", fsoyp13_1$`2012-09-20`)
-fsoyp13_1$`2012-09-27` <- gsub("%", "", fsoyp13_1$`2012-09-27`)
-fsoyp13_1$`2012-10-04` <- gsub("%", "", fsoyp13_1$`2012-10-04`)
-fsoyp13_1$`2012-10-11` <- gsub("%", "", fsoyp13_1$`2012-10-11`)
-fsoyp13_1$`2012-10-18` <- gsub("%", "", fsoyp13_1$`2012-10-18`)
-fsoyp13_1$`2012-10-25` <- gsub("%", "", fsoyp13_1$`2012-10-25`)
-fsoyp13_1$`2012-11-01` <- gsub("%", "", fsoyp13_1$`2012-11-01`)
-fsoyp13_1$`2012-11-08` <- gsub("%", "", fsoyp13_1$`2012-11-08`)
-fsoyp13_1$`2012-11-15` <- gsub("%", "", fsoyp13_1$`2012-11-15`)
-fsoyp13_1$`2012-11-22` <- gsub("%", "", fsoyp13_1$`2012-11-22`)
-fsoyp13_1$`2012-11-23` <- gsub("%", "", fsoyp13_1$`2012-11-23`)
-#Convert to numeric
-fsoyp13_1$`2012-09-20` <- as.numeric(fsoyp13_1$`2012-09-20`)
-fsoyp13_1$`2012-09-27` <- as.numeric(fsoyp13_1$`2012-09-27`)
-fsoyp13_1$`2012-10-04` <- as.numeric(fsoyp13_1$`2012-10-04`)
-fsoyp13_1$`2012-10-11` <- as.numeric(fsoyp13_1$`2012-10-11`)
-fsoyp13_1$`2012-10-18` <- as.numeric(fsoyp13_1$`2012-10-18`)
-fsoyp13_1$`2012-10-25` <- as.numeric(fsoyp13_1$`2012-10-25`)
-fsoyp13_1$`2012-11-01` <- as.numeric(fsoyp13_1$`2012-11-01`)
-fsoyp13_1$`2012-11-08` <- as.numeric(fsoyp13_1$`2012-11-08`)
-fsoyp13_1$`2012-11-15` <- as.numeric(fsoyp13_1$`2012-11-15`)
-fsoyp13_1$`2012-11-22` <- as.numeric(fsoyp13_1$`2012-11-22`)
-fsoyp13_1$`2012-11-23` <- as.numeric(fsoyp13_1$`2012-11-23`)
-#dividing percentage values by 100 to convert them to decimal form
-fsoyp13_1$`2012-09-20` <- fsoyp13_1$`2012-09-20`/100
-fsoyp13_1$`2012-09-27` <- fsoyp13_1$`2012-09-27`/100
-fsoyp13_1$`2012-10-04` <- fsoyp13_1$`2012-10-04`/100
-fsoyp13_1$`2012-10-11` <- fsoyp13_1$`2012-10-11`/100
-fsoyp13_1$`2012-10-18` <- fsoyp13_1$`2012-10-18`/100
-fsoyp13_1$`2012-10-25` <- fsoyp13_1$`2012-10-25`/100
-fsoyp13_1$`2012-11-01` <- fsoyp13_1$`2012-11-01`/100
-fsoyp13_1$`2012-11-08` <- fsoyp13_1$`2012-11-08`/100
-fsoyp13_1$`2012-11-15` <- fsoyp13_1$`2012-11-15`/100
-fsoyp13_1$`2012-11-22` <- fsoyp13_1$`2012-11-22`/100
-fsoyp13_1$`2012-11-23` <- fsoyp13_1$`2012-11-23`/100
+#xxx <- 3
+#colnames(fsoyp13_1)[1]
+
+for (xxx in 3:dim(fsoyp13_1)[2]){
+  fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]] <- gsub(",", "\\.", fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]])
+  fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]] <- gsub("%", "", fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]])
+  fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]] <- gsub("p.p.", "", fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]])
+  fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]] <- as.numeric(fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]])
+  fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]] <- fsoyp13_1[[paste(colnames(fsoyp13_1)[xxx])]]/100
+}
+dim(fsoyp13_1)
 #changing to numeric
 sapply(fsoyp13_1, mode)
 View(fsoyp13_1)
@@ -860,18 +814,31 @@ fsoyp14_1_1[5, "Regions"] <- "Itauba"
 fsoyp14_1_1[6, "Regions"] <- "Others_Norte"
 fsoyp14_1_1[9, "Regions"] <- "Querencia"
 fsoyp14_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp14_1_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp14_1_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp14_1_1[13, "Regions"] <- "Medio_Norte"
+fsoyp14_1_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp14_1_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp14_1_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp14_1_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp14_1_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp14_1_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp14_1_1[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp14_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp14_1_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp14_1_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp14_1_1[29, "Regions"] <- "Others_Oeste"
+fsoyp14_1_1[30, "Regions"] <- "Centro_Sul"
 fsoyp14_1_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp14_1_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp14_1_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp14_1_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp14_1_1[37, "Regions"] <- "Campo_Verde"
+fsoyp14_1_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp14_1_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp14_1_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp14_1_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp14_1_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp14_1_1[43, "Regions"] <- "Mato_Grosso"
 #2nd file data frame and removing duplicate columns - naming remaining columns
 fsoyp14_2_1 <- as.data.frame(fsoyp14_2_1[2:nrow(fsoyp14_2_1), ], stringsAsFactors = FALSE)
 fsoyp14_2_1$'V2' <- NULL
@@ -892,18 +859,31 @@ fsoyp14_2_1[5, "Regions"] <- "Itauba"
 fsoyp14_2_1[6, "Regions"] <- "Others_Norte"
 fsoyp14_2_1[9, "Regions"] <- "Querencia"
 fsoyp14_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp14_2_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp14_2_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp14_2_1[13, "Regions"] <- "Medio_Norte"
+fsoyp14_2_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp14_2_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp14_2_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp14_2_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp14_2_1[21, "Regions"] <- "Nova_Ubirata"
 fsoyp14_2_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp14_2_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp14_2_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp14_2_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp14_2_1[29, "Regions"] <- "Others_Oeste"
+fsoyp14_2_1[30, "Regions"] <- "Centro_Sul"
 fsoyp14_2_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp14_2_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp14_2_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp14_2_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp14_2_1[37, "Regions"] <- "Campo_Verde"
+fsoyp14_2_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp14_2_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp14_2_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp14_2_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp14_2_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp14_2_1[43, "Regions"] <- "Mato_Grosso"
 #Merging first and second files for municipal level data
 fsoyp14_muni <- merge(fsoyp14_1_1, fsoyp14_2_1, by="Regions", sort = FALSE)
 View(fsoyp14_muni)
@@ -1039,18 +1019,31 @@ fsoyp15_1[5, "Regions"] <- "Itauba"
 fsoyp15_1[6, "Regions"] <- "Others_Norte"
 fsoyp15_1[9, "Regions"] <- "Querencia"
 fsoyp15_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp15_1[11, "Regions"] <- "Nova_Xavantina"
 fsoyp15_1[12, "Regions"] <- "Others_Nordeste"
 fsoyp15_1[13, "Regions"] <- "Medio_Norte"
+fsoyp15_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp15_1[16, "Regions"] <- "Nova_Mutum"
+fsoyp15_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp15_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyp15_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyp15_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyp15_1[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp15_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyp15_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyp15_1[28, "Regions"] <- "Campos_de_Julio"
 fsoyp15_1[29, "Regions"] <- "Others_Oeste"
+fsoyp15_1[30, "Regions"] <- "Centro_Sul"
 fsoyp15_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp15_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyp15_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyp15_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp15_1[37, "Regions"] <- "Campo_Verde"
+fsoyp15_1[38, "Regions"] <- "Primavera_do_Leste"
 fsoyp15_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp15_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp15_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyp15_1[42, "Regions"] <- "Others_Sudeste"
+fsoyp15_1[43, "Regions"] <- "Mato_Grosso"
 
 #Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
 fsoyp15_1$Area_ha <- gsub("\\.", "", fsoyp15_1$Area_ha)
