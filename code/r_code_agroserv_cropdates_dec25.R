@@ -1301,40 +1301,140 @@ sapply(fsoyp19, mode)
 write.csv(fsoyp19, file='soy_plant_2019_region.csv', row.names=FALSE)
 
 # Create individual data matrices for soy harvesting data
-# fsoyh9_1 <- do.call(rbind, outsoyh9_1)
-# fsoyh9_2 <- do.call(rbind, outsoyh9_2)
-# fsoyh9_3 <- do.call(rbind, outsoyh9_3)
-# fsoyh9_4 <- do.call(rbind, outsoyh9_4)
-# fsoyh9_5 <- do.call(rbind, outsoyh9_5)
-# fsoyh9_6 <- do.call(rbind, outsoyh9_6)
-# fsoyh9_7 <- do.call(rbind, outsoyh9_7)
-# fsoyh9_8 <- do.call(rbind, outsoyh9_8)
-# fsoyh9_9 <- do.call(rbind, outsoyh9_9)
-# fsoyh9_10 <- do.call(rbind, outsoyh9_10)
-# fsoyh9_11 <- do.call(rbind, outsoyh9_11)
-# fsoyh9_12 <- do.call(rbind, outsoyh9_12)
-# fsoyh9_13 <- do.call(rbind, outsoyh9_13)
-# fsoyh9_14 <- do.call(rbind, outsoyh9_14)
-# fsoyh10_1 <- do.call(rbind, outsoyh10[1])
-# fsoyh10_2 <- do.call(rbind, outsoyh10[2])
-# fsoyh11_1_1 <- do.call(rbind, outsoyh11_1[1])
-# fsoyh14_1_2 <- do.call(rbind, outsoyh11_1[2])
-# fsoyh11_2_1 <- do.call(rbind, outsoyh11_2[1])
-# fsoyh11_2_2 <- do.call(rbind, outsoyh11_2[2])
-# fsoyh12_1_1 <- do.call(rbind, outsoyh12_1[1])
-# fsoyh12_1_2 <- do.call(rbind, outsoyh12_1[2])
-# fsoyh12_2_1 <- do.call(rbind, outsoyh12_2[1])
-# fsoyh12_2_2 <- do.call(rbind, outsoyh12_2[2])
-# fsoyh13 <- do.call(rbind, outsoyh13)
-# fsoyh14_1 <- do.call(rbind, outsoyh14[1])
-# fsoyh14_2 <- do.call(rbind, outsoyh14[2])
-# fsoyh15_1 <- do.call(rbind, outsoyh15[1])
-# fsoyh15_2 <- do.call(rbind, outsoyh15[2])
-# fsoyh16 <- do.call(rbind, outsoyh16)
-# fsoyh17 <- do.call(rbind, outsoyh17)
-# fsoyh18 <- do.call(rbind, outsoyh18)
+fsoyh9_1 <- do.call(rbind, outsoyh9_1)
+fsoyh9_2 <- do.call(rbind, outsoyh9_2)
+fsoyh9_3 <- do.call(rbind, outsoyh9_3)
+fsoyh9_4 <- do.call(rbind, outsoyh9_4)
+fsoyh9_5 <- do.call(rbind, outsoyh9_5)
+fsoyh9_6 <- do.call(rbind, outsoyh9_6)
+fsoyh9_7 <- do.call(rbind, outsoyh9_7)
+fsoyh9_8 <- do.call(rbind, outsoyh9_8)
+fsoyh9_9 <- do.call(rbind, outsoyh9_9)
+fsoyh9_10 <- do.call(rbind, outsoyh9_10)
+fsoyh9_11 <- do.call(rbind, outsoyh9_11)
+fsoyh9_12 <- do.call(rbind, outsoyh9_12)
+fsoyh9_13 <- do.call(rbind, outsoyh9_13)
+fsoyh9_14 <- do.call(rbind, outsoyh9_14)
+fsoyh10_1 <- do.call(rbind, outsoyh10[1])
+fsoyh10_2 <- do.call(rbind, outsoyh10[2])
+fsoyh11_1_1 <- do.call(rbind, outsoyh11_1[1])
+fsoyh11_1_2 <- do.call(rbind, outsoyh11_1[2])
+fsoyh11_2_1 <- do.call(rbind, outsoyh11_2[1])
+fsoyh11_2_2 <- do.call(rbind, outsoyh11_2[2])
+fsoyh12_1_1 <- do.call(rbind, outsoyh12_1[1])
+fsoyh12_1_2 <- do.call(rbind, outsoyh12_1[2])
+fsoyh12_2_1 <- do.call(rbind, outsoyh12_2[1])
+fsoyh12_2_2 <- do.call(rbind, outsoyh12_2[2])
+fsoyh13 <- do.call(rbind, outsoyh13)
+fsoyh14_1 <- do.call(rbind, outsoyh14[1])
+fsoyh14_2 <- do.call(rbind, outsoyh14[2])
+fsoyh15_1 <- do.call(rbind, outsoyh15[1])
+fsoyh15_2 <- do.call(rbind, outsoyh15[2])
+fsoyh16 <- do.call(rbind, outsoyh16)
+fsoyh17 <- do.call(rbind, outsoyh17)
+fsoyh18 <- do.call(rbind, outsoyh18)
+
+#2009 soy harvest
+fsoyh9_1 <- as.data.frame(fsoyh9_1[2:nrow(fsoyh9_1), ], stringsAsFactors = FALSE)
+fsoyh9_2 <- as.data.frame(fsoyh9_2[2:nrow(fsoyh9_2), ], stringsAsFactors = FALSE)
+fsoyh9_3 <- as.data.frame(fsoyh9_3[2:nrow(fsoyh9_3), ], stringsAsFactors = FALSE)
+fsoyh9_4 <- as.data.frame(fsoyh9_4[2:nrow(fsoyh9_4), ], stringsAsFactors = FALSE)
+fsoyh9_5 <- as.data.frame(fsoyh9_5[2:nrow(fsoyh9_5), ], stringsAsFactors = FALSE)
+fsoyh9_6 <- as.data.frame(fsoyh9_6[2:nrow(fsoyh9_6), ], stringsAsFactors = FALSE)
+fsoyh9_7 <- as.data.frame(fsoyh9_7[2:nrow(fsoyh9_7), ], stringsAsFactors = FALSE)
+fsoyh9_8 <- as.data.frame(fsoyh9_8[2:nrow(fsoyh9_8), ], stringsAsFactors = FALSE)
+fsoyh9_9 <- as.data.frame(fsoyh9_9[2:nrow(fsoyh9_9), ], stringsAsFactors = FALSE)
+fsoyh9_10 <- as.data.frame(fsoyh9_10[2:nrow(fsoyh9_10), ], stringsAsFactors = FALSE)
+fsoyh9_11 <- as.data.frame(fsoyh9_11[2:nrow(fsoyh9_11), ], stringsAsFactors = FALSE)
+fsoyh9_12 <- as.data.frame(fsoyh9_12[2:nrow(fsoyh9_12), ], stringsAsFactors = FALSE)
+fsoyh9_13 <- as.data.frame(fsoyh9_13[2:nrow(fsoyh9_13), ], stringsAsFactors = FALSE)
+fsoyh9_14 <- as.data.frame(fsoyh9_14[2:nrow(fsoyh9_14), ], stringsAsFactors = FALSE)
+
+fsoyh9_1[7] <- NULL
+fsoyh9_1[6] <- NULL
+fsoyh9_1[5] <- NULL
+fsoyh9_1[4] <- NULL
+fsoyh9_1[3] <- NULL
+fsoyh9_1[2] <- NULL
+fsoyh9_1[1] <- NULL
+fsoyh9_1 <- fsoyh9_1[-c(14,16), ]
+fsoyh9_2 <- fsoyh9_2[-c(1,3,5,7,10,12,14,16,18,20,22,25,27,29,31,34,36,38), ]
+fsoyh9_2[2] <- NULL
+fsoyh9_3[5] <- NULL
+fsoyh9_3[4] <- NULL
+fsoyh9_3[3] <- NULL
+fsoyh9_3[2] <- NULL
+fsoyh9_3[1] <- NULL
+fsoyh9_3 <- fsoyh9_3[-c(10,12,25,27), ]
+fsoyh9_4[1] <- NULL
+fsoyh9_4 <- fsoyh9_4[-c(4,24,33,39), ]
+fsoyh9_5[1] <- NULL
+fsoyh9_5 <- fsoyh9_5[-c(2,4,6,8,16,18,26,28,30,37,39,41,56), ]
 
 
+print('fsoyp9 after as.data.frame')
+print(head(fsoyp9))
+
+hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', '2008-12-11')
+names(fsoyp9) <- hefsoyp9
+
+print('before cleaning')
+print(fsoyp9$Regions)
+
+#2009 soy planting correcting spelling errors in Regions column
+
+
+fsoyp9[3, "Regions"] <- "Others_Noroeste"
+fsoyp9[5, "Regions"] <- "Itauba"
+fsoyp9[6, "Regions"] <- "Others_Norte"
+fsoyp9[9, "Regions"] <- "Querencia"
+fsoyp9[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyp9[11, "Regions"] <- "Nova_Xavantina"
+fsoyp9[12, "Regions"] <- "Others_Nordeste"
+fsoyp9[13, "Regions"] <- "Medio_Norte"
+fsoyp9[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyp9[16, "Regions"] <- "Nova_Mutum"
+fsoyp9[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyp9[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyp9[21, "Regions"] <- "Nova_Ubirata"
+fsoyp9[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyp9[24, "Regions"] <- "Others_Medio_Norte"
+fsoyp9[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyp9[28, "Regions"] <- "Campos_de_Julio"
+fsoyp9[29, "Regions"] <- "Others_Oeste"
+fsoyp9[30, "Regions"] <- "Centro_Sul"
+fsoyp9[32, "Regions"] <- "Tangara_da_Serra"
+fsoyp9[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyp9[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyp9[35, "Regions"] <- "Others_Centro_Sul"
+fsoyp9[37, "Regions"] <- "Campo_Verde"
+fsoyp9[38, "Regions"] <- "Primavera_do_Leste"
+fsoyp9[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyp9[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyp9[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyp9[42, "Regions"] <- "Others_Sudeste"
+fsoyp9[43, "Regions"] <- "Mato_Grosso"
+
+#Remove periods from thousands positions and convert Area_ha to numeric
+fsoyp9$Area_ha <- gsub("\\.", "", fsoyp9$Area_ha)
+fsoyp9 <- fsoyp9 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fsoyp9)[1]
+
+for (xxx in 3:dim(fsoyp9)[2]){
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub(",", "\\.", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("%", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("p.p.", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- as.numeric(fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
+  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- fsoyp9[[paste(colnames(fsoyp9)[xxx])]]/100
+}
+dim(fsoyp9)
+sapply(fsoyp9, mode)
+
+#Write final table to disk
+write.csv(fsoyp9, file='soy_plant_2009_muni.csv', row.names=FALSE)
 
 
 
