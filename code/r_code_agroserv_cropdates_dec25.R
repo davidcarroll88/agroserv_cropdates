@@ -24,19 +24,12 @@ soyp18 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/15122017180857.pdf
 # soyp19 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/23112018162346.pdf'
 
 # Location of soy harvest files of interest
-soyh9_1 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090108_IACS.pdf'
 soyh9_2 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090115_IACS.pdf'
-soyh9_3 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090122_IACS.pdf' 
 soyh9_4 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090129_IACS.pdf'
-soyh9_5 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090205_IACS.pdf'
 soyh9_6 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090212_IACS.pdf'
-soyh9_7 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090219_IACS.pdf'
 soyh9_8 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090226_IACS.pdf'
-soyh9_9 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090305_IACS.pdf'
 soyh9_10 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090312_IACS.pdf'
-soyh9_11 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090319_IACS.pdf'
 soyh9_12 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090326_IACS.pdf'
-soyh9_13 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090401_IACS.pdf'
 soyh9_14 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/090409_IACS.pdf'
 soyh10 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/2010_04_15_ICS.pdf'
 soyh11_1 <- 'http://www.imea.com.br/upload/publicacoes/arquivos/11_02_18_ICSoja.pdf'
@@ -71,19 +64,12 @@ outsoyp19 <- extract_tables(soyp19)
 print('extracted soy planting')
 
 # Extract soy harvest tables
-outsoyh9_1 <- extract_tables(soyh9_1)
 outsoyh9_2 <- extract_tables(soyh9_2)
-outsoyh9_3 <- extract_tables(soyh9_3)
 outsoyh9_4 <- extract_tables(soyh9_4)
-outsoyh9_5 <- extract_tables(soyh9_5)
 outsoyh9_6 <- extract_tables(soyh9_6)
-outsoyh9_7 <- extract_tables(soyh9_7)
 outsoyh9_8 <- extract_tables(soyh9_8)
-outsoyh9_9 <- extract_tables(soyh9_9)
 outsoyh9_10 <- extract_tables(soyh9_10)
-outsoyh9_11 <- extract_tables(soyh9_11)
 outsoyh9_12 <- extract_tables(soyh9_12)
-outsoyh9_13 <- extract_tables(soyh9_13)
 outsoyh9_14 <- extract_tables(soyh9_14)
 outsoyh10 <- extract_tables(soyh10)
 outsoyh11_1 <- extract_tables(soyh11_1)
@@ -1301,19 +1287,12 @@ sapply(fsoyp19, mode)
 write.csv(fsoyp19, file='soy_plant_2019_region.csv', row.names=FALSE)
 
 # Create individual data matrices for soy harvesting data
-fsoyh9_1 <- do.call(rbind, outsoyh9_1)
 fsoyh9_2 <- do.call(rbind, outsoyh9_2)
-fsoyh9_3 <- do.call(rbind, outsoyh9_3)
 fsoyh9_4 <- do.call(rbind, outsoyh9_4)
-fsoyh9_5 <- do.call(rbind, outsoyh9_5)
 fsoyh9_6 <- do.call(rbind, outsoyh9_6)
-fsoyh9_7 <- do.call(rbind, outsoyh9_7)
 fsoyh9_8 <- do.call(rbind, outsoyh9_8)
-fsoyh9_9 <- do.call(rbind, outsoyh9_9)
 fsoyh9_10 <- do.call(rbind, outsoyh9_10)
-fsoyh9_11 <- do.call(rbind, outsoyh9_11)
 fsoyh9_12 <- do.call(rbind, outsoyh9_12)
-fsoyh9_13 <- do.call(rbind, outsoyh9_13)
 fsoyh9_14 <- do.call(rbind, outsoyh9_14)
 fsoyh10_1 <- do.call(rbind, outsoyh10[1])
 fsoyh10_2 <- do.call(rbind, outsoyh10[2])
@@ -1335,106 +1314,311 @@ fsoyh17 <- do.call(rbind, outsoyh17)
 fsoyh18 <- do.call(rbind, outsoyh18)
 
 #2009 soy harvest
-fsoyh9_1 <- as.data.frame(fsoyh9_1[2:nrow(fsoyh9_1), ], stringsAsFactors = FALSE)
 fsoyh9_2 <- as.data.frame(fsoyh9_2[2:nrow(fsoyh9_2), ], stringsAsFactors = FALSE)
-fsoyh9_3 <- as.data.frame(fsoyh9_3[2:nrow(fsoyh9_3), ], stringsAsFactors = FALSE)
 fsoyh9_4 <- as.data.frame(fsoyh9_4[2:nrow(fsoyh9_4), ], stringsAsFactors = FALSE)
-fsoyh9_5 <- as.data.frame(fsoyh9_5[2:nrow(fsoyh9_5), ], stringsAsFactors = FALSE)
 fsoyh9_6 <- as.data.frame(fsoyh9_6[2:nrow(fsoyh9_6), ], stringsAsFactors = FALSE)
-fsoyh9_7 <- as.data.frame(fsoyh9_7[2:nrow(fsoyh9_7), ], stringsAsFactors = FALSE)
 fsoyh9_8 <- as.data.frame(fsoyh9_8[2:nrow(fsoyh9_8), ], stringsAsFactors = FALSE)
-fsoyh9_9 <- as.data.frame(fsoyh9_9[2:nrow(fsoyh9_9), ], stringsAsFactors = FALSE)
 fsoyh9_10 <- as.data.frame(fsoyh9_10[2:nrow(fsoyh9_10), ], stringsAsFactors = FALSE)
-fsoyh9_11 <- as.data.frame(fsoyh9_11[2:nrow(fsoyh9_11), ], stringsAsFactors = FALSE)
 fsoyh9_12 <- as.data.frame(fsoyh9_12[2:nrow(fsoyh9_12), ], stringsAsFactors = FALSE)
-fsoyh9_13 <- as.data.frame(fsoyh9_13[2:nrow(fsoyh9_13), ], stringsAsFactors = FALSE)
 fsoyh9_14 <- as.data.frame(fsoyh9_14[2:nrow(fsoyh9_14), ], stringsAsFactors = FALSE)
 
-fsoyh9_1[7] <- NULL
-fsoyh9_1[6] <- NULL
-fsoyh9_1[5] <- NULL
-fsoyh9_1[4] <- NULL
-fsoyh9_1[3] <- NULL
-fsoyh9_1[2] <- NULL
-fsoyh9_1[1] <- NULL
-fsoyh9_1 <- fsoyh9_1[-c(14,16), ]
 fsoyh9_2 <- fsoyh9_2[-c(1,3,5,7,10,12,14,16,18,20,22,25,27,29,31,34,36,38), ]
 fsoyh9_2[2] <- NULL
-fsoyh9_3[5] <- NULL
-fsoyh9_3[4] <- NULL
-fsoyh9_3[3] <- NULL
-fsoyh9_3[2] <- NULL
-fsoyh9_3[1] <- NULL
-fsoyh9_3 <- fsoyh9_3[-c(10,12,25,27), ]
 fsoyh9_4[1] <- NULL
 fsoyh9_4 <- fsoyh9_4[-c(4,24,33,39), ]
-fsoyh9_5[1] <- NULL
-fsoyh9_5 <- fsoyh9_5[-c(2,4,6,8,16,18,26,28,30,37,39,41,56), ]
+fsoyh9_6[2] <- NULL
+fsoyh9_6[1] <- NULL
+fsoyh9_6 <- fsoyh9_6[-c(23), ]
+fsoyh9_8[7] <- NULL
+fsoyh9_8[5] <- NULL
+fsoyh9_8[4] <- NULL
+fsoyh9_8[3] <- NULL
+fsoyh9_8[2] <- NULL
+fsoyh9_8[1] <- NULL
+fsoyh9_8 <- fsoyh9_8[-c(2,44), ]
+fsoyh9_10[6] <- NULL
+fsoyh9_10[4] <- NULL
+fsoyh9_10[3] <- NULL
+fsoyh9_10[2] <- NULL
+fsoyh9_10[1] <- NULL
+fsoyh9_10 <- fsoyh9_10[-c(6,9,11,15,25,27,31,33,35,37), ]
+fsoyh9_12[3] <- NULL
+fsoyh9_12[1] <- NULL
+fsoyh9_14[1] <- NULL
+fsoyh9_14 <- fsoyh9_14[-c(1,3,10,13,21,28,31), ]
+
+hefsoyh9_2 <- c('Regions', 'Area_ha', '2009-01-09', '2009-01-15')
+names(fsoyh9_2) <- hefsoyh9_2
+fsoyh9_4[3] <- NULL
+fsoyh9_4[2] <- NULL
+hefsoyh9_4 <- c('Regions', '2009-01-22', '2009-01-29')
+names(fsoyh9_4) <- hefsoyh9_4
+fsoyh9_6[2] <- NULL
+hefsoyh9_6 <- c('Regions', '2009-02-05', '2009-02-11')
+names(fsoyh9_6) <- hefsoyh9_6
+fsoyh9_8[1] <- NULL
+fsoyh9_8 <- fsoyh9_8[-c(1), ]
+hefsoyh9_8 <- c('Regions', '2009-02-19', '2009-02-26')
+names(fsoyh9_8) <- hefsoyh9_8
+fsoyh9_10[2] <- NULL
+hefsoyh9_10 <- c('Regions', '2009-03-05', '2009-03-10')
+names(fsoyh9_10) <- hefsoyh9_10
+fsoyh9_12[2] <- NULL
+hefsoyh9_12 <- c('Regions', '2009-03-19', '2009-03-25')
+names(fsoyh9_12) <- hefsoyh9_12
+fsoyh9_14[2] <- NULL
+hefsoyh9_14 <- c('Regions', '2009-04-01', '2009-04-09')
+names(fsoyh9_14) <- hefsoyh9_14
+
+fsoyh9_2[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_2[5, "Regions"] <- "Itauba"
+fsoyh9_2[6, "Regions"] <- "Others_Norte"
+fsoyh9_2[9, "Regions"] <- "Querencia"
+fsoyh9_2[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_2[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_2[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_2[13, "Regions"] <- "Medio_Norte"
+fsoyh9_2[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_2[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_2[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_2[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_2[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_2[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_2[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_2[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_2[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_2[29, "Regions"] <- "Others_Oeste"
+fsoyh9_2[30, "Regions"] <- "Centro_Sul"
+fsoyh9_2[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_2[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_2[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_2[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_2[37, "Regions"] <- "Campo_Verde"
+fsoyh9_2[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_2[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_2[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_2[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_2[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_2[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_4[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_4[5, "Regions"] <- "Itauba"
+fsoyh9_4[6, "Regions"] <- "Others_Norte"
+fsoyh9_4[9, "Regions"] <- "Querencia"
+fsoyh9_4[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_4[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_4[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_4[13, "Regions"] <- "Medio_Norte"
+fsoyh9_4[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_4[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_4[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_4[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_4[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_4[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_4[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_4[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_4[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_4[29, "Regions"] <- "Others_Oeste"
+fsoyh9_4[30, "Regions"] <- "Centro_Sul"
+fsoyh9_4[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_4[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_4[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_4[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_4[37, "Regions"] <- "Campo_Verde"
+fsoyh9_4[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_4[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_4[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_4[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_4[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_4[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_6[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_6[5, "Regions"] <- "Itauba"
+fsoyh9_6[6, "Regions"] <- "Others_Norte"
+fsoyh9_6[9, "Regions"] <- "Querencia"
+fsoyh9_6[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_6[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_6[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_6[13, "Regions"] <- "Medio_Norte"
+fsoyh9_6[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_6[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_6[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_6[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_6[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_6[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_6[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_6[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_6[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_6[29, "Regions"] <- "Others_Oeste"
+fsoyh9_6[30, "Regions"] <- "Centro_Sul"
+fsoyh9_6[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_6[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_6[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_6[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_6[37, "Regions"] <- "Campo_Verde"
+fsoyh9_6[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_6[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_6[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_6[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_6[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_6[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_8[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_8[5, "Regions"] <- "Itauba"
+fsoyh9_8[6, "Regions"] <- "Others_Norte"
+fsoyh9_8[9, "Regions"] <- "Querencia"
+fsoyh9_8[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_8[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_8[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_8[13, "Regions"] <- "Medio_Norte"
+fsoyh9_8[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_8[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_8[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_8[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_8[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_8[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_8[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_8[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_8[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_8[29, "Regions"] <- "Others_Oeste"
+fsoyh9_8[30, "Regions"] <- "Centro_Sul"
+fsoyh9_8[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_8[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_8[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_8[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_8[37, "Regions"] <- "Campo_Verde"
+fsoyh9_8[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_8[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_8[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_8[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_8[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_8[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_10[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_10[5, "Regions"] <- "Itauba"
+fsoyh9_10[6, "Regions"] <- "Others_Norte"
+fsoyh9_10[9, "Regions"] <- "Querencia"
+fsoyh9_10[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_10[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_10[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_10[13, "Regions"] <- "Medio_Norte"
+fsoyh9_10[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_10[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_10[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_10[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_10[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_10[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_10[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_10[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_10[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_10[29, "Regions"] <- "Others_Oeste"
+fsoyh9_10[30, "Regions"] <- "Centro_Sul"
+fsoyh9_10[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_10[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_10[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_10[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_10[37, "Regions"] <- "Campo_Verde"
+fsoyh9_10[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_10[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_10[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_10[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_10[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_10[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_12[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_12[5, "Regions"] <- "Itauba"
+fsoyh9_12[6, "Regions"] <- "Others_Norte"
+fsoyh9_12[9, "Regions"] <- "Querencia"
+fsoyh9_12[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_12[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_12[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_12[13, "Regions"] <- "Medio_Norte"
+fsoyh9_12[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_12[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_12[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_12[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_12[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_12[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_12[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_12[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_12[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_12[29, "Regions"] <- "Others_Oeste"
+fsoyh9_12[30, "Regions"] <- "Centro_Sul"
+fsoyh9_12[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_12[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_12[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_12[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_12[37, "Regions"] <- "Campo_Verde"
+fsoyh9_12[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_12[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_12[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_12[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_12[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_12[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_14[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_14[5, "Regions"] <- "Itauba"
+fsoyh9_14[6, "Regions"] <- "Others_Norte"
+fsoyh9_14[9, "Regions"] <- "Querencia"
+fsoyh9_14[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh9_14[11, "Regions"] <- "Nova_Xavantina"
+fsoyh9_14[12, "Regions"] <- "Others_Nordeste"
+fsoyh9_14[13, "Regions"] <- "Medio_Norte"
+fsoyh9_14[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_14[16, "Regions"] <- "Nova_Mutum"
+fsoyh9_14[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_14[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh9_14[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_14[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh9_14[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_14[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh9_14[28, "Regions"] <- "Campos_de_Julio"
+fsoyh9_14[29, "Regions"] <- "Others_Oeste"
+fsoyh9_14[30, "Regions"] <- "Centro_Sul"
+fsoyh9_14[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh9_14[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh9_14[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh9_14[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_14[37, "Regions"] <- "Campo_Verde"
+fsoyh9_14[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh9_14[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh9_14[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh9_14[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh9_14[42, "Regions"] <- "Others_Sudeste"
+fsoyh9_14[43, "Regions"] <- "Mato_Grosso"
+
+fsoyh9_mun <- merge(fsoyh9_2, fsoyh9_4, by="Regions", sort = FALSE)
+fsoyh9_mun1 <- merge(fsoyh9_mun, fsoyh9_6, by="Regions", sort = FALSE)
+fsoyh9_mun2 <- merge(fsoyh9_mun1, fsoyh9_8, by="Regions", sort = FALSE)
+fsoyh9_mun3 <- merge(fsoyh9_mun2, fsoyh9_10, by="Regions", sort = FALSE)
+fsoyh9_mun4 <- merge(fsoyh9_mun3, fsoyh9_12, by="Regions", sort = FALSE)
+fsoyh9_mun5 <- merge(fsoyh9_mun4, fsoyh9_14, by="Regions", sort = FALSE)
 
 
-print('fsoyp9 after as.data.frame')
-print(head(fsoyp9))
+fsoyh9_mun5[32, "2009-02-11"] <- "17,0%"
+fsoyh9_mun5[40, "2009-02-11"] <- "7,0%"
+fsoyh9_mun5[15, "2009-04-09"] <- "100,0%"
 
-hefsoyp9 <- c('Regions', 'Area_ha', '2008-12-04', '2008-12-11')
-names(fsoyp9) <- hefsoyp9
-
-print('before cleaning')
-print(fsoyp9$Regions)
-
-#2009 soy planting correcting spelling errors in Regions column
-
-
-fsoyp9[3, "Regions"] <- "Others_Noroeste"
-fsoyp9[5, "Regions"] <- "Itauba"
-fsoyp9[6, "Regions"] <- "Others_Norte"
-fsoyp9[9, "Regions"] <- "Querencia"
-fsoyp9[10, "Regions"] <- "Gaucha_do_Norte"
-fsoyp9[11, "Regions"] <- "Nova_Xavantina"
-fsoyp9[12, "Regions"] <- "Others_Nordeste"
-fsoyp9[13, "Regions"] <- "Medio_Norte"
-fsoyp9[14, "Regions"] <- "Lucas_do_Rio_Verde"
-fsoyp9[16, "Regions"] <- "Nova_Mutum"
-fsoyp9[17, "Regions"] <- "Ipiranga_do_Norte"
-fsoyp9[20, "Regions"] <- "Santa_Rita_do_Trivelato"
-fsoyp9[21, "Regions"] <- "Nova_Ubirata"
-fsoyp9[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
-fsoyp9[24, "Regions"] <- "Others_Medio_Norte"
-fsoyp9[27, "Regions"] <- "Campo_Novo_dos_Parecis"
-fsoyp9[28, "Regions"] <- "Campos_de_Julio"
-fsoyp9[29, "Regions"] <- "Others_Oeste"
-fsoyp9[30, "Regions"] <- "Centro_Sul"
-fsoyp9[32, "Regions"] <- "Tangara_da_Serra"
-fsoyp9[33, "Regions"] <- "Santo_Antonio_do_Leveger"
-fsoyp9[34, "Regions"] <- "Chapada_dos_Guimaraes"
-fsoyp9[35, "Regions"] <- "Others_Centro_Sul"
-fsoyp9[37, "Regions"] <- "Campo_Verde"
-fsoyp9[38, "Regions"] <- "Primavera_do_Leste"
-fsoyp9[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
-fsoyp9[40, "Regions"] <- "Jaciara_e_Juscimeira"
-fsoyp9[41, "Regions"] <- "Santo_Antonio_do_Leste"
-fsoyp9[42, "Regions"] <- "Others_Sudeste"
-fsoyp9[43, "Regions"] <- "Mato_Grosso"
 
 #Remove periods from thousands positions and convert Area_ha to numeric
-fsoyp9$Area_ha <- gsub("\\.", "", fsoyp9$Area_ha)
-fsoyp9 <- fsoyp9 %>%
+fsoyh9_mun5$Area_ha <- gsub("\\.", "", fsoyh9_mun5$Area_ha)
+fsoyh9_mun5 <- fsoyh9_mun5 %>%
   mutate(Area_ha = as.numeric(Area_ha))
 
 #xxx <- 3
-#colnames(fsoyp9)[1]
+#colnames(fsoyh9_mun5)[1]
 
-for (xxx in 3:dim(fsoyp9)[2]){
-  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub(",", "\\.", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
-  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("%", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
-  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- gsub("p.p.", "", fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
-  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- as.numeric(fsoyp9[[paste(colnames(fsoyp9)[xxx])]])
-  fsoyp9[[paste(colnames(fsoyp9)[xxx])]] <- fsoyp9[[paste(colnames(fsoyp9)[xxx])]]/100
+for (xxx in 3:dim(fsoyh9_mun5)[2]){
+  fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]] <- gsub(",", "\\.", fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]])
+  fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]] <- gsub("%", "", fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]])
+  fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]] <- as.numeric(fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]])
+  fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]] <- fsoyh9_mun5[[paste(colnames(fsoyh9_mun5)[xxx])]]/100
 }
-dim(fsoyp9)
-sapply(fsoyp9, mode)
+dim(fsoyh9_mun5)
+sapply(fsoyh9_mun5, mode)
 
 #Write final table to disk
-write.csv(fsoyp9, file='soy_plant_2009_muni.csv', row.names=FALSE)
+write.csv(fsoyh9_mun5, file='soy_harvest_2009_muni.csv', row.names=FALSE)
 
 
 
