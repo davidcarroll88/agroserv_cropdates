@@ -1881,3 +1881,205 @@ dim(fsoyh11reg)
 sapply(fsoyh11reg, mode)
 #Write final table to disk
 write.csv(fsoyh11reg, file='soy_harvest_2011_region.csv', row.names=FALSE)
+
+
+
+
+
+#2012 soy harvest - setting as data frame - 1st/2nd files municipal data
+fsoyh12_1_1 <- as.data.frame(fsoyh12_1_1[2:nrow(fsoyh12_1_1), ], stringsAsFactors = FALSE)
+fsoyh12_1_1$'V2' <- NULL
+hefsoyh12_1_1 <- c('Regions', 'Area_ha', '2012-01-05', '2012-01-12', '2012-01-19', '2012-01-26',
+                   '2012-02-02', '2012-02-09', '2012-02-16', '2012-02-23', '2012-03-01',
+                   '2012-03-09', '2012-03-16', '2012-03-23', '2012-03-30', '2012-04-06')
+names(fsoyh12_1_1) <- hefsoyh12_1_1
+fsoyh12_1_1[3, "Regions"] <- "Others_Noroeste"
+fsoyh12_1_1[5, "Regions"] <- "Itauba"
+fsoyh12_1_1[6, "Regions"] <- "Others_Norte"
+fsoyh12_1_1[9, "Regions"] <- "Querencia"
+fsoyh12_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh12_1_1[11, "Regions"] <- "Nova_Xavantina"
+fsoyh12_1_1[12, "Regions"] <- "Others_Nordeste"
+fsoyh12_1_1[13, "Regions"] <- "Medio_Norte"
+fsoyh12_1_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh12_1_1[16, "Regions"] <- "Nova_Mutum"
+fsoyh12_1_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh12_1_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh12_1_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyh12_1_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh12_1_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh12_1_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh12_1_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyh12_1_1[29, "Regions"] <- "Others_Oeste"
+fsoyh12_1_1[30, "Regions"] <- "Centro_Sul"
+fsoyh12_1_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh12_1_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh12_1_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh12_1_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh12_1_1[37, "Regions"] <- "Campo_Verde"
+fsoyh12_1_1[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh12_1_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh12_1_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh12_1_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh12_1_1[42, "Regions"] <- "Others_Sudeste"
+fsoyh12_1_1[43, "Regions"] <- "Mato_Grosso"
+#2nd file data frame and removing duplicate columns - naming remaining columns
+fsoyh12_2_1 <- as.data.frame(fsoyh12_2_1[2:nrow(fsoyh12_2_1), ], stringsAsFactors = FALSE)
+fsoyh12_2_1$'V12' <- NULL
+fsoyh12_2_1$'V11' <- NULL
+fsoyh12_2_1$'V10' <- NULL
+fsoyh12_2_1$'V9' <- NULL
+fsoyh12_2_1$'V8' <- NULL
+fsoyh12_2_1$'V7' <- NULL
+fsoyh12_2_1$'V6' <- NULL
+fsoyh12_2_1$'V5' <- NULL
+fsoyh12_2_1$'V4' <- NULL
+fsoyh12_2_1$'V3' <- NULL
+fsoyh12_2_1$'V2' <- NULL
+hefsoyh12_2_1 <- c('Regions', '2012-04-13')
+names(fsoyh12_2_1) <- hefsoyh12_2_1
+fsoyh12_2_1[3, "Regions"] <- "Others_Noroeste"
+fsoyh12_2_1[5, "Regions"] <- "Itauba"
+fsoyh12_2_1[6, "Regions"] <- "Others_Norte"
+fsoyh12_2_1[9, "Regions"] <- "Querencia"
+fsoyh12_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fsoyh12_2_1[11, "Regions"] <- "Nova_Xavantina"
+fsoyh12_2_1[12, "Regions"] <- "Others_Nordeste"
+fsoyh12_2_1[13, "Regions"] <- "Medio_Norte"
+fsoyh12_2_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh12_2_1[16, "Regions"] <- "Nova_Mutum"
+fsoyh12_2_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh12_2_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fsoyh12_2_1[21, "Regions"] <- "Nova_Ubirata"
+fsoyh12_2_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fsoyh12_2_1[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh12_2_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fsoyh12_2_1[28, "Regions"] <- "Campos_de_Julio"
+fsoyh12_2_1[29, "Regions"] <- "Others_Oeste"
+fsoyh12_2_1[30, "Regions"] <- "Centro_Sul"
+fsoyh12_2_1[32, "Regions"] <- "Tangara_da_Serra"
+fsoyh12_2_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fsoyh12_2_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fsoyh12_2_1[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh12_2_1[37, "Regions"] <- "Campo_Verde"
+fsoyh12_2_1[38, "Regions"] <- "Primavera_do_Leste"
+fsoyh12_2_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fsoyh12_2_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fsoyh12_2_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fsoyh12_2_1[42, "Regions"] <- "Others_Sudeste"
+fsoyh12_2_1[43, "Regions"] <- "Mato_Grosso"
+#Merging first and second files for municipal level data
+fsoyh12_muni <- merge(fsoyh12_1_1, fsoyh12_2_1, by="Regions", sort = FALSE)
+View(fsoyh12_muni)
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fsoyh12_muni$Area_ha <- gsub("\\.", "", fsoyh12_muni$Area_ha)
+fsoyh12_muni$Area_ha <- gsub(" ", "", fsoyh12_muni$Area_ha)
+fsoyh12_muni <- fsoyh12_muni %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fsoyh12_muni)[1]
+
+for (xxx in 3:dim(fsoyh12_muni)[2]){
+  fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]] <- gsub(",", "\\.", fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]])
+  fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]] <- gsub("%", "", fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]])
+  fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]] <- as.numeric(fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]])
+  fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]] <- fsoyh12_muni[[paste(colnames(fsoyh12_muni)[xxx])]]/100
+}
+dim(fsoyh12_muni)
+
+#changing to numeric
+sapply(fsoyh12_muni, mode)
+View(fsoyh12_muni)
+#Write final table to disk
+write.csv(fsoyh12_muni, file='soy_harvest_2012_muni.csv', row.names=FALSE)
+
+#2011 soy harvesting - isolating regional summary table by removing unnecessary rows from 2nd file
+View(fsoyh12_1_2)
+View(fsoyh12_2_2)
+fsoyh12_1_2 <- as.data.frame(fsoyh12_1_2[5:nrow(fsoyh12_1_2), ], stringsAsFactors = FALSE)
+fsoyh12_2_2 <- as.data.frame(fsoyh12_2_2[5:nrow(fsoyh12_2_2), ], stringsAsFactors = FALSE)
+
+fsoyh12_1_2$'V16' <- NULL
+fsoyh12_1_2$'V15' <- NULL
+fsoyh12_1_2$'V14' <- NULL
+fsoyh12_1_2$'V13' <- NULL
+fsoyh12_1_2$'V12' <- NULL
+fsoyh12_1_2$'V11' <- NULL
+fsoyh12_1_2$'V10' <- NULL
+fsoyh12_1_2$'V6' <- NULL
+
+fsoyh12_2_2$'V12' <- NULL
+fsoyh12_2_2$'V11' <- NULL
+fsoyh12_2_2$'V10' <- NULL
+fsoyh12_2_2$'V6' <- NULL
+
+
+fsoyh12_1_2 <- fsoyh12_1_2[-c(17,19), ]
+fsoyh12_2_2 <- fsoyh12_2_2[-c(18,20), ]
+hefsoyh12_1_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                   'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyh12_1_2) <- hefsoyh12_1_2
+hefsoyh12_2_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                   'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyh12_2_2) <- hefsoyh12_2_2
+
+fsoyh12_1_2[1, "Noroeste"] <- "241.200"
+fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
+fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
+fsoyh12_1_2[4, "Noroeste"] <- "0,0%"
+fsoyh12_1_2[1, "Noroeste"] <- "241.200"
+fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
+fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
+fsoyh12_1_2[4, "Noroeste"] <- "0,0%"
+fsoyh12_1_2[1, "Noroeste"] <- "241.200"
+fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
+fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
+fsoyp12_1_2[4, "Noroeste"] <- "0,0%"
+
+
+#Transpose 2011 soy harvesting regions table (rows to columns, columns to rows)
+fsoyh12_1_2 <- t(fsoyh12_1_2)
+fsoyh12_2_2 <- t(fsoyh12_2_2)
+#Turn this transposed table into a data frame and remove headers in first row
+fsoyh12_1_2 <- as.data.frame(fsoyh12_1_2[1:nrow(fsoyh12_1_2), ], sort= FALSE)
+fsoyh12_2_2 <- as.data.frame(fsoyh12_2_2[1:nrow(fsoyh12_2_2), ], sort= FALSE)
+
+setDT(fsoyh12_1_2, keep.rownames=TRUE)
+colnames(fsoyh12_1_2)[1] <- "IMEA_Regions"
+
+setDT(fsoyh12_2_2, keep.rownames=TRUE)
+colnames(fsoyh12_2_2)[1] <- "IMEA_Regions"
+
+fsoyh12_1_2 <- fsoyh12_1_2[-c(1), ]
+fsoyh12_2_2 <- fsoyh12_2_2[-c(1), ]
+
+#Create new header names and insert them
+hefsoyh12_1_2 <- c('IMEA_Regions', 'Area_ha', '2011-02-17', '2010-02-18', 'change_in_plant_per')
+names(fsoyh12_1_2) <- hefsoyh12_1_2
+hefsoyh12_2_2 <- c('IMEA_Regions', 'Area_ha', '2011-04-14', '2010-04-15', 'change_in_plant_per')
+names(fsoyh12_2_2) <- hefsoyh12_2_2
+# Merging two versions
+fsoyh12reg <- merge(fsoyh12_1_2, fsoyh12_2_2, by="IMEA_Regions", sort=FALSE)
+fsoyh12reg <- fsoyh12reg[, -c(5,2)]
+fsoyh12reg <- fsoyh12reg[,c(1,4,2:3,5:7)]
+#Rename column 1 as "IMEA_Regions" 
+colnames(fsoyh12reg)[2] <- "Area_ha"
+colnames(fsoyh12reg)[7] <- "change_in_plant_per"
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyh12reg <- fsoyh12reg %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fsoyh12reg)[1]
+
+for (xxx in 3:dim(fsoyh12reg)[2]){
+  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub(",", "\\.", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
+  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub("%", "", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
+  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub("p.p.", "", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
+  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- as.numeric(fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
+  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]]/100
+}
+dim(fsoyh12reg)
+sapply(fsoyh12reg, mode)
+#Write final table to disk
+write.csv(fsoyh12reg, file='soy_harvest_2012_region.csv', row.names=FALSE)
