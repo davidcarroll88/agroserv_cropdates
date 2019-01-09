@@ -1994,92 +1994,72 @@ View(fsoyh12_muni)
 #Write final table to disk
 write.csv(fsoyh12_muni, file='soy_harvest_2012_muni.csv', row.names=FALSE)
 
-#2011 soy harvesting - isolating regional summary table by removing unnecessary rows from 2nd file
-View(fsoyh12_1_2)
+#2012 soy harvesting - isolating regional summary table by removing unnecessary rows from 2nd file
 View(fsoyh12_2_2)
-fsoyh12_1_2 <- as.data.frame(fsoyh12_1_2[5:nrow(fsoyh12_1_2), ], stringsAsFactors = FALSE)
 fsoyh12_2_2 <- as.data.frame(fsoyh12_2_2[5:nrow(fsoyh12_2_2), ], stringsAsFactors = FALSE)
-
-fsoyh12_1_2$'V16' <- NULL
-fsoyh12_1_2$'V15' <- NULL
-fsoyh12_1_2$'V14' <- NULL
-fsoyh12_1_2$'V13' <- NULL
-fsoyh12_1_2$'V12' <- NULL
-fsoyh12_1_2$'V11' <- NULL
-fsoyh12_1_2$'V10' <- NULL
-fsoyh12_1_2$'V6' <- NULL
 
 fsoyh12_2_2$'V12' <- NULL
 fsoyh12_2_2$'V11' <- NULL
 fsoyh12_2_2$'V10' <- NULL
 fsoyh12_2_2$'V6' <- NULL
 
-
-fsoyh12_1_2 <- fsoyh12_1_2[-c(17,19), ]
 fsoyh12_2_2 <- fsoyh12_2_2[-c(18,20), ]
-hefsoyh12_1_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
-                   'Centro_Sul', 'Sudeste', 'Mato_Grosso')
-names(fsoyh12_1_2) <- hefsoyh12_1_2
 hefsoyh12_2_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
                    'Centro_Sul', 'Sudeste', 'Mato_Grosso')
 names(fsoyh12_2_2) <- hefsoyh12_2_2
 
-fsoyh12_1_2[1, "Noroeste"] <- "241.200"
-fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
-fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
-fsoyh12_1_2[4, "Noroeste"] <- "0,0%"
-fsoyh12_1_2[1, "Noroeste"] <- "241.200"
-fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
-fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
-fsoyh12_1_2[4, "Noroeste"] <- "0,0%"
-fsoyh12_1_2[1, "Noroeste"] <- "241.200"
-fsoyh12_1_2[2, "Noroeste"] <- "100,0%"
-fsoyh12_1_2[3, "Noroeste"] <- "100,0%"
-fsoyp12_1_2[4, "Noroeste"] <- "0,0%"
+fsoyh12_2_2[1, "Noroeste"] <- "340.000"
+fsoyh12_2_2[2, "Noroeste"] <- "0,0%"
+fsoyh12_2_2[3, "Noroeste"] <- "0,0%"
+fsoyh12_2_2[4, "Noroeste"] <- "0,5%"
+fsoyh12_2_2[5, "Noroeste"] <- "1,5"
+fsoyh12_2_2[6, "Noroeste"] <- "8,0%"
+fsoyh12_2_2[7, "Noroeste"] <- "20,0%"
+fsoyh12_2_2[8, "Noroeste"] <- "31,5%"
+fsoyh12_2_2[9, "Noroeste"] <- "43,6"
+fsoyh12_2_2[10, "Noroeste"] <- "53,6%"
+fsoyh12_2_2[11, "Noroeste"] <- "73,6%"
+fsoyh12_2_2[12, "Noroeste"] <- "82,2%"
+fsoyh12_2_2[13, "Noroeste"] <- "92,2%"
+fsoyh12_2_2[14, "Noroeste"] <- "96,6%"
+fsoyh12_2_2[15, "Noroeste"] <- "100,0%"
+fsoyh12_2_2[16, "Noroeste"] <- "100,0%"
+fsoyh12_2_2[17, "Noroeste"] <- "100,0%"
+fsoyh12_2_2[18, "Noroeste"] <- "0,0 p.p.%"
 
 
 #Transpose 2011 soy harvesting regions table (rows to columns, columns to rows)
-fsoyh12_1_2 <- t(fsoyh12_1_2)
 fsoyh12_2_2 <- t(fsoyh12_2_2)
 #Turn this transposed table into a data frame and remove headers in first row
-fsoyh12_1_2 <- as.data.frame(fsoyh12_1_2[1:nrow(fsoyh12_1_2), ], sort= FALSE)
-fsoyh12_2_2 <- as.data.frame(fsoyh12_2_2[1:nrow(fsoyh12_2_2), ], sort= FALSE)
 
-setDT(fsoyh12_1_2, keep.rownames=TRUE)
-colnames(fsoyh12_1_2)[1] <- "IMEA_Regions"
+fsoyh12_2_2 <- as.data.frame(fsoyh12_2_2[1:nrow(fsoyh12_2_2), ], sort= FALSE)
 
 setDT(fsoyh12_2_2, keep.rownames=TRUE)
 colnames(fsoyh12_2_2)[1] <- "IMEA_Regions"
 
-fsoyh12_1_2 <- fsoyh12_1_2[-c(1), ]
-fsoyh12_2_2 <- fsoyh12_2_2[-c(1), ]
 
 #Create new header names and insert them
-hefsoyh12_1_2 <- c('IMEA_Regions', 'Area_ha', '2011-02-17', '2010-02-18', 'change_in_plant_per')
-names(fsoyh12_1_2) <- hefsoyh12_1_2
-hefsoyh12_2_2 <- c('IMEA_Regions', 'Area_ha', '2011-04-14', '2010-04-15', 'change_in_plant_per')
+hefsoyh12_2_2 <- c('IMEA_Regions', 'Area_ha', '2012-01-05', '2012-01-12','2012-01-19', 
+                   '2012-01-26', '2012-02-02', '2012-02-09', '2012-02-16', '2012-02-23', '2012-03-01',
+                   '2012-03-08', '2012-03-15', '2012-03-22', '2012-03-29', '2012-04-05',
+                   '2012-04-12', '2011-04-07', 'change_in_plant_per')
 names(fsoyh12_2_2) <- hefsoyh12_2_2
-# Merging two versions
-fsoyh12reg <- merge(fsoyh12_1_2, fsoyh12_2_2, by="IMEA_Regions", sort=FALSE)
-fsoyh12reg <- fsoyh12reg[, -c(5,2)]
-fsoyh12reg <- fsoyh12reg[,c(1,4,2:3,5:7)]
-#Rename column 1 as "IMEA_Regions" 
-colnames(fsoyh12reg)[2] <- "Area_ha"
-colnames(fsoyh12reg)[7] <- "change_in_plant_per"
+
+
 #change Area_ha column to numeric and remove periods from thousandths position
-fsoyh12reg <- fsoyh12reg %>%
+fsoyh12_2_2 <- fsoyh12_2_2 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
 #xxx <- 3
-#colnames(fsoyh12reg)[1]
+#colnames(fsoyh12_2_2)[1]
 
-for (xxx in 3:dim(fsoyh12reg)[2]){
-  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub(",", "\\.", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
-  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub("%", "", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
-  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- gsub("p.p.", "", fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
-  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- as.numeric(fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]])
-  fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]] <- fsoyh12reg[[paste(colnames(fsoyh12reg)[xxx])]]/100
+for (xxx in 3:dim(fsoyh12_2_2)[2]){
+  fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]] <- gsub(",", "\\.", fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]])
+  fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]] <- gsub("%", "", fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]])
+  fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]] <- gsub("p.p.", "", fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]])
+  fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]] <- as.numeric(fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]])
+  fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]] <- fsoyh12_2_2[[paste(colnames(fsoyh12_2_2)[xxx])]]/100
 }
-dim(fsoyh12reg)
-sapply(fsoyh12reg, mode)
+dim(fsoyh12_2_2)
+sapply(fsoyh12_2_2, mode)
 #Write final table to disk
-write.csv(fsoyh12reg, file='soy_harvest_2012_region.csv', row.names=FALSE)
+write.csv(fsoyh12_2_2, file='soy_harvest_2012_region.csv', row.names=FALSE)
