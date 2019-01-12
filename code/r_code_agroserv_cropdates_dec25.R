@@ -2331,7 +2331,7 @@ colnames(fsoyh14_2)[1] <- "IMEA_Regions"
 
 
 #Create new header names and insert them
-hefsoyh14_2 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod_sc_ha', '2014-01-09', '2014-01-16', '2014-01-23', '2014-01-30',
+hefsoyh14_2 <- c('IMEA_Regions', 'Area_ha', 'Final_prod', '2014-01-09', '2014-01-16', '2014-01-23', '2014-01-30',
                  '2014-02-06', '2014-02-13', '2014-02-20', '2014-02-27', '2014-03-06',
                  '2014-03-13', '2014-03-20', '2014-03-27', '2014-04-03', '2014-04-10', '2014-04-17',
                  '2013-04-18', 'change_in_plant_per')
@@ -2342,7 +2342,7 @@ names(fsoyh14_2) <- hefsoyh14_2
 fsoyh14_2 <- fsoyh14_2 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
 fsoyh14_2 <- fsoyh14_2 %>%
-  mutate(Partial_prod_sc_ha = as.numeric(gsub(",", "\\.", Partial_prod_sc_ha)))
+  mutate(Final_prod = as.numeric(gsub(",", "\\.", Final_prod)))
 
 #xxx <- 3
 #colnames(fsoyh14_2)[1]
@@ -2479,9 +2479,9 @@ colnames(fsoyh15_2)[1] <- "IMEA_Regions"
 
 
 #Create new header names and insert them
-hefsoyh15_2 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod_sc_ha', '2015-01-08', '2015-01-15', '2015-01-22', '2015-01-29',
+hefsoyh15_2 <- c('IMEA_Regions', 'Area_ha', 'Final_prod', '2015-01-08', '2015-01-15', '2015-01-22', '2015-01-29',
                  '2015-02-05', '2015-02-12', '2015-02-19', '2015-02-26', '2015-03-05',
-                 '2015-03-12', '2015-03-19', '2015-03-26', '2015-04-02', '2015-04-9',
+                 '2015-03-12', '2015-03-19', '2015-03-26', '2015-04-02', '2015-04-09',
                  '2015-04-16', '2015-04-23', '2015-04-30', 'weekly_change', '2014-04-17', 'change_in_plant_per')
 names(fsoyh15_2) <- hefsoyh15_2
 
@@ -2490,7 +2490,7 @@ names(fsoyh15_2) <- hefsoyh15_2
 fsoyh15_2 <- fsoyh15_2 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
 fsoyh15_2 <- fsoyh15_2 %>%
-  mutate(Partial_prod_sc_ha = as.numeric(gsub(",", "\\.", Partial_prod_sc_ha)))
+  mutate(Final_prod = as.numeric(gsub(",", "\\.", Final_prod)))
 
 #xxx <- 3
 #colnames(fsoyh15_2)[1]
@@ -2515,7 +2515,7 @@ fsoyh16_1 <- do.call(rbind, outsoyh16[1])
 View(fsoyh16_1)
 fsoyh16_1 <- as.data.frame(fsoyh16_1[2:nrow(fsoyh16_1), ], stringsAsFactors = FALSE)
 
-
+fsoyh16_1 <- fsoyh16_1[,c(1,5,6,4,3,7,2,8,9)]
 hefsoyh16_1 <- c('Date', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
 names(fsoyh16_1) <- hefsoyh16_1
@@ -2523,7 +2523,7 @@ names(fsoyh16_1) <- hefsoyh16_1
 fsoyh16_1 <- fsoyh16_1[-c(21,23), ]
 
 
-#Transpose 2014 soy harvesting regions table (rows to columns, columns to rows)
+#Transpose 2015-2016 soy harvesting regions table (rows to columns, columns to rows)
 fsoyh16_1 <- t(fsoyh16_1)
 #Turn this transposed table into a data frame and remove headers in first row
 
@@ -2534,23 +2534,22 @@ colnames(fsoyh16_1)[1] <- "IMEA_Regions"
 
 
 #Create new header names and insert them
-hefsoyh16_1 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod_sc_ha', '2015-01-08', '2015-01-15', '2015-01-22', '2015-01-29',
-                 '2015-02-05', '2015-02-12', '2015-02-19', '2015-02-26', '2015-03-05',
-                 '2015-03-12', '2015-03-19', '2015-03-26', '2015-04-02', '2015-04-9',
-                 '2015-04-16', '2015-04-23', '2015-04-30', 'weekly_change', '2014-04-17', 'change_in_plant_per')
+hefsoyh16_1 <- c('IMEA_Regions', 'Area_ha', '2016-01-07', '2016-01-14', '2016-01-21', '2016-01-28',
+                 '2016-02-04', '2016-02-11', '2016-02-18', '2016-02-25', '2016-03-03',
+                 '2016-03-10', '2016-03-18', '2016-03-25', '2016-04-01', '2016-04-08',
+                 '2016-04-15', '2016-04-22', '2016-04-29', 'weekly_change', '2015-04-30', 'change_in_plant_per')
 names(fsoyh16_1) <- hefsoyh16_1
 
 
 #change Area_ha column to numeric and remove periods from thousandths position
 fsoyh16_1 <- fsoyh16_1 %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
-fsoyh16_1 <- fsoyh16_1 %>%
-  mutate(Partial_prod_sc_ha = as.numeric(gsub(",", "\\.", Partial_prod_sc_ha)))
+
 
 #xxx <- 3
 #colnames(fsoyh16_1)[1]
 
-for (xxx in 4:dim(fsoyh16_1)[2]){
+for (xxx in 3:dim(fsoyh16_1)[2]){
   fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]] <- gsub(",", "\\.", fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]])
   fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]] <- gsub("%", "", fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]])
   fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]] <- gsub("p.p.", "", fsoyh16_1[[paste(colnames(fsoyh16_1)[xxx])]])
@@ -2560,5 +2559,188 @@ for (xxx in 4:dim(fsoyh16_1)[2]){
 dim(fsoyh16_1)
 sapply(fsoyh16_1, mode)
 #Write final table to disk
-write.csv(fsoyh16_2, file='soy_harvest_2016_region.csv', row.names=FALSE)
+write.csv(fsoyh16_1, file='soy_harvest_2016_region.csv', row.names=FALSE)
+
+
+
+
+#2015-2016 weekly productivity of area harvested - soy harvesting
+fsoyh16_2 <- do.call(rbind, outsoyh16[2])
+View(fsoyh16_2)
+fsoyh16_2 <- as.data.frame(fsoyh16_2[2:nrow(fsoyh16_2), ], stringsAsFactors = FALSE)
+
+fsoyh16_2 <- fsoyh16_2[,c(1,5,6,4,3,7,2,8,9)]
+hefsoyh16_2 <- c('Date', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                 'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyh16_2) <- hefsoyh16_2
+
+fsoyh16_2 <- fsoyh16_2[-c(21,23), ]
+
+
+#Transpose 2015-2016 weekly productivity soy harvesting table (rows to columns, columns to rows)
+fsoyh16_2 <- t(fsoyh16_2)
+#Turn this transposed table into a data frame and remove headers in first row
+
+fsoyh16_2 <- as.data.frame(fsoyh16_2[2:nrow(fsoyh16_2), ], sort= FALSE)
+
+setDT(fsoyh16_2, keep.rownames=TRUE)
+colnames(fsoyh16_2)[1] <- "IMEA_Regions"
+
+
+#Create new header names and insert them
+hefsoyh16_2 <- c('IMEA_Regions', 'Area_ha', '2016-01-07', '2016-01-14', '2016-01-21', '2016-01-28',
+                 '2016-02-04', '2016-02-11', '2016-02-18', '2016-02-25', '2016-03-03',
+                 '2016-03-10', '2016-03-18', '2016-03-25', '2016-04-01', '2016-04-08',
+                 '2016-04-15', '2016-04-22', '2016-04-29', 'weekly_change', '2015-04-30', 'change_in_plant_per')
+names(fsoyh16_2) <- hefsoyh16_2
+
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyh16_2 <- fsoyh16_2 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+
+#xxx <- 3
+#colnames(fsoyh16_2)[1]
+
+for (xxx in 3:dim(fsoyh16_2)[2]){
+  fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]] <- gsub(",", "\\.", fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]])
+  fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]] <- gsub("p.p.", "", fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]])
+  fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]] <- as.numeric(fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]])
+  fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]] <- fsoyh16_2[[paste(colnames(fsoyh16_2)[xxx])]]/100
+}
+dim(fsoyh16_2)
+sapply(fsoyh16_2, mode)
+#Write final table to disk
+write.csv(fsoyh16_2, file='soy_harvest_2016_weekly_prod.csv', row.names=FALSE)
+
+
+
+
+#2016-2017 soy harvesting -regional table
+fsoyh17_1 <- do.call(rbind, outsoyh17)
+View(fsoyh17_1)
+fsoyh17_1 <- as.data.frame(fsoyh17_1[2:nrow(fsoyh17_1), ], stringsAsFactors = FALSE)
+
+fsoyh17_1 <- fsoyh17_1[,c(1,5,6,4,3,7,2,8,9)]
+hefsoyh17_1 <- c('Date', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                 'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyh17_1) <- hefsoyh17_1
+
+fsoyh17_1 <- fsoyh17_1[-c(21,23), ]
+
+
+#Transpose 2016-2017 soy harvesting regions table (rows to columns, columns to rows)
+fsoyh17_1 <- t(fsoyh17_1)
+#Turn this transposed table into a data frame and remove headers in first row
+
+fsoyh17_1 <- as.data.frame(fsoyh17_1[2:nrow(fsoyh17_1), ], sort= FALSE)
+
+setDT(fsoyh17_1, keep.rownames=TRUE)
+colnames(fsoyh17_1)[1] <- "IMEA_Regions"
+
+
+#Create new header names and insert them
+hefsoyh17_1 <- c('IMEA_Regions', 'Area_ha', '2017-01-06', '2017-01-13', '2017-01-20', '2017-01-27',
+                 '2017-02-03', '2017-02-10', '2017-02-17', '2017-02-24', '2017-03-03',
+                 '2017-03-10', '2017-03-17', '2017-03-24', '2017-03-31', '2017-04-07', '2017-04-14',
+                 '2017-04-21', '2017-04-28', 'weekly_change', '2016-04-28', 'change_in_plant_per')
+names(fsoyh17_1) <- hefsoyh17_1
+
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyh17_1 <- fsoyh17_1 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+
+#xxx <- 3
+#colnames(fsoyh17_1)[1]
+
+for (xxx in 3:dim(fsoyh17_1)[2]){
+  fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]] <- gsub(",", "\\.", fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]])
+  fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]] <- gsub("%", "", fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]])
+  fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]] <- gsub("p.p.", "", fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]])
+  fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]] <- as.numeric(fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]])
+  fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]] <- fsoyh17_1[[paste(colnames(fsoyh17_1)[xxx])]]/100
+}
+dim(fsoyh17_1)
+sapply(fsoyh17_1, mode)
+#Write final table to disk
+write.csv(fsoyh17_1, file='soy_harvest_2017_region.csv', row.names=FALSE)
+
+
+
+#2016-2017 soy harvesting -regional table
+fsoyh18 <- do.call(rbind, outsoyh18)
+View(fsoyh18)
+fsoyh18 <- as.data.frame(fsoyh18[2:nrow(fsoyh18), ], stringsAsFactors = FALSE)
+
+fsoyh18 <- fsoyh18[,c(4,5,3,2,6,1,7,8)]
+hefsoyh18 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                 'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fsoyh18) <- hefsoyh18
+
+fsoyh18 <- fsoyh18[-c(2,8,11,17,20,24,27,29), ]
+
+fsoyh18[1, "Centro_Sul"] <- "700.597"
+fsoyh18[2, "Centro_Sul"] <- "1,47%"
+fsoyh18[3, "Centro_Sul"] <- "3,82%"
+fsoyh18[4, "Centro_Sul"] <- "11,52%"
+fsoyh18[5, "Centro_Sul"] <- "20,95%"
+fsoyh18[6, "Centro_Sul"] <- "30,49%"
+fsoyh18[7, "Centro_Sul"] <- "43,34%"
+fsoyh18[8, "Centro_Sul"] <- "50,87%"
+fsoyh18[9, "Centro_Sul"] <- "64,24%"
+fsoyh18[10, "Centro_Sul"] <- "80,47%"
+fsoyh18[11, "Centro_Sul"] <- "94,00%"
+fsoyh18[12, "Centro_Sul"] <- "98,39%"
+fsoyh18[13, "Centro_Sul"] <- "99,46%"
+fsoyh18[14, "Centro_Sul"] <- "100,00%"
+fsoyh18[15, "Centro_Sul"] <- "100,00%"
+fsoyh18[16, "Centro_Sul"] <- "100,00%"
+fsoyh18[17, "Centro_Sul"] <- "100,00%"
+fsoyh18[18, "Centro_Sul"] <- "100,00%"
+fsoyh18[19, "Centro_Sul"] <- "0,0 p.p.%"
+fsoyh18[20, "Centro_Sul"] <- "100,00%" 
+fsoyh18[21, "Centro_Sul"] <- "0,0 p.p.%"
+
+
+#Transpose 2017-2018 soy harvesting regions table (rows to columns, columns to rows)
+fsoyh18 <- t(fsoyh18)
+#Turn this transposed table into a data frame and remove headers in first row
+
+fsoyh18 <- as.data.frame(fsoyh18[2:nrow(fsoyh18), ], sort= FALSE)
+
+setDT(fsoyh18, keep.rownames=TRUE)
+colnames(fsoyh18)[1] <- "IMEA_Regions"
+
+
+#Create new header names and insert them
+hefsoyh18 <- c('IMEA_Regions', 'Area_ha', '2018-01-12', '2018-01-19', '2018-01-26',
+                 '2018-02-02', '2018-02-09', '2018-02-16', '2018-02-23', '2018-03-02',
+                 '2018-03-09', '2018-03-16', '2018-03-23', '2018-03-30', '2018-04-06', '2018-04-13',
+                 '2018-04-20', '2018-04-27', '2018-05-04', 'weekly_change',
+                 '2017-05-05', 'change_in_plant_per')
+names(fsoyh18) <- hefsoyh18
+
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fsoyh18 <- fsoyh18 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+
+#xxx <- 3
+#colnames(fsoyh18)[1]
+
+for (xxx in 3:dim(fsoyh18)[2]){
+  fsoyh18[[paste(colnames(fsoyh18)[xxx])]] <- gsub(",", "\\.", fsoyh18[[paste(colnames(fsoyh18)[xxx])]])
+  fsoyh18[[paste(colnames(fsoyh18)[xxx])]] <- gsub("%", "", fsoyh18[[paste(colnames(fsoyh18)[xxx])]])
+  fsoyh18[[paste(colnames(fsoyh18)[xxx])]] <- gsub("p.p.", "", fsoyh18[[paste(colnames(fsoyh18)[xxx])]])
+  fsoyh18[[paste(colnames(fsoyh18)[xxx])]] <- as.numeric(fsoyh18[[paste(colnames(fsoyh18)[xxx])]])
+  fsoyh18[[paste(colnames(fsoyh18)[xxx])]] <- fsoyh18[[paste(colnames(fsoyh18)[xxx])]]/100
+}
+dim(fsoyh18)
+sapply(fsoyh18, mode)
+#Write final table to disk
+write.csv(fsoyh18, file='soy_harvest_2018_region.csv', row.names=FALSE)
 
