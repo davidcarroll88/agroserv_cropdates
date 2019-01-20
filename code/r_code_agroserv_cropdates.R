@@ -4037,11 +4037,658 @@ sapply(fmah9, mode)
 #Write final table to disk
 write.csv(fmah9, file='maize_harvest_2009_muni.csv', row.names=FALSE)
 
+#2009-2010 maize harvest - setting as data frame - 1st file
+fmah10_1_1 <- as.data.frame(fmah10_1_1[2:nrow(fmah10_1_1), ], stringsAsFactors = FALSE)
+fmah10_1_1[9] <- NULL
+fmah10_1_1[8] <- NULL
+hefmah10_1_1 <- c('Regions', 'Area_ha', '2010-06-02', '2010-06-10', '2010-06-17', '2010-06-24',
+                  '2010-07-01')
+names(fmah10_1_1) <- hefmah10_1_1
+fmah10_2_1 <- as.data.frame(fmah10_2_1[2:nrow(fmah10_2_1), ], stringsAsFactors = FALSE)
+fmah10_2_1[3] <- NULL
+fmah10_2_1[2] <- NULL
+hefmah10_2_1 <- c('Regions', '2010-07-08', '2010-07-15', '2010-07-22', '2010-07-29',
+                  '2010-08-05', '2010-08-12')
+names(fmah10_2_1) <- hefmah10_2_1
+
+#2009-2010 maize harvest - renaming rows with errors
+fmah10_1_1[3, "Regions"] <- "Others_Noroeste"
+fmah10_1_1[5, "Regions"] <- "Itauba"
+fmah10_1_1[6, "Regions"] <- "Others_Norte"
+fmah10_1_1[9, "Regions"] <- "Querencia"
+fmah10_1_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah10_1_1[11, "Regions"] <- "Nova_Xavantina"
+fmah10_1_1[12, "Regions"] <- "Others_Nordeste"
+fmah10_1_1[13, "Regions"] <- "Medio_Norte"
+fmah10_1_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah10_1_1[16, "Regions"] <- "Nova_Mutum"
+fmah10_1_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah10_1_1[20, "Regions"] <- "Nova_Ubirata"
+fmah10_1_1[22, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah10_1_1[23, "Regions"] <- "Others_Medio_Norte"
+fmah10_1_1[26, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah10_1_1[27, "Regions"] <- "Campos_de_Julio"
+fmah10_1_1[28, "Regions"] <- "Others_Oeste"
+fmah10_1_1[29, "Regions"] <- "Centro_Sul"
+fmah10_1_1[31, "Regions"] <- "Tangara_da_Serra"
+fmah10_1_1[32, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah10_1_1[33, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah10_1_1[34, "Regions"] <- "Others_Centro_Sul"
+fmah10_1_1[36, "Regions"] <- "Campo_Verde"
+fmah10_1_1[37, "Regions"] <- "Primavera_do_Leste"
+fmah10_1_1[38, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah10_1_1[39, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah10_1_1[40, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah10_1_1[41, "Regions"] <- "Others_Sudeste"
+fmah10_1_1[42, "Regions"] <- "Mato_Grosso"
+
+fmah10_2_1[3, "Regions"] <- "Others_Noroeste"
+fmah10_2_1[5, "Regions"] <- "Itauba"
+fmah10_2_1[6, "Regions"] <- "Others_Norte"
+fmah10_2_1[9, "Regions"] <- "Querencia"
+fmah10_2_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah10_2_1[11, "Regions"] <- "Nova_Xavantina"
+fmah10_2_1[12, "Regions"] <- "Others_Nordeste"
+fmah10_2_1[13, "Regions"] <- "Medio_Norte"
+fmah10_2_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah10_2_1[16, "Regions"] <- "Nova_Mutum"
+fmah10_2_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah10_2_1[20, "Regions"] <- "Nova_Ubirata"
+fmah10_2_1[22, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah10_2_1[23, "Regions"] <- "Others_Medio_Norte"
+fmah10_2_1[26, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah10_2_1[27, "Regions"] <- "Campos_de_Julio"
+fmah10_2_1[28, "Regions"] <- "Others_Oeste"
+fmah10_2_1[29, "Regions"] <- "Centro_Sul"
+fmah10_2_1[31, "Regions"] <- "Tangara_da_Serra"
+fmah10_2_1[32, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah10_2_1[33, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah10_2_1[34, "Regions"] <- "Others_Centro_Sul"
+fmah10_2_1[36, "Regions"] <- "Campo_Verde"
+fmah10_2_1[37, "Regions"] <- "Primavera_do_Leste"
+fmah10_2_1[38, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah10_2_1[39, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah10_2_1[40, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah10_2_1[41, "Regions"] <- "Others_Sudeste"
+fmah10_2_1[42, "Regions"] <- "Mato_Grosso"
+
+fmah10_mun <- merge(fmah10_1_1, fmah10_2_1, by="Regions", sort = FALSE)
+
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fmah10_mun$Area_ha <- gsub("\\.", "", fmah10_mun$Area_ha)
+fmah10_mun$Area_ha <- gsub(" ", "", fmah10_mun$Area_ha)
+fmah10_mun <- fmah10_mun %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fmah10_mun)[1]
+
+for (xxx in 3:dim(fmah10_mun)[2]){
+  fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]] <- gsub(",", "\\.", fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]])
+  fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]] <- gsub("%", "", fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]])
+  fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]] <- as.numeric(fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]])
+  fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]] <- fmah10_mun[[paste(colnames(fmah10_mun)[xxx])]]/100
+}
+dim(fmah10_mun)
+sapply(fmah10_mun, mode)
+
+#Write final table to disk
+write.csv(fmah10_mun, file='maize_harvest_2010_muni.csv', row.names=FALSE)
+
+#2009-2010 maize harvest regional
+fmah10_1_2 <- as.data.frame(fmah10_1_2[2:nrow(fmah10_1_2), ], stringsAsFactors = FALSE)
+fmah10_2_2 <- as.data.frame(fmah10_2_2[2:nrow(fmah10_2_2), ], stringsAsFactors = FALSE)
+
+hefmah10_1_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah10_1_2) <- hefmah10_1_2
+fmah10_1_2 <- fmah10_1_2[-c(4,6), ]
+hefmah10_2_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah10_2_2) <- hefmah10_2_2
+fmah10_2_2 <- fmah10_2_2[-c(1,4,6), ]
+
+#Transpose 2010 maize harvesting regions table (rows to columns, columns to rows)
+fmah10_1_2 <- t(fmah10_1_2)
+fmah10_2_2 <- t(fmah10_2_2)
+#Turn this transposed table into a data frame and remove headers in first row
+fmah10_1_2 <- as.data.frame(fmah10_1_2[1:nrow(fmah10_1_2), ], sort= FALSE)
+fmah10_2_2 <- as.data.frame(fmah10_2_2[1:nrow(fmah10_2_2), ], sort= FALSE)
+#Create new header names and insert them
+setDT(fmah10_1_2, keep.rownames=TRUE)
+colnames(fmah10_1_2)[1] <- "IMEA_Regions"
+fmah10_1_2 <- fmah10_1_2[-c(1), ]
+hefmah10_1_2 <- c('IMEA_Regions', 'Area_ha', '2010-07-01', '2009-07-02', 'change_in_plant_per_1')
+names(fmah10_1_2) <- hefmah10_1_2
+
+setDT(fmah10_2_2, keep.rownames=TRUE)
+colnames(fmah10_2_2)[1] <- "IMEA_Regions"
+fmah10_2_2 <- fmah10_2_2[-c(1), ]
+hefmah10_2_2 <- c('IMEA_Regions', '2010-08-12', '2009-08-13', 'change_in_plant_per_2')
+names(fmah10_2_2) <- hefmah10_2_2
+
+fmah10_reg <- merge(fmah10_1_2, fmah10_2_2, by="IMEA_Regions", sort = FALSE)
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah10_reg <- fmah10_reg %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fmah10_reg)[1]
+
+for (xxx in 3:dim(fmah10_reg)[2]){
+  fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]] <- gsub(",", "\\.", fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]])
+  fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]] <- gsub("%", "", fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]])
+  fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]] <- as.numeric(fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]])
+  fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]] <- fmah10_reg[[paste(colnames(fmah10_reg)[xxx])]]/100
+}
+dim(fmah10_reg)
+sapply(fmah10_reg, mode)
+
+#Writing 2009-2010 maize planting as a CSV file
+write.csv(fmah10_reg, file='maize_harvest_2010_region.csv', row.names=FALSE)
+
+#2010-2011 maize harvesting - setting as data frame
+fmah11_1 <- as.data.frame(fmah11_1[2:nrow(fmah11_1), ], stringsAsFactors = FALSE)
+hefmah11_1 <- c('Regions', 'Area_ha', '2011-06-09', '2011-06-16', '2011-06-23', '2011-06-30',
+             '2011-07-07', '2011-07-14', '2011-07-21', '2011-07-28', '2011-08-04',
+             '2011-08-11', '2011-08-18')
+names(fmah11_1) <- hefmah11_1
 
 
+#2010-2011 maize harvesting - renaming rows with errors
+fmah11_1[3, "Regions"] <- "Others_Noroeste"
+fmah11_1[5, "Regions"] <- "Itauba"
+fmah11_1[6, "Regions"] <- "Others_Norte"
+fmah11_1[9, "Regions"] <- "Querencia"
+fmah11_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah11_1[11, "Regions"] <- "Nova_Xavantina"
+fmah11_1[12, "Regions"] <- "Others_Nordeste"
+fmah11_1[13, "Regions"] <- "Medio_Norte"
+fmah11_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah11_1[16, "Regions"] <- "Nova_Mutum"
+fmah11_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah11_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fmah11_1[21, "Regions"] <- "Nova_Ubirata"
+fmah11_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah11_1[24, "Regions"] <- "Others_Medio_Norte"
+fmah11_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah11_1[28, "Regions"] <- "Campos_de_Julio"
+fmah11_1[29, "Regions"] <- "Others_Oeste"
+fmah11_1[30, "Regions"] <- "Centro_Sul"
+fmah11_1[32, "Regions"] <- "Tangara_da_Serra"
+fmah11_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah11_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah11_1[35, "Regions"] <- "Others_Centro_Sul"
+fmah11_1[37, "Regions"] <- "Campo_Verde"
+fmah11_1[38, "Regions"] <- "Primavera_do_Leste"
+fmah11_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah11_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah11_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah11_1[42, "Regions"] <- "Others_Sudeste"
+fmah11_1[43, "Regions"] <- "Mato_Grosso"
 
 
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fmah11_1$Area_ha <- gsub("\\.", "", fmah11_1$Area_ha)
+fmah11_1$Area_ha <- gsub(" ", "", fmah11_1$Area_ha)
+fmah11_1 <- fmah11_1 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fmah11_1)[1]
+
+for (xxx in 3:dim(fmah11_1)[2]){
+  fmah11_1[[paste(colnames(fmah11_1)[xxx])]] <- gsub(",", "\\.", fmah11_1[[paste(colnames(fmah11_1)[xxx])]])
+  fmah11_1[[paste(colnames(fmah11_1)[xxx])]] <- gsub("%", "", fmah11_1[[paste(colnames(fmah11_1)[xxx])]])
+  fmah11_1[[paste(colnames(fmah11_1)[xxx])]] <- as.numeric(fmah11_1[[paste(colnames(fmah11_1)[xxx])]])
+  fmah11_1[[paste(colnames(fmah11_1)[xxx])]] <- fmah11_1[[paste(colnames(fmah11_1)[xxx])]]/100
+}
+dim(fmah11_1)
+sapply(fmah11_1, mode)
+
+#Write final table to disk
+write.csv(fmah11_1, file='maize_harvest_2011_muni.csv', row.names=FALSE)
+
+#2010-2011 maize harvest regional
+fmah11_2 <- as.data.frame(fmah11_2[2:nrow(fmah11_2), ], stringsAsFactors = FALSE)
+
+hefmah11_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah11_2) <- hefmah11_2
+fmah11_2 <- fmah11_2[-c(4,6), ]
+
+#Transpose 2011 maize harvesting regions table (rows to columns, columns to rows)
+fmah11_2 <- t(fmah11_2)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah11_2 <- as.data.frame(fmah11_2[1:nrow(fmah11_2), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah11_2, keep.rownames=TRUE)
+colnames(fmah11_2)[1] <- "IMEA_Regions"
+fmah11_2 <- fmah11_2[-c(1), ]
+hefmah11_2 <- c('IMEA_Regions', 'Area_ha', '2011-08-18', '2010-08-19', 'change_in_plant_per_1')
+names(fmah11_2) <- hefmah11_2
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah11_2 <- fmah11_2 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fmah11_2)[1]
+
+for (xxx in 3:dim(fmah11_2)[2]){
+  fmah11_2[[paste(colnames(fmah11_2)[xxx])]] <- gsub(",", "\\.", fmah11_2[[paste(colnames(fmah11_2)[xxx])]])
+  fmah11_2[[paste(colnames(fmah11_2)[xxx])]] <- gsub("%", "", fmah11_2[[paste(colnames(fmah11_2)[xxx])]])
+  fmah11_2[[paste(colnames(fmah11_2)[xxx])]] <- gsub("p.p.", "", fmah11_2[[paste(colnames(fmah11_2)[xxx])]])
+  fmah11_2[[paste(colnames(fmah11_2)[xxx])]] <- as.numeric(fmah11_2[[paste(colnames(fmah11_2)[xxx])]])
+  fmah11_2[[paste(colnames(fmah11_2)[xxx])]] <- fmah11_2[[paste(colnames(fmah11_2)[xxx])]]/100
+}
+dim(fmah11_2)
+sapply(fmah11_2, mode)
+
+#Writing 2010-2011 maize planting as a CSV file
+write.csv(fmah11_2, file='maize_harvest_2011_region.csv', row.names=FALSE)
+
+#2011-2012 maize harvesting - setting as data frame
+fmah12_1 <- as.data.frame(fmah12_1[2:nrow(fmah12_1), ], stringsAsFactors = FALSE)
+hefmah12_1 <- c('Regions', 'Area_ha', '2012-05-24', '2012-05-31', '2012-06-07', '2012-06-14', 
+                '2012-06-21', '2012-06-28', '2012-07-05', '2012-07-12', '2012-07-19', '2012-07-26',
+                '2012-08-02', '2012-08-09', '2012-08-16', '2012-08-23')
+names(fmah12_1) <- hefmah12_1
 
 
+#2010-2011 maize harvesting - renaming rows with errors
+fmah12_1[3, "Regions"] <- "Others_Noroeste"
+fmah12_1[5, "Regions"] <- "Itauba"
+fmah12_1[6, "Regions"] <- "Others_Norte"
+fmah12_1[9, "Regions"] <- "Querencia"
+fmah12_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah12_1[11, "Regions"] <- "Nova_Xavantina"
+fmah12_1[12, "Regions"] <- "Others_Nordeste"
+fmah12_1[13, "Regions"] <- "Medio_Norte"
+fmah12_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah12_1[16, "Regions"] <- "Nova_Mutum"
+fmah12_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah12_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fmah12_1[21, "Regions"] <- "Nova_Ubirata"
+fmah12_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah12_1[24, "Regions"] <- "Others_Medio_Norte"
+fmah12_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah12_1[28, "Regions"] <- "Campos_de_Julio"
+fmah12_1[29, "Regions"] <- "Others_Oeste"
+fmah12_1[30, "Regions"] <- "Centro_Sul"
+fmah12_1[32, "Regions"] <- "Tangara_da_Serra"
+fmah12_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah12_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah12_1[35, "Regions"] <- "Others_Centro_Sul"
+fmah12_1[37, "Regions"] <- "Campo_Verde"
+fmah12_1[38, "Regions"] <- "Primavera_do_Leste"
+fmah12_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah12_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah12_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah12_1[42, "Regions"] <- "Others_Sudeste"
+fmah12_1[43, "Regions"] <- "Mato_Grosso"
 
-\
+
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fmah12_1$Area_ha <- gsub("\\.", "", fmah12_1$Area_ha)
+fmah12_1$Area_ha <- gsub(" ", "", fmah12_1$Area_ha)
+fmah12_1 <- fmah12_1 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fmah12_1)[1]
+
+for (xxx in 3:dim(fmah12_1)[2]){
+  fmah12_1[[paste(colnames(fmah12_1)[xxx])]] <- gsub(",", "\\.", fmah12_1[[paste(colnames(fmah12_1)[xxx])]])
+  fmah12_1[[paste(colnames(fmah12_1)[xxx])]] <- gsub("%", "", fmah12_1[[paste(colnames(fmah12_1)[xxx])]])
+  fmah12_1[[paste(colnames(fmah12_1)[xxx])]] <- as.numeric(fmah12_1[[paste(colnames(fmah12_1)[xxx])]])
+  fmah12_1[[paste(colnames(fmah12_1)[xxx])]] <- fmah12_1[[paste(colnames(fmah12_1)[xxx])]]/100
+}
+dim(fmah12_1)
+sapply(fmah12_1, mode)
+
+#Write final table to disk
+write.csv(fmah12_1, file='maize_harvest_2012_muni.csv', row.names=FALSE)
+
+#2011-2012 maize harvest regional
+fmah12_2 <- as.data.frame(fmah12_2[2:nrow(fmah12_2), ], stringsAsFactors = FALSE)
+
+hefmah12_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah12_2) <- hefmah12_2
+fmah12_2 <- fmah12_2[-c(17,19), ]
+
+#Transpose 2011 maize harvesting regions table (rows to columns, columns to rows)
+fmah12_2 <- t(fmah12_2)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah12_2 <- as.data.frame(fmah12_2[1:nrow(fmah12_2), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah12_2, keep.rownames=TRUE)
+colnames(fmah12_2)[1] <- "IMEA_Regions"
+fmah12_2 <- fmah12_2[-c(1), ]
+hefmah12_2 <- c('IMEA_Regions', 'Area_ha', '2012-05-24', '2012-05-31', '2012-06-07', '2012-06-14', 
+                '2012-06-21', '2012-06-28', '2012-07-05', '2012-07-12', '2012-07-19', '2012-07-26',
+                '2012-08-02', '2012-08-09', '2012-08-16', '2012-08-24', '2011-08-25',
+                'change_in_plant_per')
+names(fmah12_2) <- hefmah12_2
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah12_2 <- fmah12_2 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fmah12_2)[1]
+
+for (xxx in 3:dim(fmah12_2)[2]){
+  fmah12_2[[paste(colnames(fmah12_2)[xxx])]] <- gsub(",", "\\.", fmah12_2[[paste(colnames(fmah12_2)[xxx])]])
+  fmah12_2[[paste(colnames(fmah12_2)[xxx])]] <- gsub("%", "", fmah12_2[[paste(colnames(fmah12_2)[xxx])]])
+  fmah12_2[[paste(colnames(fmah12_2)[xxx])]] <- gsub("p.p.", "", fmah12_2[[paste(colnames(fmah12_2)[xxx])]])
+  fmah12_2[[paste(colnames(fmah12_2)[xxx])]] <- as.numeric(fmah12_2[[paste(colnames(fmah12_2)[xxx])]])
+  fmah12_2[[paste(colnames(fmah12_2)[xxx])]] <- fmah12_2[[paste(colnames(fmah12_2)[xxx])]]/100
+}
+dim(fmah12_2)
+sapply(fmah12_2, mode)
+
+#Writing 2011-2012 maize planting as a CSV file
+write.csv(fmah12_2, file='maize_harvest_2012_region.csv', row.names=FALSE)
+
+#2012-2013 maize harvesting - setting as data frame
+fmah13_1 <- as.data.frame(fmah13_1[2:nrow(fmah13_1), ], stringsAsFactors = FALSE)
+fmah13_1[2] <- NULL 
+hefmah13_1 <- c('Regions', 'Area_ha', '2013-06-06', '2013-06-13', '2013-06-20', '2013-06-27', 
+                '2013-07-04', '2013-07-11', '2013-07-18', '2013-07-25', '2013-08-01', '2013-08-08',
+                '2013-08-15', '2013-08-22', '2013-08-29', '2013-09-05')
+names(fmah13_1) <- hefmah13_1
+
+
+#2012-2013 maize harvesting - renaming rows with errors
+fmah13_1[3, "Regions"] <- "Others_Noroeste"
+fmah13_1[5, "Regions"] <- "Itauba"
+fmah13_1[6, "Regions"] <- "Others_Norte"
+fmah13_1[9, "Regions"] <- "Querencia"
+fmah13_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah13_1[11, "Regions"] <- "Nova_Xavantina"
+fmah13_1[12, "Regions"] <- "Others_Nordeste"
+fmah13_1[13, "Regions"] <- "Medio_Norte"
+fmah13_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah13_1[16, "Regions"] <- "Nova_Mutum"
+fmah13_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah13_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fmah13_1[21, "Regions"] <- "Nova_Ubirata"
+fmah13_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah13_1[24, "Regions"] <- "Others_Medio_Norte"
+fmah13_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah13_1[28, "Regions"] <- "Campos_de_Julio"
+fmah13_1[29, "Regions"] <- "Others_Oeste"
+fmah13_1[30, "Regions"] <- "Centro_Sul"
+fmah13_1[32, "Regions"] <- "Tangara_da_Serra"
+fmah13_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah13_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah13_1[35, "Regions"] <- "Others_Centro_Sul"
+fmah13_1[37, "Regions"] <- "Campo_Verde"
+fmah13_1[38, "Regions"] <- "Primavera_do_Leste"
+fmah13_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah13_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah13_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah13_1[42, "Regions"] <- "Others_Sudeste"
+fmah13_1[43, "Regions"] <- "Mato_Grosso"
+
+
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fmah13_1$Area_ha <- gsub("\\.", "", fmah13_1$Area_ha)
+fmah13_1$Area_ha <- gsub(" ", "", fmah13_1$Area_ha)
+fmah13_1 <- fmah13_1 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fmah13_1)[1]
+
+for (xxx in 3:dim(fmah13_1)[2]){
+  fmah13_1[[paste(colnames(fmah13_1)[xxx])]] <- gsub(",", "\\.", fmah13_1[[paste(colnames(fmah13_1)[xxx])]])
+  fmah13_1[[paste(colnames(fmah13_1)[xxx])]] <- gsub("%", "", fmah13_1[[paste(colnames(fmah13_1)[xxx])]])
+  fmah13_1[[paste(colnames(fmah13_1)[xxx])]] <- as.numeric(fmah13_1[[paste(colnames(fmah13_1)[xxx])]])
+  fmah13_1[[paste(colnames(fmah13_1)[xxx])]] <- fmah13_1[[paste(colnames(fmah13_1)[xxx])]]/100
+}
+dim(fmah13_1)
+sapply(fmah13_1, mode)
+
+#Write final table to disk
+write.csv(fmah13_1, file='maize_harvest_2013_muni.csv', row.names=FALSE)
+
+#2012-2013 maize harvest regional
+fmah13_2 <- as.data.frame(fmah13_2[2:nrow(fmah13_2), ], stringsAsFactors = FALSE)
+
+hefmah13_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah13_2) <- hefmah13_2
+fmah13_2 <- fmah13_2[-c(18,20), ]
+
+#Transpose 2013 maize harvesting regions table (rows to columns, columns to rows)
+fmah13_2 <- t(fmah13_2)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah13_2 <- as.data.frame(fmah13_2[1:nrow(fmah13_2), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah13_2, keep.rownames=TRUE)
+colnames(fmah13_2)[1] <- "IMEA_Regions"
+fmah13_2 <- fmah13_2[-c(1), ]
+hefmah13_2 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod', '2013-06-06', '2013-06-13', '2013-06-20', '2013-06-27', 
+                '2013-07-04', '2013-07-11', '2013-07-18', '2013-07-25', '2013-08-01', '2013-08-08',
+                '2013-08-15', '2013-08-22', '2013-08-29', '2013-09-05', '2012-08-24', 
+                'change_in_plant_per')
+names(fmah13_2) <- hefmah13_2
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah13_2 <- fmah13_2 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fmah13_2)[1]
+
+for (xxx in 4:dim(fmah13_2)[2]){
+  fmah13_2[[paste(colnames(fmah13_2)[xxx])]] <- gsub(",", "\\.", fmah13_2[[paste(colnames(fmah13_2)[xxx])]])
+  fmah13_2[[paste(colnames(fmah13_2)[xxx])]] <- gsub("%", "", fmah13_2[[paste(colnames(fmah13_2)[xxx])]])
+  fmah13_2[[paste(colnames(fmah13_2)[xxx])]] <- as.numeric(fmah13_2[[paste(colnames(fmah13_2)[xxx])]])
+  fmah13_2[[paste(colnames(fmah13_2)[xxx])]] <- fmah13_2[[paste(colnames(fmah13_2)[xxx])]]/100
+}
+dim(fmah13_2)
+sapply(fmah13_2, mode)
+
+#Writing 2012-2013 maize planting as a CSV file
+write.csv(fmah13_2, file='maize_harvest_2013_region.csv', row.names=FALSE)
+
+
+#2013-2014 maize harvesting - setting as data frame
+fmah14_1 <- as.data.frame(fmah14_1[2:nrow(fmah14_1), ], stringsAsFactors = FALSE)
+fmah14_1[2] <- NULL 
+hefmah14_1 <- c('Regions', 'Area_ha', '2014-06-05', '2014-06-12', '2014-06-18', '2014-06-26', 
+                '2014-07-03', '2014-07-10', '2014-07-17', '2014-07-24', '2014-07-31', 
+                '2014-08-07', '2014-08-14', '2014-08-21', '2014-08-28', '2014-09-04')
+names(fmah14_1) <- hefmah14_1
+
+
+#2013-2014 maize harvesting - renaming rows with errors
+fmah14_1[3, "Regions"] <- "Others_Noroeste"
+fmah14_1[5, "Regions"] <- "Itauba"
+fmah14_1[6, "Regions"] <- "Others_Norte"
+fmah14_1[9, "Regions"] <- "Querencia"
+fmah14_1[10, "Regions"] <- "Gaucha_do_Norte"
+fmah14_1[11, "Regions"] <- "Nova_Xavantina"
+fmah14_1[12, "Regions"] <- "Others_Nordeste"
+fmah14_1[13, "Regions"] <- "Medio_Norte"
+fmah14_1[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fmah14_1[16, "Regions"] <- "Nova_Mutum"
+fmah14_1[17, "Regions"] <- "Ipiranga_do_Norte"
+fmah14_1[20, "Regions"] <- "Santa_Rita_do_Trivelato"
+fmah14_1[21, "Regions"] <- "Nova_Ubirata"
+fmah14_1[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
+fmah14_1[24, "Regions"] <- "Others_Medio_Norte"
+fmah14_1[27, "Regions"] <- "Campo_Novo_dos_Parecis"
+fmah14_1[28, "Regions"] <- "Campos_de_Julio"
+fmah14_1[29, "Regions"] <- "Others_Oeste"
+fmah14_1[30, "Regions"] <- "Centro_Sul"
+fmah14_1[32, "Regions"] <- "Tangara_da_Serra"
+fmah14_1[33, "Regions"] <- "Santo_Antonio_do_Leveger"
+fmah14_1[34, "Regions"] <- "Chapada_dos_Guimaraes"
+fmah14_1[35, "Regions"] <- "Others_Centro_Sul"
+fmah14_1[37, "Regions"] <- "Campo_Verde"
+fmah14_1[38, "Regions"] <- "Primavera_do_Leste"
+fmah14_1[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmah14_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
+fmah14_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
+fmah14_1[42, "Regions"] <- "Others_Sudeste"
+fmah14_1[43, "Regions"] <- "Mato_Grosso"
+
+
+#Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
+fmah14_1$Area_ha <- gsub("\\.", "", fmah14_1$Area_ha)
+fmah14_1$Area_ha <- gsub(" ", "", fmah14_1$Area_ha)
+fmah14_1 <- fmah14_1 %>%
+  mutate(Area_ha = as.numeric(Area_ha))
+
+#xxx <- 3
+#colnames(fmah14_1)[1]
+
+for (xxx in 3:dim(fmah14_1)[2]){
+  fmah14_1[[paste(colnames(fmah14_1)[xxx])]] <- gsub(",", "\\.", fmah14_1[[paste(colnames(fmah14_1)[xxx])]])
+  fmah14_1[[paste(colnames(fmah14_1)[xxx])]] <- gsub("%", "", fmah14_1[[paste(colnames(fmah14_1)[xxx])]])
+  fmah14_1[[paste(colnames(fmah14_1)[xxx])]] <- as.numeric(fmah14_1[[paste(colnames(fmah14_1)[xxx])]])
+  fmah14_1[[paste(colnames(fmah14_1)[xxx])]] <- fmah14_1[[paste(colnames(fmah14_1)[xxx])]]/100
+}
+dim(fmah14_1)
+sapply(fmah14_1, mode)
+
+#Write final table to disk
+write.csv(fmah14_1, file='maize_harvest_2014_muni.csv', row.names=FALSE)
+
+#2013-2014 maize harvest regional
+fmah14_2 <- as.data.frame(fmah14_2[2:nrow(fmah14_2), ], stringsAsFactors = FALSE)
+
+hefmah14_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah14_2) <- hefmah14_2
+fmah14_2[16] <- NULL 
+fmah14_2[15] <- NULL 
+fmah14_2[14] <- NULL 
+fmah14_2[13] <- NULL 
+fmah14_2[12] <- NULL 
+fmah14_2[11] <- NULL
+fmah14_2[10] <- NULL
+fmah14_2[6] <- NULL 
+hefmah14_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah14_2) <- hefmah14_2
+fmah14_2 <- fmah14_2[-c(1,2,3,21,23), ]
+fmah14_2[1, "Noroeste"] <- "142.143"
+fmah14_2[2, "Noroeste"] <- "90,0"
+fmah14_2[3, "Noroeste"] <- "0,7%"
+fmah14_2[4, "Noroeste"] <- "1,7%"
+fmah14_2[5, "Noroeste"] <- "3,4%"
+fmah14_2[6, "Noroeste"] <- "5,4%"
+fmah14_2[7, "Noroeste"] <- "15,4%"
+fmah14_2[8, "Noroeste"] <- "27,0%"
+fmah14_2[9, "Noroeste"] <- "40,0%"
+fmah14_2[10, "Noroeste"] <- "58,8%"
+fmah14_2[11, "Noroeste"] <- "66,9%"
+fmah14_2[12, "Noroeste"] <- "86,9%"
+fmah14_2[13, "Noroeste"] <- "95,8%"
+fmah14_2[14, "Noroeste"] <- "98,4%"
+fmah14_2[15, "Noroeste"] <- "100,0%"
+fmah14_2[16, "Noroeste"] <- "100,0%"
+fmah14_2[17, "Noroeste"] <- "100,0%"
+fmah14_2[18, "Noroeste"] <- "0,0 p.p."
+
+#Transpose 2014 maize harvesting regions table (rows to columns, columns to rows)
+fmah14_2 <- t(fmah14_2)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah14_2 <- as.data.frame(fmah14_2[1:nrow(fmah14_2), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah14_2, keep.rownames=TRUE)
+colnames(fmah14_2)[1] <- "IMEA_Regions"
+hefmah14_2 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod', '2014-06-05', '2014-06-12', '2014-06-18', '2014-06-26', 
+                '2014-07-03', '2014-07-10', '2014-07-17', '2014-07-24', '2014-07-31', 
+                '2014-08-07', '2014-08-14', '2014-08-21', '2014-08-28', '2014-09-04', '2013-09-05',
+                'change_in_plant_per')
+names(fmah14_2) <- hefmah14_2
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah14_2 <- fmah14_2 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+fmah14_2 <- fmah14_2 %>%
+  mutate(Partial_prod = as.numeric(gsub(",", "\\.", Partial_prod)))
+
+#xxx <- 3
+#colnames(fmah14_2)[1]
+
+for (xxx in 4:dim(fmah14_2)[2]){
+  fmah14_2[[paste(colnames(fmah14_2)[xxx])]] <- gsub(",", "\\.", fmah14_2[[paste(colnames(fmah14_2)[xxx])]])
+  fmah14_2[[paste(colnames(fmah14_2)[xxx])]] <- gsub("%", "", fmah14_2[[paste(colnames(fmah14_2)[xxx])]])
+  fmah14_2[[paste(colnames(fmah14_2)[xxx])]] <- gsub("p.p.", "", fmah14_2[[paste(colnames(fmah14_2)[xxx])]])
+  fmah14_2[[paste(colnames(fmah14_2)[xxx])]] <- as.numeric(fmah14_2[[paste(colnames(fmah14_2)[xxx])]])
+  fmah14_2[[paste(colnames(fmah14_2)[xxx])]] <- fmah14_2[[paste(colnames(fmah14_2)[xxx])]]/100
+}
+dim(fmah14_2)
+sapply(fmah14_2, mode)
+
+#Writing 2013-2014 maize planting as a CSV file
+write.csv(fmah14_2, file='maize_harvest_2014_region.csv', row.names=FALSE)
+
+
+#2014-2015 maize harvest regional
+fmah15_1 <- as.data.frame(fmah15_1[2:nrow(fmah15_1), ], stringsAsFactors = FALSE)
+fmah15_2 <- as.data.frame(fmah15_2[2:nrow(fmah15_2), ], stringsAsFactors = FALSE)
+fmah15_1 <- fmah15_1[-c(1), ]
+hefmah15_1 <- c('Centro_Sul', 'Norte', 'Oeste', 'Sudeste', 'Mato_Grosso')
+cbind(Medio_Norte(fmah15_1), fmah15_1)
+names(fmah15_1) <- hefmah15_1
+
+splitted <- str_split_fixed(fmah15_1$Centro_Sul, "201.169", 2)
+
+
+hefmah15_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah15_2) <- hefmah15_2
+fmah15_2 <- fmah15_2[-c(1,4,6), ]
+
+#Transpose 2015 maize harvesting regions table (rows to columns, columns to rows)
+fmah15_1 <- t(fmah15_1)
+fmah15_2 <- t(fmah15_2)
+#Turn this transposed table into a data frame and remove headers in first row
+fmah15_1 <- as.data.frame(fmah15_1[1:nrow(fmah15_1), ], sort= FALSE)
+fmah15_2 <- as.data.frame(fmah15_2[1:nrow(fmah15_2), ], sort= FALSE)
+#Create new header names and insert them
+setDT(fmah15_1, keep.rownames=TRUE)
+colnames(fmah15_1)[1] <- "IMEA_Regions"
+fmah15_1 <- fmah15_1[-c(1), ]
+hefmah15_1 <- c('IMEA_Regions', 'Area_ha', '2010-07-01', '2009-07-02', 'change_in_plant_per_1')
+names(fmah15_1) <- hefmah15_1
+
+setDT(fmah15_2, keep.rownames=TRUE)
+colnames(fmah15_2)[1] <- "IMEA_Regions"
+fmah15_2 <- fmah15_2[-c(1), ]
+hefmah15_2 <- c('IMEA_Regions', '2010-08-12', '2009-08-13', 'change_in_plant_per_2')
+names(fmah15_2) <- hefmah15_2
+
+fmah15_reg <- merge(fmah15_1, fmah15_2, by="IMEA_Regions", sort = FALSE)
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah15_reg <- fmah15_reg %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+#xxx <- 3
+#colnames(fmah15_reg)[1]
+
+for (xxx in 3:dim(fmah15_reg)[2]){
+  fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- gsub(",", "\\.", fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
+  fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- gsub("%", "", fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
+  fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- as.numeric(fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
+  fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]]/100
+}
+dim(fmah15_reg)
+sapply(fmah15_reg, mode)
+
+#Writing 2014-2015 maize planting as a CSV file
+write.csv(fmah15_reg, file='maize_harvest_2015_region.csv', row.names=FALSE)
