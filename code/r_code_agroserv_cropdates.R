@@ -4783,3 +4783,53 @@ sapply(fmah17, mode)
 #Writing 2016-2017 maize planting as a CSV file
 write.csv(fmah17, file='maize_harvest_2017_region.csv', row.names=FALSE)
 
+#2017-2018 maize harvest regional
+fmah18 <- as.data.frame(fmah18[2:nrow(fmah18), ], stringsAsFactors = FALSE)
+fmah18 <- fmah18[,c(1,5,6,4,3,7,2,8,9)]
+hefmah18 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+              'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah18) <- hefmah18
+fmah18 <- fmah18[-c(15,18,21,23,25), ]
+fmah18[3, "Nordeste"] <- "0,00%"
+fmah18[5, "Nordeste"] <- "1,65%"
+fmah18[7, "Nordeste"] <- "7,35%"
+fmah18[9, "Nordeste"] <- "39,40%"
+fmah18[11, "Nordeste"] <- "83,58%"
+fmah18[13, "Nordeste"] <- "98,54%"
+fmah18[20, "Nordeste"] <- "0,00 p.p."
+
+#Transpose 2018 maize harvesting regions table (rows to columns, columns to rows)
+fmah18 <- t(fmah18)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah18 <- as.data.frame(fmah18[1:nrow(fmah18), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah18, keep.rownames=TRUE)
+colnames(fmah18)[1] <- "IMEA_Regions"
+fmah18 <- fmah18[-c(1), ]
+hefmah18 <- c('IMEA_Regions', 'Area_ha', '2018-05-25', '2018-06-01', '2018-06-08', 
+              '2018-06-15', '2018-06-22', '2018-06-29', '2018-07-06', '2018-07-13', 
+              '2018-07-20', '2018-07-27', '2018-08-03', '2018-08-10', '2018-08-17', '2018-08-24', 
+              '2018-08-31', '2018-09-07', 'weekly_change', '2017-08-31', 'change_in_plant_per')
+names(fmah18) <- hefmah18
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah18 <- fmah18 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+#xxx <- 3
+#colnames(fmah18)[1]
+
+for (xxx in 3:dim(fmah18)[2]){
+  fmah18[[paste(colnames(fmah18)[xxx])]] <- gsub(",", "\\.", fmah18[[paste(colnames(fmah18)[xxx])]])
+  fmah18[[paste(colnames(fmah18)[xxx])]] <- gsub("%", "", fmah18[[paste(colnames(fmah18)[xxx])]])
+  fmah18[[paste(colnames(fmah18)[xxx])]] <- gsub("p.p.", "", fmah18[[paste(colnames(fmah18)[xxx])]])
+  fmah18[[paste(colnames(fmah18)[xxx])]] <- as.numeric(fmah18[[paste(colnames(fmah18)[xxx])]])
+  fmah18[[paste(colnames(fmah18)[xxx])]] <- fmah18[[paste(colnames(fmah18)[xxx])]]/100
+}
+dim(fmah18)
+sapply(fmah18, mode)
+
+#Writing 2017-2018 maize planting as a CSV file
+write.csv(fmah18, file='maize_harvest_2018_region.csv', row.names=FALSE)
