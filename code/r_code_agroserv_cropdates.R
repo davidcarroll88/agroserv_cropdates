@@ -4692,3 +4692,94 @@ sapply(fmah15_reg, mode)
 
 #Writing 2014-2015 maize planting as a CSV file
 write.csv(fmah15_reg, file='maize_harvest_2015_region.csv', row.names=FALSE)
+
+
+#2015-2016 maize harvest regional
+fmah16 <- as.data.frame(fmah16[2:nrow(fmah16), ], stringsAsFactors = FALSE)
+fmah16 <- fmah16[,c(1,5,6,4,3,7,2,8,9)]
+hefmah16 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah16) <- hefmah16
+fmah16 <- fmah16[-c(18,20), ]
+
+#Transpose 2016 maize harvesting regions table (rows to columns, columns to rows)
+fmah16 <- t(fmah16)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah16 <- as.data.frame(fmah16[1:nrow(fmah16), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah16, keep.rownames=TRUE)
+colnames(fmah16)[1] <- "IMEA_Regions"
+fmah16 <- fmah16[-c(1), ]
+hefmah16 <- c('IMEA_Regions', 'Area_ha', '2016-05-19', '2016-05-26', '2016-06-02', '2016-06-09', 
+                '2016-06-16', '2016-06-23', '2016-06-30', '2016-07-07', '2016-07-14', 
+                '2016-07-21', '2016-07-28', '2016-08-04', '2016-08-11', '2016-08-18', 'weekly_change',
+                '2015-08-20', 'change_in_plant_per')
+names(fmah16) <- hefmah16
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah16 <- fmah16 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+#xxx <- 3
+#colnames(fmah16)[1]
+
+for (xxx in 3:dim(fmah16)[2]){
+  fmah16[[paste(colnames(fmah16)[xxx])]] <- gsub(",", "\\.", fmah16[[paste(colnames(fmah16)[xxx])]])
+  fmah16[[paste(colnames(fmah16)[xxx])]] <- gsub("%", "", fmah16[[paste(colnames(fmah16)[xxx])]])
+  fmah16[[paste(colnames(fmah16)[xxx])]] <- gsub("p.p.", "", fmah16[[paste(colnames(fmah16)[xxx])]])
+  fmah16[[paste(colnames(fmah16)[xxx])]] <- as.numeric(fmah16[[paste(colnames(fmah16)[xxx])]])
+  fmah16[[paste(colnames(fmah16)[xxx])]] <- fmah16[[paste(colnames(fmah16)[xxx])]]/100
+}
+dim(fmah16)
+sapply(fmah16, mode)
+
+#Writing 2015-2016 maize planting as a CSV file
+write.csv(fmah16, file='maize_harvest_2016_region.csv', row.names=FALSE)
+
+
+#2016-2017 maize harvest regional
+fmah17 <- as.data.frame(fmah17[2:nrow(fmah17), ], stringsAsFactors = FALSE)
+fmah17 <- fmah17[,c(1,5,6,4,3,7,2,8,9)]
+hefmah17 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+              'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmah17) <- hefmah17
+fmah17 <- fmah17[-c(20,22), ]
+
+#Transpose 2017 maize harvesting regions table (rows to columns, columns to rows)
+fmah17 <- t(fmah17)
+
+#Turn this transposed table into a data frame and remove headers in first row
+fmah17 <- as.data.frame(fmah17[1:nrow(fmah17), ], sort= FALSE)
+
+#Create new header names and insert them
+setDT(fmah17, keep.rownames=TRUE)
+colnames(fmah17)[1] <- "IMEA_Regions"
+fmah17 <- fmah17[-c(1), ]
+hefmah17 <- c('IMEA_Regions', 'Area_ha', '2017-05-19', '2017-05-26', '2017-06-02', '2017-06-09', 
+              '2017-06-16', '2017-06-23', '2017-06-30', '2017-07-07', '2017-07-14', 
+              '2017-07-21', '2017-07-28', '2017-08-04', '2017-08-11', '2017-08-18', '2017-08-25', 
+              '2017-09-01', 'weekly_change', '2016-09-01', 'change_in_plant_per')
+names(fmah17) <- hefmah17
+
+#change Area_ha column to numeric and remove periods from thousandths position
+fmah17 <- fmah17 %>%
+  mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+
+#xxx <- 3
+#colnames(fmah17)[1]
+
+for (xxx in 3:dim(fmah17)[2]){
+  fmah17[[paste(colnames(fmah17)[xxx])]] <- gsub(",", "\\.", fmah17[[paste(colnames(fmah17)[xxx])]])
+  fmah17[[paste(colnames(fmah17)[xxx])]] <- gsub("%", "", fmah17[[paste(colnames(fmah17)[xxx])]])
+  fmah17[[paste(colnames(fmah17)[xxx])]] <- gsub("p.p.", "", fmah17[[paste(colnames(fmah17)[xxx])]])
+  fmah17[[paste(colnames(fmah17)[xxx])]] <- as.numeric(fmah17[[paste(colnames(fmah17)[xxx])]])
+  fmah17[[paste(colnames(fmah17)[xxx])]] <- fmah17[[paste(colnames(fmah17)[xxx])]]/100
+}
+dim(fmah17)
+sapply(fmah17, mode)
+
+#Writing 2016-2017 maize planting as a CSV file
+write.csv(fmah17, file='maize_harvest_2017_region.csv', row.names=FALSE)
+
