@@ -4641,18 +4641,33 @@ write.csv(fmah14_2, file='maize_harvest_2014_region.csv', row.names=FALSE)
 #2014-2015 maize harvest regional
 fmah15_1 <- as.data.frame(fmah15_1[2:nrow(fmah15_1), ], stringsAsFactors = FALSE)
 fmah15_2 <- as.data.frame(fmah15_2[2:nrow(fmah15_2), ], stringsAsFactors = FALSE)
-fmah15_1 <- fmah15_1[-c(1), ]
-hefmah15_1 <- c('Centro_Sul', 'Norte', 'Oeste', 'Sudeste', 'Mato_Grosso')
-cbind(Medio_Norte(fmah15_1), fmah15_1)
+fmah15_1$Centro_Sul <- c("Centrosul", "201.169", "101,88", "0,54%", "0,82%", "1,11%", "3,04%", "7,11%",
+                         "15,31%", "25,03%", "39,09%", "58,55%", "19,46 p.p.", "51,82%", "6,73 p.p.")
+fmah15_1$Medio_Norte <- c("Medionorte", "1.499.523", "110,66", "1,21%", "2,02%", "2,82%", "6,61%", "15,91%",
+                         "27,74%", "38,24%", "59,15%", "75,53%", "16,38 p.p.", "80,98%", "-5,45 p.p.")
+fmah15_1$Nordeste <- c("Nordeste", "333.627", "110,63", "0,00%", "0,21%", "0,31%", "0,56%", "8,53%",
+                          "15,37%", "24,37%", "44,83%", "54,93%", "10,1 p.p.", "68,00%", "-13,07 p.p.")
+fmah15_1$Noroeste <- c("Noroeste", "129.904", "93,17", "0,00%", "0,33%", "0,66%", "1,08%", "15,69%",
+                          "20,52%", "38,37%", "51,74%", "61,74%", "10 p.p.", "58,77%", "2,97 p.p.")
+fmah15_1 <- fmah15_1[,c(1,9,2,8,7,3,6,4,5)]
+fmah15_1 <- fmah15_1[-c(1,2,3,10,11,12,13,14,15), ]
+hefmah15_1 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
 names(fmah15_1) <- hefmah15_1
 
-splitted <- str_split_fixed(fmah15_1$Centro_Sul, "201.169", 2)
-
-
+fmah15_2$Centro_Sul <- c("Centrosul", "197.338", "101,78", "24,91%", "38,89%", "58,38%", "68,09%", "80,10%",
+                         "89,92%", "96,76%", "100,00%", "100,00%", "0 p.p.", "100,00%", "0 p.p.")
+fmah15_2$Medio_Norte <- c("Medionorte", "1.470.493", "108,03", "38,21%", "59,11%", "75,32%", "89,60%", "96,60%",
+                          "99,30%", "99,96%", "100,00%", "100,00%", "0 p.p.", "100,00%", "0 p.p.")
+fmah15_2$Nordeste <- c("Nordeste", "334.774", "103,38", "24,14%", "44,54%", "54,75%", "81,27%", "89,71%",
+                       "98,17%", "99,28%", "99,76%", "100,00%", "0,24 p.p.", "100,00%", "0 p.p.")
+fmah15_2$Noroeste <- c("Noroeste", "131.840", "94,86", "38,36%", "51,72%", "61,72%", "71,72%", "90,25%",
+                       "96,59%", "98,34%", "100,00%", "100,00%", "0 p.p.", "100,00%", "0 p.p.")
+fmah15_2 <- fmah15_2[,c(1,9,2,8,7,3,6,4,5)]
+fmah15_2 <- fmah15_2[-c(1), ]
 hefmah15_2 <- c('Headers', 'Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
-                  'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
 names(fmah15_2) <- hefmah15_2
-fmah15_2 <- fmah15_2[-c(1,4,6), ]
 
 #Transpose 2015 maize harvesting regions table (rows to columns, columns to rows)
 fmah15_1 <- t(fmah15_1)
@@ -4664,26 +4679,33 @@ fmah15_2 <- as.data.frame(fmah15_2[1:nrow(fmah15_2), ], sort= FALSE)
 setDT(fmah15_1, keep.rownames=TRUE)
 colnames(fmah15_1)[1] <- "IMEA_Regions"
 fmah15_1 <- fmah15_1[-c(1), ]
-hefmah15_1 <- c('IMEA_Regions', 'Area_ha', '2010-07-01', '2009-07-02', 'change_in_plant_per_1')
+hefmah15_1 <- c('IMEA_Regions', '2015-05-28', '2015-06-03', '2015-06-09', '2015-06-17',
+                '2015-06-25', '2015-07-02')
 names(fmah15_1) <- hefmah15_1
 
 setDT(fmah15_2, keep.rownames=TRUE)
 colnames(fmah15_2)[1] <- "IMEA_Regions"
 fmah15_2 <- fmah15_2[-c(1), ]
-hefmah15_2 <- c('IMEA_Regions', '2010-08-12', '2009-08-13', 'change_in_plant_per_2')
+hefmah15_2 <- c('IMEA_Regions', 'Area_ha', 'Partial_prod', '2015-07-08', '2015-07-14',
+                '2015-07-21', '2015-07-28', '2015-08-04', '2015-08-11', '2015-08-18',
+                '2015-08-25', '2015-09-02', 'Weekly_change', '2014-07-04', 'change_in_plant_per')
 names(fmah15_2) <- hefmah15_2
 
 fmah15_reg <- merge(fmah15_1, fmah15_2, by="IMEA_Regions", sort = FALSE)
-
+fmah15_reg <- fmah15_reg[,c(1,8,9,2:7,10:21)]
 #change Area_ha column to numeric and remove periods from thousandths position
 fmah15_reg <- fmah15_reg %>%
   mutate(Area_ha = as.numeric(gsub("\\.", "", Area_ha)))
+fmah15_reg <- fmah15_reg %>%
+  mutate(Partial_prod = as.numeric(gsub(",", "\\.", Partial_prod)))
+
 #xxx <- 3
 #colnames(fmah15_reg)[1]
 
-for (xxx in 3:dim(fmah15_reg)[2]){
+for (xxx in 4:dim(fmah15_reg)[2]){
   fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- gsub(",", "\\.", fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
   fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- gsub("%", "", fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
+  fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- gsub("p.p.", "", fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
   fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- as.numeric(fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]])
   fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]] <- fmah15_reg[[paste(colnames(fmah15_reg)[xxx])]]/100
 }
