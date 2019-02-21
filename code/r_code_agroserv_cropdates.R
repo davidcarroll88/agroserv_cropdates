@@ -1441,7 +1441,7 @@ fsoyh9_6[43, "Regions"] <- "Mato_Grosso"
 
 fsoyh9_8[1, "Regions"] <- "Noroeste"
 fsoyh9_8[2, "Regions"] <- "Brasnorte"
-fsoyh9_8[3, "Regions"] <- "Others_Noreste"
+fsoyh9_8[3, "Regions"] <- "Others_Noroeste"
 fsoyh9_8[4, "Regions"] <- "Norte"
 fsoyh9_8[5, "Regions"] <- "Itauba"
 fsoyh9_8[6, "Regions"] <- "Others_Norte"
@@ -1584,9 +1584,9 @@ fsoyh9_mun4 <- merge(fsoyh9_mun3, fsoyh9_12, by="Regions", sort = FALSE)
 fsoyh9_mun5 <- merge(fsoyh9_mun4, fsoyh9_14, by="Regions", sort = FALSE)
 
 
-fsoyh9_mun5[31, "2009-02-11"] <- "17,0%"
-fsoyh9_mun5[39, "2009-02-11"] <- "7,0%"
-fsoyh9_mun5[14, "2009-04-09"] <- "100,0%"
+fsoyh9_mun5[32, "2009-02-11"] <- "17,0%"
+fsoyh9_mun5[40, "2009-02-11"] <- "7,0%"
+fsoyh9_mun5[15, "2009-04-09"] <- "100,0%"
 
 
 #Remove periods from thousands positions and convert Area_ha to numeric
@@ -2118,8 +2118,9 @@ dim(fsoyh13_1)
 #changing to numeric
 sapply(fsoyh13_1, mode)
 View(fsoyh13_1)
+fsoyh13_muni <- fsoyh13_1
 #Write final table to disk
-write.csv(fsoyh13_1, file='soy_harvest_2013_muni.csv', row.names=FALSE)
+write.csv(fsoyh13_muni, file='soy_harvest_2013_muni.csv', row.names=FALSE)
 
 #2013 soy harvesting - isolating regional summary table by removing unnecessary rows from 2nd file
 fsoyh13_1 <- do.call(rbind, outsoyh13)
@@ -4859,7 +4860,7 @@ fsoyh9_mun5 <- tibble::rowid_to_column(fsoyh9_mun5, "ID")
 fsoyh10_1 <- tibble::rowid_to_column(fsoyh10_1, "ID")
 fsoyh11_muni <- tibble::rowid_to_column(fsoyh11_muni, "ID")
 fsoyh12_muni <- tibble::rowid_to_column(fsoyh12_muni, "ID")
-fsoyh13_1 <- tibble::rowid_to_column(fsoyh13_1, "ID")
+fsoyh13_muni <- tibble::rowid_to_column(fsoyh13_muni, "ID")
 fsoyh14_1 <- tibble::rowid_to_column(fsoyh14_1, "ID")
 fsoyh15_1 <- tibble::rowid_to_column(fsoyh15_1, "ID")
 fmap9_mun3 <- tibble::rowid_to_column(fmap9_mun3, "ID")
@@ -4875,3 +4876,48 @@ fmah11_1 <- tibble::rowid_to_column(fmah11_1, "ID")
 fmah12_1 <- tibble::rowid_to_column(fmah12_1, "ID")
 fmah13_1 <- tibble::rowid_to_column(fmah13_1, "ID")
 fmah14_1 <- tibble::rowid_to_column(fmah14_1, "ID")
+
+
+fsoyp10_muni_1[2] = NULL
+fsoyp11_muni[2] = NULL
+fsoyp12_muni[2] = NULL
+fsoyp13_1[2] = NULL
+fsoyp14_muni[2] = NULL
+fsoyp15_1[2] = NULL
+colnames(fsoyp9)[colnames(fsoyp9)=="Area_ha"] <- "2009_spl_ha"
+colnames(fsoyp10_muni_1)[colnames(fsoyp10_muni_1)=="Area_ha"] <- "2010_spl_ha"
+colnames(fsoyp11_muni)[colnames(fsoyp11_muni)=="Area_ha"] <- "2011_spl_ha"
+colnames(fsoyp12_muni)[colnames(fsoyp12_muni)=="Area_ha"] <- "2012_spl_ha"
+colnames(fsoyp13_1)[colnames(fsoyp13_1)=="Area_ha"] <- "2013_spl_ha"
+colnames(fsoyp14_muni)[colnames(fsoyp14_muni)=="Area_ha"] <- "2014_spl_ha"
+colnames(fsoyp15_1)[colnames(fsoyp15_1)=="Area_ha"] <- "2015_spl_ha"
+
+merge1 <- merge(fsoyp9, fsoyp10_muni_1, by="ID", sort = FALSE)
+merge2 <- merge(merge1, fsoyp11_muni, by="ID", sort = FALSE)
+merge3 <- merge(merge2, fsoyp12_muni, by="ID", sort = FALSE)
+merge4 <- merge(merge3, fsoyp13_1, by="ID", sort = FALSE)
+merge5 <- merge(merge4, fsoyp14_muni, by="ID", sort = FALSE)
+merge6 <- merge(merge5, fsoyp15_1, by="ID", sort = FALSE)
+
+fsoyh9_mun5[2] = NULL
+fsoyh10_1[2] = NULL
+fsoyh11_muni[2] = NULL
+fsoyh12_muni[2] = NULL
+fsoyh13_muni[2] = NULL
+fsoyh14_1[2] = NULL
+fsoyh15_1[2] = NULL
+colnames(fsoyh9_mun5)[colnames(fsoyh9_mun5)=="Area_ha"] <- "2009_sha_ha"
+colnames(fsoyh10_1)[colnames(fsoyh10_1)=="Area_ha"] <- "2010_sha_ha"
+colnames(fsoyh11_muni)[colnames(fsoyh11_muni)=="Area_ha"] <- "2011_sha_ha"
+colnames(fsoyh12_muni)[colnames(fsoyh12_muni)=="Area_ha"] <- "2012_sha_ha"
+colnames(fsoyh13_muni)[colnames(fsoyh13_muni)=="Area_ha"] <- "2013_sha_ha"
+colnames(fsoyh14_1)[colnames(fsoyh14_1)=="Area_ha"] <- "2014_sha_ha"
+colnames(fsoyh15_1)[colnames(fsoyh15_1)=="Area_ha"] <- "2015_sha_ha"
+
+merge7 <- merge(merge6, fsoyh9_mun5, by="ID", sort = FALSE)
+merge8 <- merge(merge7, fsoyh10_1, by="ID", sort = FALSE)
+merge9 <- merge(merge8, fsoyh11_muni, by="ID", sort = FALSE)
+merge10 <- merge(merge9, fsoyh12_muni, by="ID", sort = FALSE)
+merge11 <- merge(merge10, fsoyh13_muni, by="ID", sort = FALSE)
+merge12 <- merge(merge11, fsoyh14_1, by="ID", sort = FALSE)
+merge13 <- merge(merge12, fsoyh15_1, by="ID", sort = FALSE)
