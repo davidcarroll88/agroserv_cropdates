@@ -2,6 +2,7 @@ library('parallel')
 library('rJava')
 library("tabulizer")
 library("dplyr")
+library("tidyverse")
 library("tibble")
 library('data.table')
 library('stringr')
@@ -129,31 +130,6 @@ print('before cleaning')
 print(fsoyp9$Regions)
 
 #2009 soy planting correcting spelling errors in Regions column
-
-# START OF CHANGE --------------------------------------------------
-region_names <- str_replace_all(iconv(fsoyp9$Regions, to = 'ASCII//TRANSLIT'), "[~^']", '') %>%
-                str_replace_all("[ -]", '_') %>%
-                str_replace_all('A\\.', 'Alto') %>%
-                str_replace_all('Outras', 'Others') %>%
-                str_replace_all('Outros', 'Others')
-overall_regions <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste', 'Centro_Sul', 'Sudeste') 
-
-#loop through all the regions, if the region is 'Other', change the name. 
-#ASSUMES ORDER OF REGIONS IS SAME FOR ALL FILES!
-regionIndex <- 1
-for (regionNameIndex in 1:length(region_names)) {
-  regionName <- region_names[regionNameIndex]
-  if (regionName == 'Others') {
-    newRegionName <- paste0('Others_', overall_regions[regionIndex])
-    region_names[regionNameIndex] <- newRegionName
-    regionIndex <- regionIndex + 1
-  }
-}
-
-fsoyp9$Regions <- region_names
-print(fsoyp9$Regions)
-
-# END OF CHANGE ---------------------------------------------------
 
 
 fsoyp9[3, "Regions"] <- "Others_Noroeste"
@@ -1336,7 +1312,7 @@ fsoyh9_8[4] <- NULL
 fsoyh9_8[3] <- NULL
 fsoyh9_8[2] <- NULL
 fsoyh9_8[1] <- NULL
-fsoyh9_8 <- fsoyh9_8[-c(2,44), ]
+fsoyh9_8 <- fsoyh9_8[-c(1,2,44), ]
 fsoyh9_10[6] <- NULL
 fsoyh9_10[4] <- NULL
 fsoyh9_10[3] <- NULL
@@ -1358,7 +1334,6 @@ fsoyh9_6[2] <- NULL
 hefsoyh9_6 <- c('Regions', '2009-02-05', '2009-02-11')
 names(fsoyh9_6) <- hefsoyh9_6
 fsoyh9_8[1] <- NULL
-fsoyh9_8 <- fsoyh9_8[-c(1), ]
 hefsoyh9_8 <- c('Regions', '2009-02-19', '2009-02-26')
 names(fsoyh9_8) <- hefsoyh9_8
 fsoyh9_10[2] <- NULL
@@ -1464,29 +1439,42 @@ fsoyh9_6[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fsoyh9_6[42, "Regions"] <- "Others_Sudeste"
 fsoyh9_6[43, "Regions"] <- "Mato_Grosso"
 
-fsoyh9_8[3, "Regions"] <- "Others_Noroeste"
+fsoyh9_8[1, "Regions"] <- "Noroeste"
+fsoyh9_8[2, "Regions"] <- "Brasnorte"
+fsoyh9_8[3, "Regions"] <- "Others_Noreste"
+fsoyh9_8[4, "Regions"] <- "Norte"
 fsoyh9_8[5, "Regions"] <- "Itauba"
 fsoyh9_8[6, "Regions"] <- "Others_Norte"
+fsoyh9_8[7, "Regions"] <- "Nordeste"
+fsoyh9_8[8, "Regions"] <- "Canarana"
 fsoyh9_8[9, "Regions"] <- "Querencia"
 fsoyh9_8[10, "Regions"] <- "Gaucha_do_Norte"
 fsoyh9_8[11, "Regions"] <- "Nova_Xavantina"
 fsoyh9_8[12, "Regions"] <- "Others_Nordeste"
 fsoyh9_8[13, "Regions"] <- "Medio_Norte"
 fsoyh9_8[14, "Regions"] <- "Lucas_do_Rio_Verde"
+fsoyh9_8[15, "Regions"] <- "Sorriso"
 fsoyh9_8[16, "Regions"] <- "Nova_Mutum"
 fsoyh9_8[17, "Regions"] <- "Ipiranga_do_Norte"
+fsoyh9_8[18, "Regions"] <- "Sinop"
+fsoyh9_8[19, "Regions"] <- "Tapurah"
 fsoyh9_8[20, "Regions"] <- "Santa_Rita_do_Trivelato"
 fsoyh9_8[21, "Regions"] <- "Nova_Ubirata"
+fsoyh9_8[22, "Regions"] <- "Vera"
 fsoyh9_8[23, "Regions"] <- "Sao_Jose_do_Rio_Claro"
 fsoyh9_8[24, "Regions"] <- "Others_Medio_Norte"
+fsoyh9_8[25, "Regions"] <- "Oeste"
+fsoyh9_8[26, "Regions"] <- "Sapezal"
 fsoyh9_8[27, "Regions"] <- "Campo_Novo_dos_Parecis"
 fsoyh9_8[28, "Regions"] <- "Campos_de_Julio"
 fsoyh9_8[29, "Regions"] <- "Others_Oeste"
 fsoyh9_8[30, "Regions"] <- "Centro_Sul"
+fsoyh9_8[31, "Regions"] <- "Diamantino"
 fsoyh9_8[32, "Regions"] <- "Tangara_da_Serra"
 fsoyh9_8[33, "Regions"] <- "Santo_Antonio_do_Leveger"
 fsoyh9_8[34, "Regions"] <- "Chapada_dos_Guimaraes"
 fsoyh9_8[35, "Regions"] <- "Others_Centro_Sul"
+fsoyh9_8[36, "Regions"] <- "Sudeste"
 fsoyh9_8[37, "Regions"] <- "Campo_Verde"
 fsoyh9_8[38, "Regions"] <- "Primavera_do_Leste"
 fsoyh9_8[39, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
@@ -1596,9 +1584,9 @@ fsoyh9_mun4 <- merge(fsoyh9_mun3, fsoyh9_12, by="Regions", sort = FALSE)
 fsoyh9_mun5 <- merge(fsoyh9_mun4, fsoyh9_14, by="Regions", sort = FALSE)
 
 
-fsoyh9_mun5[32, "2009-02-11"] <- "17,0%"
-fsoyh9_mun5[40, "2009-02-11"] <- "7,0%"
-fsoyh9_mun5[15, "2009-04-09"] <- "100,0%"
+fsoyh9_mun5[31, "2009-02-11"] <- "17,0%"
+fsoyh9_mun5[39, "2009-02-11"] <- "7,0%"
+fsoyh9_mun5[14, "2009-04-09"] <- "100,0%"
 
 
 #Remove periods from thousands positions and convert Area_ha to numeric
@@ -3131,6 +3119,7 @@ fmap10_mun <- merge(fmap10_1_1, fmap10_2_1, by="Regions", sort = FALSE)
 
 #Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
 fmap10_mun$Area_ha <- gsub("\\.", "", fmap10_mun$Area_ha)
+fmap10_mun$Area_ha <- gsub(" ", "", fmap10_mun$Area_ha)
 fmap10_mun <- fmap10_mun %>%
   mutate(Area_ha = as.numeric(Area_ha))
 
@@ -3273,6 +3262,9 @@ fmap11_2 <- fmap11_2[-c(1,2,3,7,9), ]
 fmap11_2[11] <- NULL
 fmap11_2[10] <- NULL
 fmap11_2[6] <- NULL
+hefmap11_2 <- c('Noroeste', 'Norte', 'Nordeste', 'Medio_Norte', 'Oeste',
+                'Centro_Sul', 'Sudeste', 'Mato_Grosso')
+names(fmap11_2) <- hefmap11_2
 fmap11_2[1, "Noroeste"] <- "60.400"
 fmap11_2[2, "Noroeste"] <- "100,0%"
 fmap11_2[3, "Noroeste"] <- "100,0%"
@@ -4855,3 +4847,9 @@ sapply(fmah18, mode)
 
 #Writing 2017-2018 maize planting as a CSV file
 write.csv(fmah18, file='maize_harvest_2018_region.csv', row.names=FALSE)
+
+fsoyp9 <- tibble::rowid_to_column(fsoyp9, "ID")
+fsoyp10_muni_1 < tibble::rowid_to_column(fsoyp10_muni_1, "ID")
+fsoyp11_muni <- tibble::rowid_to_column(fsoyp11_muni, "ID")
+fsoyp12_muni <- tibble::rowid_to_column(fsoyp12_muni, "ID")
+fsoyp13_1 <- tibble::rowid_to_column(fsoyp13_1, "ID")
