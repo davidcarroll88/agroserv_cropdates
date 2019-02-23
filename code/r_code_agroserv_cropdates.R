@@ -4501,7 +4501,6 @@ hefmah14_1 <- c('Regions', 'Area_ha', '2014-06-05', '2014-06-12', '2014-06-18', 
                 '2014-08-07', '2014-08-14', '2014-08-21', '2014-08-28', '2014-09-04')
 names(fmah14_1) <- hefmah14_1
 
-
 #2013-2014 maize harvesting - renaming rows with errors
 fmah14_1[3, "Regions"] <- "Others_Noroeste"
 fmah14_1[5, "Regions"] <- "Itauba"
@@ -4533,7 +4532,6 @@ fmah14_1[40, "Regions"] <- "Jaciara_e_Juscimeira"
 fmah14_1[41, "Regions"] <- "Santo_Antonio_do_Leste"
 fmah14_1[42, "Regions"] <- "Others_Sudeste"
 fmah14_1[43, "Regions"] <- "Mato_Grosso"
-
 
 #Remove periods and spaces from decimal/thousands positions and convert Area_ha to numeric
 fmah14_1$Area_ha <- gsub("\\.", "", fmah14_1$Area_ha)
@@ -4630,7 +4628,6 @@ sapply(fmah14_2, mode)
 #Writing 2013-2014 maize planting as a CSV file
 write.csv(fmah14_2, file='maize_harvest_2014_region.csv', row.names=FALSE)
 
-
 #2014-2015 maize harvest regional
 fmah15_1 <- as.data.frame(fmah15_1[2:nrow(fmah15_1), ], stringsAsFactors = FALSE)
 fmah15_2 <- as.data.frame(fmah15_2[2:nrow(fmah15_2), ], stringsAsFactors = FALSE)
@@ -4708,7 +4705,6 @@ sapply(fmah15_reg, mode)
 #Writing 2014-2015 maize planting as a CSV file
 write.csv(fmah15_reg, file='maize_harvest_2015_region.csv', row.names=FALSE)
 
-
 #2015-2016 maize harvest regional
 fmah16 <- as.data.frame(fmah16[2:nrow(fmah16), ], stringsAsFactors = FALSE)
 fmah16 <- fmah16[,c(1,5,6,4,3,7,2,8,9)]
@@ -4752,7 +4748,6 @@ sapply(fmah16, mode)
 
 #Writing 2015-2016 maize planting as a CSV file
 write.csv(fmah16, file='maize_harvest_2016_region.csv', row.names=FALSE)
-
 
 #2016-2017 maize harvest regional
 fmah17 <- as.data.frame(fmah17[2:nrow(fmah17), ], stringsAsFactors = FALSE)
@@ -4849,6 +4844,54 @@ sapply(fmah18, mode)
 #Writing 2017-2018 maize planting as a CSV file
 write.csv(fmah18, file='maize_harvest_2018_region.csv', row.names=FALSE)
 
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Nova_Xavantina", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Santa_Rita_do_Trivelato", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Nova_Ubirata", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Vera", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Sao_Jose_do_Rio_Claro", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Santo_Antonio_do_Leveger", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Chapada_dos_Guimaraes", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[nrow(fmap9_mun3) + 1,] = list("Santo_Antonio_do_Leste", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f")
+fmap9_mun3[32, "Regions"] <- "Alto_Garcas_e_Alto_Taquari"
+fmap9_mun3[ fmap9_mun3 == "f" ] <- NA
+
+fmah9[nrow(fmah9) + 1,] = list("Santa_Rita_do_Trivelato", "f", "f", "f", "f", "f", "f", "f", "f",
+                                         "f", "f", "f", "f", "f")
+fmah9[ fmah9 == "f" ] <- NA
+fmah10_mun[nrow(fmah10_mun) + 1,] = list("Santa_Rita_do_Trivelato", "f", "f", "f", "f", "f", "f", "f", "f",
+                               "f", "f", "f", "f")
+fmah10_mun[ fmah10_mun == "f" ] <- NA
+
+aa = c("Noroeste", "Brasnorte", "Others_Noroeste", "Norte", "Itauba", "Others_Norte", "Nordeste",
+       "Canarana", "Querencia", "Gaucha_do_Norte", "Nova_Xavantina", "Others_Nordeste", 
+       "Medio_Norte", "Lucas_do_Rio_Verde", "Sorriso", "Nova_Mutum", "Ipiranga_do_Norte", "Sinop",
+       "Tapurah", "Santa_Rita_do_Trivelato", "Nova_Ubirata", "Vera", "Sao_Jose_do_Rio_Claro", 
+       "Others_Medio_Norte", "Oeste", "Sapezal", "Campo_Novo_dos_Parecis", "Campos_de_Julio", 
+       "Others_Oeste", "Centro_Sul", "Diamantino", "Tangara_da_Serra", "Santo_Antonio_do_Leveger",
+       "Chapada_dos_Guimaraes", "Others_Centro_Sul", "Sudeste", "Campo_Verde", "Primavera_do_Leste",
+       "Alto_Garcas_e_Alto_Taquari", "Jaciara_e_Juscimeira", "Santo_Antonio_do_Leste",
+       "Others_Sudeste", "Mato_Grosso")
+fmap9_mun3 <- fmap9_mun3 %>%
+  mutate(Regions =  factor(Regions, levels = aa)) %>%
+  arrange(Regions)
+fmah9 <- fmah9 %>%
+  mutate(Regions =  factor(Regions, levels = aa)) %>%
+  arrange(Regions)
+fmah10_mun <- fmah10_mun %>%
+  mutate(Regions =  factor(Regions, levels = aa)) %>%
+  arrange(Regions)
+View(fmah9)
+is.na(fmap9_mun3)
+
+
 fsoyp9 <- tibble::rowid_to_column(fsoyp9, "ID")
 fsoyp10_muni_1 <- tibble::rowid_to_column(fsoyp10_muni_1, "ID")
 fsoyp11_muni <- tibble::rowid_to_column(fsoyp11_muni, "ID")
@@ -4921,3 +4964,50 @@ merge10 <- merge(merge9, fsoyh12_muni, by="ID", sort = FALSE)
 merge11 <- merge(merge10, fsoyh13_muni, by="ID", sort = FALSE)
 merge12 <- merge(merge11, fsoyh14_1, by="ID", sort = FALSE)
 merge13 <- merge(merge12, fsoyh15_1, by="ID", sort = FALSE)
+
+
+fmap9_mun3[2] = NULL
+fmap10_mun[2] = NULL
+fmap11_1[2] = NULL
+fmap12_1[2] = NULL
+fmap13_1[2] = NULL
+fmap14_1[2] = NULL
+fmap15_1[2] = NULL
+colnames(fmap9_mun3)[colnames(fmap9_mun3)=="Area_ha"] <- "2009_mpl_ha"
+colnames(fmap10_mun)[colnames(fmap10_mun)=="Area_ha"] <- "2010_mpl_ha"
+colnames(fmap11_1)[colnames(fmap11_1)=="Area_ha"] <- "2011_mpl_ha"
+colnames(fmap12_1)[colnames(fmap12_1)=="Area_ha"] <- "2012_mpl_ha"
+colnames(fmap13_1)[colnames(fmap13_1)=="Area_ha"] <- "2013_mpl_ha"
+colnames(fmap14_1)[colnames(fmap14_1)=="Area_ha"] <- "2014_mpl_ha"
+colnames(fmap15_1)[colnames(fmap15_1)=="Area_ha"] <- "2015_mpl_ha"
+
+merge14 <- merge(merge13, fmap9_mun3, by="ID", sort = FALSE)
+merge15 <- merge(merge14, fmap10_mun, by="ID", sort = FALSE)
+merge16 <- merge(merge15, fmap11_1, by="ID", sort = FALSE)
+merge17 <- merge(merge16, fmap12_1, by="ID", sort = FALSE)
+merge18 <- merge(merge17, fmap13_1, by="ID", sort = FALSE)
+merge19 <- merge(merge18, fmap14_1, by="ID", sort = FALSE)
+merge20 <- merge(merge19, fmap15_1, by="ID", sort = FALSE)
+View(fmap9_mun3)
+View(merge13)
+
+fmah9[2] = NULL
+fmah10_mun[2] = NULL
+fmah11_1[2] = NULL
+fmah12_1[2] = NULL
+fmah13_1[2] = NULL
+fmah14_1[2] = NULL
+colnames(fmah9)[colnames(fmah9)=="Area_ha"] <- "2009_mha_ha"
+colnames(fmah10_mun)[colnames(fmah10_mun)=="Area_ha"] <- "2010_mha_ha"
+colnames(fmah11_1)[colnames(fmah11_1)=="Area_ha"] <- "2011_mha_ha"
+colnames(fmah12_1)[colnames(fmah12_1)=="Area_ha"] <- "2012_mha_ha"
+colnames(fmah13_1)[colnames(fmah13_1)=="Area_ha"] <- "2013_mha_ha"
+colnames(fmah14_1)[colnames(fmah14_1)=="Area_ha"] <- "2014_mha_ha"
+
+merge21 <- merge(merge20, fmah9, by="ID", sort = FALSE)
+merge22 <- merge(merge21, fmah10_mun, by="ID", sort = FALSE)
+merge23 <- merge(merge22, fmah11_1, by="ID", sort = FALSE)
+merge24 <- merge(merge23, fmah12_1, by="ID", sort = FALSE)
+merge25 <- merge(merge24, fmah13_1, by="ID", sort = FALSE)
+merge26 <- merge(merge25, fmah14_1, by="ID", sort = FALSE)
+
