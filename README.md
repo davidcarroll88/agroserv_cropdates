@@ -34,5 +34,4 @@ mha_area_yyyy | Maize Harvesting Area | hectares of maize harvested, year
 
 * **Alex Carroll** - *Initial work* - [davidcarroll88](https://github.com/davidcarroll88)
 * **Avery Cohn** - *Consultation and review* - [averycohn](https://github.com/averycohn)
-
-
+* **Minghui Zhang** - *Consultation and review, coding* - [minghui-zhang](https://github.com/minghui-zhang)
