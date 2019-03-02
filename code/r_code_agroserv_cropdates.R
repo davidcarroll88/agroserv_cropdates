@@ -5081,6 +5081,42 @@ hemerge26 <- c('ID','Regions','spl_area_2008-2009','spl_2008-12-04','spl_2008-12
                'mha_2014-08-07','mha_2014-08-14','mha_2014-08-21','mha_2014-08-28','mha_2014-09-04')
 
 names(merge26) <- hemerge26
+View(merge26)
 
 
 write.csv(merge26, file='agroserv_cropdates_muni.csv', row.names=FALSE)
+
+
+fsoyp10_2_re_1 <- tibble::rowid_to_column(fsoyp10_2_re_1, "ID")
+fsoyp11reg <- tibble::rowid_to_column(fsoyp11reg, "ID")
+fsoyp12reg <- tibble::rowid_to_column(fsoyp12reg, "ID")
+fsoyp13_2 <- tibble::rowid_to_column(fsoyp13_2, "ID")
+fsoyp14reg <- tibble::rowid_to_column(fsoyp14reg, "ID")
+fsoyp15_2 <- tibble::rowid_to_column(fsoyp15_2, "ID")
+fsoyp16 <- tibble::rowid_to_column(fsoyp16, "ID")
+fsoyp17 <- tibble::rowid_to_column(fsoyp17, "ID")
+fsoyp18 <- tibble::rowid_to_column(fsoyp18, "ID")
+fsoyp19 <- tibble::rowid_to_column(fsoyp19, "ID")
+
+
+fsoyh9_mun5 <- tibble::rowid_to_column(fsoyh9_mun5, "ID")
+fsoyh10_1 <- tibble::rowid_to_column(fsoyh10_1, "ID")
+fsoyh11_muni <- tibble::rowid_to_column(fsoyh11_muni, "ID")
+fsoyh12_muni <- tibble::rowid_to_column(fsoyh12_muni, "ID")
+fsoyh13_muni <- tibble::rowid_to_column(fsoyh13_muni, "ID")
+fsoyh14_1 <- tibble::rowid_to_column(fsoyh14_1, "ID")
+fsoyh15_1 <- tibble::rowid_to_column(fsoyh15_1, "ID")
+fmap9_mun3 <- tibble::rowid_to_column(fmap9_mun3, "ID")
+fmap10_mun <- tibble::rowid_to_column(fmap10_mun, "ID")
+fmap11_1 <- tibble::rowid_to_column(fmap11_1, "ID")
+fmap12_1 <- tibble::rowid_to_column(fmap12_1, "ID")
+fmap13_1 <- tibble::rowid_to_column(fmap13_1, "ID")
+fmap14_1 <- tibble::rowid_to_column(fmap14_1, "ID")
+fmap15_1 <- tibble::rowid_to_column(fmap15_1, "ID")
+fmah9 <- tibble::rowid_to_column(fmah9, "ID")
+fmah10_mun <- tibble::rowid_to_column(fmah10_mun, "ID")
+fmah11_1 <- tibble::rowid_to_column(fmah11_1, "ID")
+fmah12_1 <- tibble::rowid_to_column(fmah12_1, "ID")
+fmah13_1 <- tibble::rowid_to_column(fmah13_1, "ID")
+fmah14_1 <- tibble::rowid_to_column(fmah14_1, "ID")
+
