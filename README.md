@@ -4,7 +4,7 @@ The data in this repository were gathered by the *Instituto Mato-Grossense de Ec
 
 ## Getting Started
 
-The R code for reading, cleaning, and merging the data can be found in the https://github.com/davidcarroll88/agroserv_cropdates/tree/master/code folder. Raw data files downloaded from the IMEA website can be found in the https://github.com/davidcarroll88/agroserv_cropdates/tree/master/raw_data folder. Cleaned data in comma-delimited (CSV) format can be found in the https://github.com/davidcarroll88/agroserv_cropdates/tree/master/cleaned_data file.
+The R code for reading, cleaning, and merging the data can be found in the [Code](https://github.com/davidcarroll88/agroserv_cropdates/tree/master/code) folder. Raw data files downloaded from the IMEA website can be found in the [Raw_Data](https://github.com/davidcarroll88/agroserv_cropdates/tree/master/raw_data) folder. Cleaned data in comma-delimited (CSV) format can be found in the [Cleaned_Data](https://github.com/davidcarroll88/agroserv_cropdates/tree/master/cleaned_data) file.
 
 ### Prerequisites
 
