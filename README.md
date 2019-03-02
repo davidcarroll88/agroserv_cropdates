@@ -10,78 +10,29 @@ The R code for reading, cleaning, and merging the data can be found in the https
 
 R version 3.5.1 (2018-07-02) should be downloaded to run the code found in the **Code** folder of this repository and to ensure that all commands run properly. RStudio may also be used to enable conceptualization of data analysis. 
 
-```
-Give examples
-```
+## Code Book
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+Variable Name | Units | Description
+------------ | ------------- | -------------
+ID | Integers | Numerical identifier for municipalities/composite regions
+Municipality | Character | Name of municipality or composite region
+spl_DOY_yyyy | Soy Planting Date | percent of soy planted, days after August 1st of year t-1, year
+sha_DOY_yyyy | Soy Harvest Date | percent of soy harvested, days after August 1st of year t-1, year
+mpl_DOY_yyyy | Maize Planting Date | percent maize planted, days after August 1st of year t-1, year
+mha_DOY_yyyy | Maize Harvest Date |  percent maize harvested, days after August 1st of year t-1, year
+spl_area_yyyy | Soy Planting Area | hectares of soy planted, year 
+sha_area_yyyy | Soy Harvesting Area | hectares of soy harvested, year 
+mpl_area_yyyy | Maize Planting Area | hectares of maize planted, year 
+mha_area_yyyy | Maize Harvesting Area | hectares of maize harvested, year 
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [R](https://cran.r-project.org/bin/windows/base/) - Statistical package used for data cleaning and treatment
+* [RStudio](https://www.rstudio.com/) - Integrated Development Environment (IDE) for R statistical package
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Alex Carroll** - *Initial work* - [davidcarroll88](https://github.com/davidcarroll88)
+* **Avery Cohn** - *Consultation and review* - [averycohn](https://github.com/averycohn)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
