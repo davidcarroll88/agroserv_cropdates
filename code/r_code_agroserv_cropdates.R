@@ -720,6 +720,10 @@ dim(fsoyp13_1)
 #changing to numeric
 sapply(fsoyp13_1, mode)
 View(fsoyp13_1)
+
+fsoyp133 <- fsoyp13_1
+fsoyp133 <- as.Date(fsoyp133$headers, format = "%d/%m/%Y")
+
 #Write final table to disk
 write.csv(fsoyp13_1, file='soy_plant_2013_muni.csv', row.names=FALSE)
 
@@ -5083,9 +5087,27 @@ hemerge26 <- c('ID','Regions','spl_area_2008_2009','spl_12_04_2008','spl_12_11_2
 
 names(merge26) <- hemerge26
 View(merge26)
+muni7 <- merge26
+colnames(muni7)[4:5] <- gsub("2008", "2009", colnames(muni7)[4:5])
+colnames(muni7)[c(7:17, 77:80)] <- gsub("2009", "2010", colnames(muni7)[c(7:17, 77:80)])
+colnames(muni7)[c(19:28, 291:292)] <- gsub("2010", "2011", colnames(muni7)[c(19:28, 291:292)])
+colnames(muni7)[c(30:39, 302:304)] <- gsub("2011", "2012", colnames(muni7)[c(30:39, 302:304)])
+colnames(muni7)[c(41:51, 316:319)] <- gsub("2012", "2013", colnames(muni7)[c(41:51, 316:319)])
+colnames(muni7)[c(53:64, 329:334)] <- gsub("2013", "2014", colnames(muni7)[c(53:64, 329:334)])
+colnames(muni7)[c(66:78,345:349)] <- gsub("2014", "2015", colnames(muni7)[c(66:78,345:349)])
+
+ncol(muni7)
+
+
+
+
+
+
 
 
 write.csv(merge26, file='agroserv_cropdates_muni.csv', row.names=FALSE)
+
+
 
 
 fsoyp10_2_re_1 <- tibble::rowid_to_column(fsoyp10_2_re_1, "ID")
