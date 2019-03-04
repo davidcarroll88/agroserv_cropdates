@@ -5087,43 +5087,54 @@ hemerge26 <- c('ID','Regions','spl_area_2008_2009','spl_12_04_2008','spl_12_11_2
 
 names(merge26) <- hemerge26
 View(merge26)
-municipalities1 <- merge26
-colnames(municipalities1)[4:5] <- gsub("2008", "2009", colnames(municipalities1)[4:5])
-colnames(municipalities1)[c(7:17, 277:280)] <- gsub("2009", "2010", colnames(municipalities1)[c(7:17, 277:280)])
-colnames(municipalities1)[c(19:28, 291:292)] <- gsub("2010", "2011", colnames(municipalities1)[c(19:28, 291:292)])
-colnames(municipalities1)[c(30:39, 302:304)] <- gsub("2011", "2012", colnames(municipalities1)[c(30:39, 302:304)])
-colnames(municipalities1)[c(41:51, 316:319)] <- gsub("2012", "2013", colnames(municipalities1)[c(41:51, 316:319)])
-colnames(municipalities1)[c(53:64, 329:334)] <- gsub("2013", "2014", colnames(municipalities1)[c(53:64, 329:334)])
-colnames(municipalities1)[c(66:78,345:349)] <- gsub("2014", "2015", colnames(municipalities1)[c(66:78,345:349)])
-colnames(municipalities1)[c(3,79,192,268)] <- gsub("2008_2009", "2009", colnames(municipalities1)[c(3,79,192,268)])
-colnames(municipalities1)[c(6,94,202,281)] <- gsub("2009_2010", "2010", colnames(municipalities1)[c(6,94,202,281)])
-colnames(municipalities1)[c(18,110,213,293)] <- gsub("2010_2011", "2011", colnames(municipalities1)[c(18,110,213,293)])
-colnames(municipalities1)[c(29,126,223,305)] <- gsub("2011_2012", "2012", colnames(municipalities1)[c(29,126,223,305)])
-colnames(municipalities1)[c(40,142,234,320)] <- gsub("2012_2013", "2013", colnames(municipalities1)[c(40,142,234,320)])
-colnames(municipalities1)[c(52,158,245,335)] <- gsub("2013_2014", "2014", colnames(municipalities1)[c(52,158,245,335)])
-ncol(municipalities1)
+municipal3 <- merge26
+colnames(municipal3)[4:5] <- gsub("2008", "2009", colnames(municipal3)[4:5])
+colnames(municipal3)[c(7:17, 277:280)] <- gsub("2009", "2010", colnames(municipal3)[c(7:17, 277:280)])
+colnames(municipal3)[c(19:28, 291:292)] <- gsub("2010", "2011", colnames(municipal3)[c(19:28, 291:292)])
+colnames(municipal3)[c(30:39, 302:304)] <- gsub("2011", "2012", colnames(municipal3)[c(30:39, 302:304)])
+colnames(municipal3)[c(41:51, 316:319)] <- gsub("2012", "2013", colnames(municipal3)[c(41:51, 316:319)])
+colnames(municipal3)[c(53:64, 329:334)] <- gsub("2013", "2014", colnames(municipal3)[c(53:64, 329:334)])
+colnames(municipal3)[c(66:78,345:349)] <- gsub("2014", "2015", colnames(municipal3)[c(66:78,345:349)])
+colnames(municipal3)[c(3,79,192,268)] <- gsub("2008_2009", "2009", colnames(municipal3)[c(3,79,192,268)])
+colnames(municipal3)[c(6,94,202,281)] <- gsub("2009_2010", "2010", colnames(municipal3)[c(6,94,202,281)])
+colnames(municipal3)[c(18,110,213,293)] <- gsub("2010_2011", "2011", colnames(municipal3)[c(18,110,213,293)])
+colnames(municipal3)[c(29,126,223,305)] <- gsub("2011_2012", "2012", colnames(municipal3)[c(29,126,223,305)])
+colnames(municipal3)[c(40,142,234,320)] <- gsub("2012_2013", "2013", colnames(municipal3)[c(40,142,234,320)])
+colnames(municipal3)[c(52,158,245,335)] <- gsub("2013_2014", "2014", colnames(municipal3)[c(52,158,245,335)])
+colnames(municipal3)[c(65,174,257)] <- gsub("2014_2015", "2015", colnames(municipal3)[c(65,174,257)])
+ncol(municipal3)
+View(municipal3)
 
 
-spl <- names(municipalities1)[4:5,7:17,19:28,30:39,41:51,53:64,66:78]
-spl <- names(municipalities1)[4:5,7:17]
-dtsspl <- as.Date(spl, "spl_%m_%d_%Y")
-
-dts1 <- as.Date(nn, format="spl_%m_%d_%Y")
-
-
-dates <- as.Date(colnames((municipalities1)[4:5]), "%m/%d/%y")
+municipal3$names[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)] <- as.Date(names(municipal3)
+                [c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], format="spl_%m_%d_%Y")
+colnames(municipal3)[5] <- as.Date(colnames(municipal3)[5], format="%m_%d_%Y")
+colnames(municipal3)[4] <- format(colnames(municipal3)[4], "%j_%Y")
 
 
-colnames(municipalities1)[4:5] <-gsub("")
-
-
-
+as.Date(names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], 
+                           format="spl_%m_%d_%Y")
+format(as.Date(names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], "spl_%m_%d_%Y"))
 
 
 
 
+splant <- names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)]
+splant
+datespl <- as.Date(splant, format="spl_%m_%d_%Y")
+datespl
+datespl1 <- format(datespl, "spl_%j_%Y")
+as.character(datespl1)
+datespl1
+splantyear <- names(municipal3)[c(3,6,18,29,40,52,65)]
+splantyear
+spl <- c(datespl1, splantyear)
+spl
+spl <- spl[c(70,1:2,71,3:13,72,14:23,73,24:33,74,34:44,75,45:56,76,57:69)]
 
-write.csv(municipalities1, file='agroserv_cropdates_muni.csv', row.names=FALSE)
+
+
+write.csv(municipal3, file='agroserv_cropdates_muni.csv', row.names=FALSE)
 
 
 
