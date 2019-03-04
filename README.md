@@ -8,7 +8,7 @@ The R code for reading, cleaning, and merging the data can be found in the [Code
 
 ### Prerequisites
 
-R version 3.5.1 (2018-07-02) should be downloaded to run the code found in the **Code** folder of this repository and to ensure that all commands run properly. RStudio may also be used to enable conceptualization of data analysis. 
+R version 3.5.2 (2018-12-20) should be downloaded to run the code found in the **Code** folder of this repository and to ensure that all commands run properly. RStudio may also be used to enable conceptualization of data analysis. 
 
 ## Code Book
 
