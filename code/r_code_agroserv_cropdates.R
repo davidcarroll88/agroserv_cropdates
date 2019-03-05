@@ -5102,38 +5102,134 @@ colnames(municipal3)[c(29,126,223,305)] <- gsub("2011_2012", "2012", colnames(mu
 colnames(municipal3)[c(40,142,234,320)] <- gsub("2012_2013", "2013", colnames(municipal3)[c(40,142,234,320)])
 colnames(municipal3)[c(52,158,245,335)] <- gsub("2013_2014", "2014", colnames(municipal3)[c(52,158,245,335)])
 colnames(municipal3)[c(65,174,257)] <- gsub("2014_2015", "2015", colnames(municipal3)[c(65,174,257)])
-ncol(municipal3)
-View(municipal3)
 
-
-municipal3$names[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)] <- as.Date(names(municipal3)
-                [c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], format="spl_%m_%d_%Y")
-colnames(municipal3)[5] <- as.Date(colnames(municipal3)[5], format="%m_%d_%Y")
-colnames(municipal3)[4] <- format(colnames(municipal3)[4], "%j_%Y")
-
-
-as.Date(names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], 
-                           format="spl_%m_%d_%Y")
-format(as.Date(names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)], "spl_%m_%d_%Y"))
-
-
-
-
+#create a vector of soy planting dates
 splant <- names(municipal3)[c(4:5, 7:17, 19:28, 30:39, 41:51, 53:64, 66:78)]
 splant
+#define the vector as date
 datespl <- as.Date(splant, format="spl_%m_%d_%Y")
-datespl
+datespl1
+#change the month and date to days after Jan. 1st
 datespl1 <- format(datespl, "spl_%j_%Y")
 as.character(datespl1)
-datespl1
+#extract the days since jan. 1st and define it as a new vector
+subspl <- substr(datespl1, 5,7)
+subspl <- as.numeric(subspl)
+#subtract 213 to obtain days since aug. 1st
+subspl
+
+splpyr <- subspl[c(1:2,34:44)]
+splpyr <- splpyr-213
+spnlpyr <- subspl[c(3:33,45:69)]
+spnlpyr <- spnlpyr -212
+subspl2 <- c(splpyr, spnlpyr)
+subspl2
+subspl2 <- subspl2[c(1:2,14:54,3:13,55:69)]
+
+subspl2 <- as.character(subspl2)
+#replace days since jan. 1st with xxx
+substr(datespl1, 5,7) <- "xxx"
+#replace xxx with days since aug. 1st
+substr(datespl1, 5,7) <- subspl2
+#remove the third place holder x for double digit values
+datespl1 <- gsub("x", "", datespl1)
+#create a vector for area columns
 splantyear <- names(municipal3)[c(3,6,18,29,40,52,65)]
-splantyear
+#merge dates and area columns
 spl <- c(datespl1, splantyear)
-spl
+#reorder columns
 spl <- spl[c(70,1:2,71,3:13,72,14:23,73,24:33,74,34:44,75,45:56,76,57:69)]
+spl
 
+sharv <- names(municipal3)[c(80:93, 95:109, 111:125, 127:141, 143:157, 159:173, 175:191)]
+sharv
+datesha <- as.Date(sharv, format="sha_%m_%d_%Y")
+datesha1 <- format(datesha, "sha_%j_%Y")
+as.character(datesha1)
 
+subsha <- substr(datesha1, 5,7)
+subsha <- as.numeric(subsha)
+subsha
+#subtract 213 to obtain days since aug. 1st
+subsha <- subsha +153
+subsha2 <- as.character(subsha)
+#replace days since jan. 1st with xxx
+substr(datesha1, 5,7) <- "xxx"
+#replace xxx with days since aug. 1st
+substr(datesha1, 5,7) <- subsha2
+#remove the third place holder x for double digit values
+datesha1 <- gsub("x", "", datesha1)
+shayear <- names(municipal3)[c(79,94,110,126,142,158,174)]
+shayear
+sha <- c(datesha1, shayear)
+sha
+sha <- sha[c(107,1:14,108,15:29,109,30:44,110,45:59,111,60:74,112,75:89,113,90:106)]
 
+soy <- c(spl, sha)
+soy
+
+mplant <- names(municipal3)[c(193:201, 203:212, 214:222, 224:233, 235:244, 246:256, 258:267)]
+mplant
+datesmpl <- as.Date(mplant, format="mpl_%m_%d_%Y")
+datesmpl
+datesmpl1 <- format(datesmpl, "mpl_%j_%Y")
+as.character(datesmpl1)
+
+submpl <- substr(datesmpl1, 5,7)
+submpl <- as.numeric(submpl)
+datesmpl1
+#subtract 213 to obtain days since aug. 1st
+submpl <- submpl +153
+submpl2 <- as.character(submpl)
+#replace days since jan. 1st with xxx
+substr(datesmpl1, 5,7) <- "xxx"
+#replace xxx with days since aug. 1st
+substr(datesmpl1, 5,7) <- submpl2
+#remove the third place holder x for double digit values
+datesmpl1 <- gsub("x", "", datesmpl1)
+
+mplantyear <- names(municipal3)[c(192,202,213,223,234,245,257)]
+mplantyear
+mpl <- c(datesmpl1, mplantyear)
+mpl
+mpl <- mpl[c(70,1:9,71,10:19,72,20:28,73,29:38,74,39:48,75,49:59,76,60:69)]
+
+soympl <- c(soy, mpl)
+soympl
+
+mharv <- names(municipal3)[c(269:280, 282:292, 294:304, 306:319, 321:334, 336:349)]
+mharv
+datesmha <- as.Date(mharv, format="mha_%m_%d_%Y")
+datesmha
+datesmha1 <- format(datesmha, "mha_%j_%Y")
+as.character(datesmha1)
+
+submha <- substr(datesmha1, 5,7)
+submha <- as.numeric(submha)
+submha
+submha4 <- ifelse(submha <=212, submha+153,submha-212)
+submha4 <- as.character(submha4)
+#replace days since jan. 1st with xxx
+substr(datesmha1, 5,7) <- "xxx"
+#replace xxx with days since aug. 1st
+substr(datesmha1, 5,7) <- submha4
+#remove the third place holder x for double digit values
+datesmha1 <- gsub("x", "", datesmha1)
+datesmha1
+
+mhayear <- names(municipal3)[c(268,281,293,305,320,335)]
+mhayear
+mha <- c(datesmha1, mhayear)
+mha
+mha <- mha[c(77,1:12,78,13:23,79,24:34,80,35:48,81,49:62,82,63:76)]
+
+all <- c(soympl, mha)
+all
+
+begin <- c('muni_id', 'muni_name')
+begin
+allcolumns <- c(begin, all)
+names(municipal3) <- allcolumns
 write.csv(municipal3, file='agroserv_cropdates_muni.csv', row.names=FALSE)
 
 
