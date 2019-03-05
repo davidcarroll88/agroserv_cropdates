@@ -5246,25 +5246,127 @@ fsoyp17 <- tibble::rowid_to_column(fsoyp17, "ID")
 fsoyp18 <- tibble::rowid_to_column(fsoyp18, "ID")
 fsoyp19 <- tibble::rowid_to_column(fsoyp19, "ID")
 
+fsoyh10_2 <- tibble::rowid_to_column(fsoyh10_2, "ID")
+fsoyh11reg <- tibble::rowid_to_column(fsoyh11reg, "ID")
+fsoyh12_2_2 <- tibble::rowid_to_column(fsoyh12_2_2, "ID")
+fsoyh13_1 <- tibble::rowid_to_column(fsoyh13_1, "ID")
+fsoyh14_2 <- tibble::rowid_to_column(fsoyh14_2, "ID")
+fsoyh15_2 <- tibble::rowid_to_column(fsoyh15_2, "ID")
+fsoyh16_1 <- tibble::rowid_to_column(fsoyh16_1, "ID")
+fsoyh17_1 <- tibble::rowid_to_column(fsoyh17_1, "ID")
+fsoyh18 <- tibble::rowid_to_column(fsoyh18, "ID")
 
-fsoyh9_mun5 <- tibble::rowid_to_column(fsoyh9_mun5, "ID")
-fsoyh10_1 <- tibble::rowid_to_column(fsoyh10_1, "ID")
-fsoyh11_muni <- tibble::rowid_to_column(fsoyh11_muni, "ID")
-fsoyh12_muni <- tibble::rowid_to_column(fsoyh12_muni, "ID")
-fsoyh13_muni <- tibble::rowid_to_column(fsoyh13_muni, "ID")
-fsoyh14_1 <- tibble::rowid_to_column(fsoyh14_1, "ID")
-fsoyh15_1 <- tibble::rowid_to_column(fsoyh15_1, "ID")
-fmap9_mun3 <- tibble::rowid_to_column(fmap9_mun3, "ID")
-fmap10_mun <- tibble::rowid_to_column(fmap10_mun, "ID")
-fmap11_1 <- tibble::rowid_to_column(fmap11_1, "ID")
-fmap12_1 <- tibble::rowid_to_column(fmap12_1, "ID")
-fmap13_1 <- tibble::rowid_to_column(fmap13_1, "ID")
-fmap14_1 <- tibble::rowid_to_column(fmap14_1, "ID")
-fmap15_1 <- tibble::rowid_to_column(fmap15_1, "ID")
-fmah9 <- tibble::rowid_to_column(fmah9, "ID")
-fmah10_mun <- tibble::rowid_to_column(fmah10_mun, "ID")
-fmah11_1 <- tibble::rowid_to_column(fmah11_1, "ID")
-fmah12_1 <- tibble::rowid_to_column(fmah12_1, "ID")
-fmah13_1 <- tibble::rowid_to_column(fmah13_1, "ID")
-fmah14_1 <- tibble::rowid_to_column(fmah14_1, "ID")
+fmap10_reg <- tibble::rowid_to_column(fmap10_reg, "ID")
+fmap11_2 <- tibble::rowid_to_column(fmap11_2, "ID")
+fmap12_2 <- tibble::rowid_to_column(fmap12_2, "ID")
+fmap13_2 <- tibble::rowid_to_column(fmap13_2, "ID")
+fmap14_2 <- tibble::rowid_to_column(fmap14_2, "ID")
+fmap15_2 <- tibble::rowid_to_column(fmap15_2, "ID")
+fmap16 <- tibble::rowid_to_column(fmap16, "ID")
+fmap17 <- tibble::rowid_to_column(fmap17, "ID")
+fmap18 <- tibble::rowid_to_column(fmap18, "ID")
+
+fmah10_reg <- tibble::rowid_to_column(fmah10_reg, "ID")
+fmah11_2 <- tibble::rowid_to_column(fmah11_2, "ID")
+fmah12_2 <- tibble::rowid_to_column(fmah12_2, "ID")
+fmah13_2 <- tibble::rowid_to_column(fmah13_2, "ID")
+fmah14_2 <- tibble::rowid_to_column(fmah14_2, "ID")
+fmah15_reg <- tibble::rowid_to_column(fmah15_reg, "ID")
+fmah16 <- tibble::rowid_to_column(fmah16, "ID")
+fmah17 <- tibble::rowid_to_column(fmah17, "ID")
+fmah18 <- tibble::rowid_to_column(fmah18, "ID")
+
+
+fsoyp11reg[2] = NULL
+fsoyp12reg[2] = NULL
+fsoyp13_2[2] = NULL
+fsoyp14reg[2] = NULL
+fsoyp15_2[2] = NULL
+fsoyp16[2] = NULL
+fsoyp17[2] = NULL
+fsoyp18[2] = NULL
+fsoyp19[2] = NULL
+
+fsoyh10_2[2] = NULL
+fsoyh11reg[2] = NULL
+fsoyh12_2_2[2] = NULL
+fsoyh13_1[2] = NULL
+fsoyh14_2[2] = NULL
+fsoyh15_2[2] = NULL
+fsoyh16_1[2] = NULL
+fsoyh17_1[2] = NULL
+fsoyh18[2] = NULL
+
+fmap10_reg[2] = NULL
+fmap11_2[2] = NULL
+fmap12_2[2] = NULL
+fmap13_2[2] = NULL
+fmap14_2[2] = NULL
+fmap15_2[2] = NULL
+fmap16[2] = NULL
+fmap17[2] = NULL
+fmap18[2] = NULL
+
+fmah10_reg[2] = NULL
+fmah11_2[2] = NULL
+fmah12_2[2] = NULL
+fmah13_2[2] = NULL
+fmah14_2[2] = NULL
+fmah15_reg[2] = NULL
+fmah16[2] = NULL
+fmah17[2] = NULL
+fmah18[2] = NULL
+
+colnames(fsoyp10_2_re_1)[colnames(fsoyp10_2_re_1)=="Area_ha"] <- "spl_area_2010"
+colnames(fsoyp11reg)[colnames(fsoyp11reg)=="Area_ha"] <- "spl_area_2011"
+colnames(fsoyp12reg)[colnames(fsoyp12reg)=="Area_ha"] <- "spl_area_2012"
+colnames(fsoyp13_2)[colnames(fsoyp13_2)=="Area_ha"] <- "spl_area_2013"
+colnames(fsoyp14reg)[colnames(fsoyp14reg)=="Area_ha"] <- "spl_area_2014"
+colnames(fsoyp15_2)[colnames(fsoyp15_2)=="Area_ha"] <- "spl_area_2015"
+colnames(fsoyp16)[colnames(fsoyp16)=="Area_ha"] <- "spl_area_2016"
+colnames(fsoyp17)[colnames(fsoyp17)=="Area_ha"] <- "spl_area_2017"
+colnames(fsoyp18)[colnames(fsoyp18)=="Area_ha"] <- "spl_area_2018"
+colnames(fsoyp19)[colnames(fsoyp19)=="Area_ha"] <- "spl_area_2019"
+
+colnames(fsoyp10_2_re_1)[colnames(fsoyp10_2_re_1)=="change_in_plant_per"] <- "spl_change_2010"
+colnames(fsoyp11reg)[colnames(fsoyp11reg)=="change_in_plant_per"] <- "spl_change_2011"
+colnames(fsoyp12reg)[colnames(fsoyp12reg)=="change_in_plant_per"] <- "spl_change_2012"
+colnames(fsoyp13_2)[colnames(fsoyp13_2)=="change_in_plant_per"] <- "spl_change_2013"
+colnames(fsoyp14reg)[colnames(fsoyp14reg)=="change_in_plant_per"] <- "spl_change_2014"
+colnames(fsoyp15_2)[colnames(fsoyp15_2)=="change_in_plant_per"] <- "spl_change_2015"
+colnames(fsoyp16)[colnames(fsoyp16)=="change_in_plant_per"] <- "spl_change_2016"
+colnames(fsoyp17)[colnames(fsoyp17)=="change_in_plant_per"] <- "spl_change_2017"
+colnames(fsoyp18)[colnames(fsoyp18)=="change_in_plant_per"] <- "spl_change_2018"
+colnames(fsoyp19)[colnames(fsoyp19)=="change_in_plant_per"] <- "spl_change_2019"
+
+
+fsoyh10_2[2] = NULL
+fsoyh11reg[2] = NULL
+fsoyh12_2_2[2] = NULL
+fsoyh13_1[2] = NULL
+fsoyh14_2[2] = NULL
+fsoyh15_2[2] = NULL
+fsoyh16_1[2] = NULL
+fsoyh17_1[2] = NULL
+fsoyh18[2] = NULL
+
+fmap10_reg[2] = NULL
+fmap11_2[2] = NULL
+fmap12_2[2] = NULL
+fmap13_2[2] = NULL
+fmap14_2[2] = NULL
+fmap15_2[2] = NULL
+fmap16[2] = NULL
+fmap17[2] = NULL
+fmap18[2] = NULL
+
+fmah10_reg[2] = NULL
+fmah11_2[2] = NULL
+fmah12_2[2] = NULL
+fmah13_2[2] = NULL
+fmah14_2[2] = NULL
+fmah15_reg[2] = NULL
+fmah16[2] = NULL
+fmah17[2] = NULL
+fmah18[2] = NULL
 
