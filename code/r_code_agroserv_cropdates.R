@@ -5339,34 +5339,75 @@ colnames(fsoyp17)[colnames(fsoyp17)=="change_in_plant_per"] <- "spl_change_2017"
 colnames(fsoyp18)[colnames(fsoyp18)=="change_in_plant_per"] <- "spl_change_2018"
 colnames(fsoyp19)[colnames(fsoyp19)=="change_in_plant_per"] <- "spl_change_2019"
 
+colnames(fsoyh10_2)[colnames(fsoyh10_2)=="Area_ha"] <- "sha_area_2010"
+colnames(fsoyh11reg)[colnames(fsoyh11reg)=="Area_ha"] <- "sha_area_2011"
+colnames(fsoyh12_2_2)[colnames(fsoyh12_2_2)=="Area_ha"] <- "sha_area_2012"
+colnames(fsoyh13_1)[colnames(fsoyh13_1)=="Area_ha"] <- "sha_area_2013"
+colnames(fsoyh14_2)[colnames(fsoyh14_2)=="Area_ha"] <- "sha_area_2014"
+colnames(fsoyh15_2)[colnames(fsoyh15_2)=="Area_ha"] <- "sha_area_2015"
+colnames(fsoyh16_1)[colnames(fsoyh16_1)=="Area_ha"] <- "sha_area_2016"
+colnames(fsoyh17_1)[colnames(fsoyh17_1)=="Area_ha"] <- "sha_area_2017"
+colnames(fsoyh18)[colnames(fsoyh18)=="Area_ha"] <- "sha_area_2018"
 
-fsoyh10_2[2] = NULL
-fsoyh11reg[2] = NULL
-fsoyh12_2_2[2] = NULL
-fsoyh13_1[2] = NULL
-fsoyh14_2[2] = NULL
-fsoyh15_2[2] = NULL
-fsoyh16_1[2] = NULL
-fsoyh17_1[2] = NULL
-fsoyh18[2] = NULL
+colnames(fsoyh10_2)[colnames(fsoyh10_2)=="change_in_plant_per"] <- "sha_change_2010"
+colnames(fsoyh11reg)[colnames(fsoyh11reg)=="change_in_plant_per"] <- "sha_change_2011"
+colnames(fsoyh12_2_2)[colnames(fsoyh12_2_2)=="change_in_plant_per"] <- "sha_change_2012"
+colnames(fsoyh13_1)[colnames(fsoyh13_1)=="change_in_plant_per"] <- "sha_change_2013"
+colnames(fsoyh14_2)[colnames(fsoyh14_2)=="change_in_plant_per"] <- "sha_change_2014"
+colnames(fsoyh15_2)[colnames(fsoyh15_2)=="change_in_plant_per"] <- "sha_change_2015"
+colnames(fsoyh16_1)[colnames(fsoyh16_1)=="change_in_plant_per"] <- "sha_change_2016"
+colnames(fsoyh17_1)[colnames(fsoyh17_1)=="change_in_plant_per"] <- "sha_change_2017"
+colnames(fsoyh18)[colnames(fsoyh18)=="change_in_plant_per"] <- "sha_change_2018"
 
-fmap10_reg[2] = NULL
-fmap11_2[2] = NULL
-fmap12_2[2] = NULL
-fmap13_2[2] = NULL
-fmap14_2[2] = NULL
-fmap15_2[2] = NULL
-fmap16[2] = NULL
-fmap17[2] = NULL
-fmap18[2] = NULL
+colnames(fmap10_reg)[colnames(fmap10_reg)=="Area_ha"] <- "mpl_area_2010"
+colnames(fmap11_2)[colnames(fmap11_2)=="Area_ha"] <- "mpl_area_2011"
+colnames(fmap12_2)[colnames(fmap12_2)=="Area_ha"] <- "mpl_area_2012"
+colnames(fmap13_2)[colnames(fmap13_2)=="Area_ha"] <- "mpl_area_2013"
+colnames(fmap14_2)[colnames(fmap14_2)=="Area_ha"] <- "mpl_area_2014"
+colnames(fmap15_2)[colnames(fmap15_2)=="Area_ha"] <- "mpl_area_2015"
+colnames(fmap16)[colnames(fmap16)=="Area_ha"] <- "mpl_area_2016"
+colnames(fmap17)[colnames(fmap17)=="Area_ha"] <- "mpl_area_2017"
+colnames(fmap18)[colnames(fmap18)=="Area_ha"] <- "mpl_area_2018"
 
-fmah10_reg[2] = NULL
-fmah11_2[2] = NULL
-fmah12_2[2] = NULL
-fmah13_2[2] = NULL
-fmah14_2[2] = NULL
-fmah15_reg[2] = NULL
-fmah16[2] = NULL
-fmah17[2] = NULL
-fmah18[2] = NULL
+colnames(fmap10_reg)[colnames(fmap10_reg)=="change_in_plant_per"] <- "mpl_change_2010"
+colnames(fmap11_2)[colnames(fmap11_2)=="change_in_plant_per"] <- "mpl_change_2011"
+colnames(fmap12_2)[colnames(fmap12_2)=="change_in_plant_per"] <- "mpl_change_2012"
+colnames(fmap13_2)[colnames(fmap13_2)=="change_in_plant_per"] <- "mpl_change_2013"
+colnames(fmap14_2)[colnames(fmap14_2)=="change_in_plant_per"] <- "mpl_change_2014"
+colnames(fmap15_2)[colnames(fmap15_2)=="change_in_plant_per"] <- "mpl_change_2015"
+colnames(fmap16)[colnames(fmap16)=="change_in_plant_per"] <- "mpl_change_2016"
+colnames(fmap17)[colnames(fmap17)=="change_in_plant_per"] <- "mpl_change_2017"
+colnames(fmap18)[colnames(fmap18)=="change_in_plant_per"] <- "mpl_change_2018"
 
+colnames(fmah10_reg)[colnames(fmah10_reg)=="Area_ha"] <- "mha_area_2010"
+colnames(fmah11_2)[colnames(fmah11_2)=="Area_ha"] <- "mha_area_2011"
+colnames(fmah12_2)[colnames(fmah12_2)=="Area_ha"] <- "mha_area_2012"
+colnames(fmah13_2)[colnames(fmah13_2)=="Area_ha"] <- "mha_area_2013"
+colnames(fmah14_2)[colnames(fmah14_2)=="Area_ha"] <- "mha_area_2014"
+colnames(fmah15_reg)[colnames(fmah15_reg)=="Area_ha"] <- "mha_area_2015"
+colnames(fmah16)[colnames(fmah16)=="Area_ha"] <- "mha_area_2016"
+colnames(fmah17)[colnames(fmah17)=="Area_ha"] <- "mha_area_2017"
+colnames(fmah18)[colnames(fmah18)=="Area_ha"] <- "mha_area_2018"
+
+colnames(fmah10_reg)[colnames(fmah10_reg)=="change_in_plant_per_2"] <- "mha_change_2010"
+colnames(fmah11_2)[colnames(fmah11_2)=="change_in_plant_per"] <- "mha_change_2011"
+colnames(fmah12_2)[colnames(fmah12_2)=="change_in_plant_per"] <- "mha_change_2012"
+colnames(fmah13_2)[colnames(fmah13_2)=="change_in_plant_per"] <- "mha_change_2013"
+colnames(fmah14_2)[colnames(fmah14_2)=="change_in_plant_per"] <- "mha_change_2014"
+colnames(fmah15_reg)[colnames(fmah15_reg)=="change_in_plant_per"] <- "mha_change_2015"
+colnames(fmah16)[colnames(fmah16)=="change_in_plant_per"] <- "mha_change_2016"
+colnames(fmah17)[colnames(fmah17)=="change_in_plant_per"] <- "mha_change_2017"
+colnames(fmah18)[colnames(fmah18)=="change_in_plant_per"] <- "mha_change_2018"
+
+fmah10_reg[5] = NULL
+fmah10_reg[4] = NULL
+
+merge50 <- merge(fsoyp10_2_re_1, fsoyp11reg, by="ID", sort = FALSE)
+merge51 <- merge(merge50, fsoyp12reg, by="ID", sort = FALSE)
+merge52 <- merge(merge51, fsoyp13_2, by="ID", sort = FALSE)
+merge53 <- merge(merge52, fsoyp14reg, by="ID", sort = FALSE)
+merge54 <- merge(merge53, fsoyp15_2, by="ID", sort = FALSE)
+merge55 <- merge(merge54, fsoyp16, by="ID", sort = FALSE)
+merge56 <- merge(merge55, fsoyp17, by="ID", sort = FALSE)
+merge57 <- merge(merge56, fsoyp18, by="ID", sort = FALSE)
+merge58 <- merge(merge57, fsoyp19, by="ID", sort = FALSE)
