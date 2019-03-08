@@ -5380,10 +5380,10 @@ colnames(fmap17)[colnames(fmap17)=="Area_ha"] <- "mpl_area_2017"
 colnames(fmap18)[colnames(fmap18)=="Area_ha"] <- "mpl_area_2018"
 
 colnames(fmap10_reg)[colnames(fmap10_reg)=="change_in_plant_per_2"] <- "mpl_change_2010"
-colnames(fmap11_2)[colnames(fmap11_2)=="change_in_plant_per"] <- "mpl_change_2011"
-colnames(fmap12_2)[colnames(fmap12_2)=="change_in_plant_per"] <- "mpl_change_2012"
-colnames(fmap13_2)[colnames(fmap13_2)=="change_in_plant_per"] <- "mpl_change_2013"
-colnames(fmap14_2)[colnames(fmap14_2)=="change_in_plant_per"] <- "mpl_change_2014"
+colnames(fmap11_2)[colnames(fmap11_2)=="change_in_plant_per_1"] <- "mpl_change_2011"
+colnames(fmap12_2)[colnames(fmap12_2)=="change_in_plant_per_1"] <- "mpl_change_2012"
+colnames(fmap13_2)[colnames(fmap13_2)=="change_in_plant_per_1"] <- "mpl_change_2013"
+colnames(fmap14_2)[colnames(fmap14_2)=="change_in_plant_per_1"] <- "mpl_change_2014"
 colnames(fmap15_2)[colnames(fmap15_2)=="change_in_plant_per"] <- "mpl_change_2015"
 colnames(fmap16)[colnames(fmap16)=="change_in_plant_per"] <- "mpl_change_2016"
 colnames(fmap17)[colnames(fmap17)=="change_in_plant_per"] <- "mpl_change_2017"
@@ -5404,8 +5404,8 @@ colnames(fmah16)[colnames(fmah16)=="Area_ha"] <- "mha_area_2016"
 colnames(fmah17)[colnames(fmah17)=="Area_ha"] <- "mha_area_2017"
 colnames(fmah18)[colnames(fmah18)=="Area_ha"] <- "mha_area_2018"
 
-colnames(fmah10_reg)[colnames(fmah10_reg)=="change_in_plant_per_2"] <- "mha_change_2010"
-colnames(fmah11_2)[colnames(fmah11_2)=="change_in_plant_per"] <- "mha_change_2011"
+colnames(fmah10_reg)[colnames(fmah10_reg)=="change_in_plant_per"] <- "mha_change_2010"
+colnames(fmah11_2)[colnames(fmah11_2)=="change_in_plant_per_1"] <- "mha_change_2011"
 colnames(fmah12_2)[colnames(fmah12_2)=="change_in_plant_per"] <- "mha_change_2012"
 colnames(fmah13_2)[colnames(fmah13_2)=="change_in_plant_per"] <- "mha_change_2013"
 colnames(fmah14_2)[colnames(fmah14_2)=="change_in_plant_per"] <- "mha_change_2014"
@@ -5459,8 +5459,35 @@ merge83 <- merge(merge82, fmah16, by="ID", sort = FALSE)
 merge84 <- merge(merge83, fmah17, by="ID", sort = FALSE)
 merge85 <- merge(merge84, fmah18, by="ID", sort = FALSE)
 
+
 write.csv(merge85, file='agroserv_cropdates_region.csv', row.names=FALSE)
 
+merge85[283] <- NULL
+merge85[282] <- NULL
 
-#Partial - 458 - mha2015, 440 - mha2014, 422 - mha2013
-#Remove - 282, 283,
+colnames(merge85)[colnames(merge85)=="Partial_prod_sc_ha"] <- "sha_partial_2013"
+colnames(merge85)[colnames(merge85)=="Partial_prod.x"] <- "mha_partial_2013"
+colnames(merge85)[colnames(merge85)=="Partial_prod.y"] <- "mha_partial_2014"
+colnames(merge85)[colnames(merge85)=="Partial_prod"] <- "mha_partial_2015"
+
+colnames(merge85) <- gsub("\\.x", "", colnames(merge85))
+colnames(merge85) <- gsub("\\.y", "", colnames(merge85))
+colnames(merge85) <- gsub("\\.z", "", colnames(merge85))
+
+write.csv(merge85, file='agroserv_cropdates_region.csv', row.names=FALSE)
+
+dim(merge85)
+sapply(merge85, mode)
+regcols <- names(merge85)
+regcols
+regcols1 <- nchar(regcols)
+regcols1
+
+if(any(nchar(regcols)) == 10) {
+  regcols <- as.Date(regcols, format = "%Y/%m/%d")
+}
+
+sapply(regcols, mode)
+regcols <- as.Date(regcols, format = "%Y/%m/%d")
+
+                   
